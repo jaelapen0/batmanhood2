@@ -7,9 +7,13 @@ class Api::SessionsController < ApplicationController
         )
         if @user
             login!(@user)
+            current_user = @user;
+            # redirect_to "/"
             render "api/users/show"
         else 
-             render json: ["Invalid email/password combination"], status: 422
+            # debugger
+            # flash.now[:error] =  @user.errors.full_messages 
+             render json: ["Invalid email/password combination"], status: 401
         end
     end
 

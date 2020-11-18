@@ -1,7 +1,8 @@
 require 'bcrypt'
 class User < ApplicationRecord
-    validates :password_digest, :first_name, :last_name, presence: true
+    validates :password_digest, :first_name, :last_name, :email, presence: true
     validates :session_token, uniqueness: true
+    validates :password, length: { minimum: 6 }, allow_nil: true
     after_initialize :ensure_session_token
     attr_reader :password
     

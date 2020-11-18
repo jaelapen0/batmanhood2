@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
             # redirect_to "/"
             render "api/users/show"
         else 
-            # debugger
+            
             # flash.now[:error] =  @user.errors.full_messages 
              render json: ["Invalid email/password combination"], status: 401
         end

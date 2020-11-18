@@ -9,8 +9,7 @@ const sessionReducer = (oldState ={}, action) => {
 
     switch(action.type){
         case SessionActions.RECEIVE_CURRENT_USER:
-            console.log("whaatup")
-            debugger;
+            
             const currentId = action.currentUser.id
             return Object.assign({}, {currentId})
         case SessionActions.LOGOUT_CURRENT_USER:

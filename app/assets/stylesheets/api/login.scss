@@ -2,4 +2,38 @@
     height: 100%;
     width: 100%;
     background-color: white;
+    padding-left: 20%;
+}
+
+input[type=text]:focus{
+    outline-color: #21ce99;
+}
+
+input[type=password]:focus{
+    outline-color: #21ce99;
+}
+
+#form-button{
+    margin-top: 10px;
+     background-color: #21ce99;
+    border-radius: 3px;
+    // font-weight: bolder; 
+    border-width: 0;
+    padding: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+    padding-top: 4px;
+}
+
+#form-button:hover{
+    background-color: #25a17b;
+}
+
+#form-button:focus{
+    outline: none;
+}
+.login-input{
+    margin: 8px 10px;
+    padding: 0 5px;
+    border-width: 0;
 }

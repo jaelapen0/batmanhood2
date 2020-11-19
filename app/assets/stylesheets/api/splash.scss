@@ -53,6 +53,9 @@ padding-left: 8%;
     // background-color: gray;
 }
 
+button:hover{
+    outline: none;
+}
 #demo-login:hover{
     background-color: #2a2a30;
 }
@@ -75,23 +78,27 @@ padding-left: 8%;
     display: inline;
     justify-content: space-around;
     margin-right: 10px;
+    font-size: 15px;
 }
 
 .header-button{
     background-color: #21ce99;
     border-radius: 30px;
-    // font-weight: bolder;
+    // font-weight: bolder; 
     border-width: 0;
     padding: 10px;
     margin-left: 10px;
     text-decoration: none;
-    padding-top: 2px;
+    padding-top: 4px;
 }
-
+.header-button:hover{
+    background-color: #25a17b;
+}
 #logo{
     font-size: 25px;
     padding-left: 10px;
-    padding-bottom: 10px;
+    // padding-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 a {

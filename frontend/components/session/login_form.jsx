@@ -22,6 +22,10 @@ class SignupForm extends React.Component {
         });
     }
 
+    componentWillUnmount(){
+        
+    }
+
     checkFormValidations() {
         let validForm = true;
         let form_errors = [];
@@ -46,7 +50,7 @@ class SignupForm extends React.Component {
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
         if (this.checkFormValidations()){
-           return <Redirect to="/"></Redirect>
+           return <Redirect to="root"></Redirect>
             // this.props.history.push("/")
             // const user = Object.assign({}, this.state);
             // this.props.processForm(user);
@@ -89,7 +93,7 @@ class SignupForm extends React.Component {
                         />
                     </label>
                     <br />
-                    <input type="submit" value={this.props.formType} />
+                    <input id="form-button" type="submit" value={this.props.formType} />
                 </form>
                     
             </div>)

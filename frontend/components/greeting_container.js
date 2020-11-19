@@ -3,7 +3,7 @@ import { logout, login } from '../actions/session_actions';
 import Greeting from './greeting';
 
 const mstp = ({session, entities: {users} }) => {
-    debugger;
+    debugger
 
     if (users[session.id]){
         return{currentUser: users[session.id] }

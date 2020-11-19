@@ -1,5 +1,6 @@
 import React from 'react';
-
+import SignUpFinePrint from './signup_fine_print';
+import SignupSide from "./signup_side"
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
@@ -51,12 +52,17 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="signup-form">
                 {/* <TextInput style={{ borderColor: this.state.errors.include('first_name') ? 'red' : 'transparent' }} /> */}
-                <h1>Sign Up</h1>
+                <h2>Make Your Money Move</h2>
+                <SignupSide />
+
+                <h4>Robinhood lets you invest in companies you love, commission-free.</h4>
             <p>{this.props.errors ? this.props.errors : null}</p>
+            
                 <form onSubmit={this.handleSubmit} >
                         <input
+                            className="login-input"
                             name="first_name"
                             type="text"
                             placeholder="First Name"
@@ -64,6 +70,7 @@ class SignupForm extends React.Component {
                             onChange={this.update('first_name')}   
                         />
                         <input
+                            className="login-input"
                             name="last_name"
                             type="text"
                             placeholder="Last Name"
@@ -73,6 +80,7 @@ class SignupForm extends React.Component {
                         <br/>
 
                         <input
+                            className="login-input"
                             type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
@@ -80,14 +88,16 @@ class SignupForm extends React.Component {
                         />
                     <br/>
                         <input
+                            className="login-input"
                             type="password"
                             placeholder="Password"
                             value={this.state.password}
                             onChange={this.update('password')}
                         />
                     <br />
-                    <input type="submit" value="Sign Up" />
+                    <input id="form-button" type="submit" value="Sign Up" />
                 </form>
+                <SignUpFinePrint/>
             </div>)
     }
 }

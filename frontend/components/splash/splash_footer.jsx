@@ -9,7 +9,7 @@ const SplashFooter = () => {
 
             </div>
             <div id="foot-paragraph">
-              aydyfdhfdhfhdhf
+                Keep your portfolio in your pocket. Everything you need to manage your assets is available in a single site.
             </div>
         </div>
     )

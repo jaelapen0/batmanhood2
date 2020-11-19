@@ -15,13 +15,13 @@ const App = () => {
                 <p id="logo">batmanhood</p>
                 <GreetingContainer />
         </div>
-       {/* <Switch> */}
-        <Route path="/" component={SplashContainer}/>
+       <Switch>
             {/* <AuthRoute path="/" component={SplashMainContainer} /> */}
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
+        <Route path="/" component={SplashContainer}/>
         {/* <Route exact path="/" component={GreetingContainer} /> */}
-        {/* </Switch> */}
+        </Switch>
     </div>
     )
 };

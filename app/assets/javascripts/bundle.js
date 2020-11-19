@@ -183,7 +183,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "splashnav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -238,13 +237,12 @@ var Greeting = function Greeting(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "header-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: ""
+      href: "#/signup"
     }, "My Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "header-button",
       onClick: logout
     }, "Log Out"));
-  }; // debugger
-
+  };
 
   return currentUser ? personalGreeting() : sessionLinks();
 };
@@ -273,7 +271,6 @@ var mstp = function mstp(_ref) {
   var session = _ref.session,
       users = _ref.entities.users;
 
-  // debugger
   if (users[session.id]) {
     return {
       currentUser: users[session.id]
@@ -412,20 +409,20 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var validForm = true;
       var form_errors = [];
 
-      if (this.state["email"].length > 1) {
+      if (this.state["email"].length < 1) {
         validForm = false;
-        form_errors["email"] = "Cannot be empty";
+        form_errors.push("Email cannot be empty");
       }
 
-      if (this.state["password"].length > 6) {
+      if (this.state["password"].length < 6) {
         validForm = false;
-        form_errors["password"] = "Cannot be empty";
+        form_errors.push("Password cannot be empty");
       }
 
       this.setState({
         form_errors: form_errors
       });
-      return validForm;
+      return form_errors;
     }
   }, {
     key: "handleSubmit",
@@ -434,18 +431,12 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var user = Object.assign({}, this.state);
       this.props.processForm(user);
 
-      if (this.checkFormValidations()) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
-          to: "root"
-        }); // this.props.history.push("/")
-        // const user = Object.assign({}, this.state);
-        // this.props.processForm(user);
-      } // else{
-      //     
-      //     this.render();
-      //     //  alert(this.state.form_errors)
-      //     }
-
+      if (this.checkFormValidations().length === 0) {
+        //    return <Redirect to="root"></Redirect>
+        this.props.history.push("/");
+      } else {
+        this.render();
+      }
     }
   }, {
     key: "render",
@@ -613,7 +604,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       email: "",
       first_name: "",
       last_name: "",
-      password: ""
+      password: "",
+      form_errors: []
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -632,27 +624,36 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     key: "checkFormValidations",
     value: function checkFormValidations() {
       var validForm = true;
-      var errors = {};
+      var form_errors = [];
 
-      if (this.state["email"].length > 1) {
-        validForm = false;
-        errors["email"] = "Cannot be empty";
+      if (this.state["email"].length < 1) {
+        validForm = false; // errors["email"] = "Cannot be empty";
+
+        form_errors.push("email cannot be empty");
       }
 
-      if (this.state["first_name"].length > 1) {
-        validForm = false;
-        errors["first_name"] = "Cannot be empty";
+      if (this.state["first_name"].length < 1) {
+        validForm = false; // errors["first_name"] = "Cannot be empty";
+
+        form_errors.push("first_name cannot be empty");
       }
 
-      if (this.state["last_name"].length > 1) {
-        validForm = false;
-        errors["last_name"] = "Cannot be empty";
+      if (this.state["last_name"].length < 1) {
+        validForm = false; // errors["last_name"] = "Cannot be empty";
+
+        form_errors.push("email cannot be empty");
       }
 
-      if (this.state["password"].length > 6) {
-        validForm = false;
-        errors["password"] = "Cannot be empty";
+      if (this.state["password"].length < 6) {
+        validForm = false; // errors["password"] = "Cannot be empty";
+
+        form_errors.push("email cannot be empty");
       }
+
+      this.setState({
+        form_errors: form_errors
+      });
+      return form_errors;
     }
   }, {
     key: "handleSubmit",
@@ -660,6 +661,13 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.processForm(user);
+
+      if (this.checkFormValidations().length === 0) {
+        //    return <Redirect to="root"></Redirect>
+        this.props.history.push("/");
+      } else {
+        this.render();
+      }
     }
   }, {
     key: "render",
@@ -909,15 +917,12 @@ var SplashMain = /*#__PURE__*/function (_React$Component) {
   _createClass(SplashMain, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // debugger
-      // console.log(this.state)
-
+      e.preventDefault();
       this.state = {
         email: "demo1234",
         password: "demo1234"
       };
-      var user = Object.assign({}, this.state); // debugger
-
+      var user = Object.assign({}, this.state);
       this.props.props.login(user);
     }
   }, {
@@ -976,8 +981,6 @@ var mstp = function mstp(state, _ref) {
   var session = _ref.session,
       users = _ref.entities.users;
 
-  // debugger;
-  // debugger;
   if (users[session.id]) {
     return {
       currentUser: users[session.id]
@@ -990,7 +993,6 @@ var mstp = function mstp(state, _ref) {
 };
 
 var mdtp = function mdtp(dispatch) {
-  // debugger;
   return {
     login: function login(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["login"])(user));
@@ -1054,13 +1056,12 @@ var SplashPage = /*#__PURE__*/function (_React$Component) {
   function SplashPage(props) {
     _classCallCheck(this, SplashPage);
 
-    return _super.call(this, props); // debugger;
+    return _super.call(this, props);
   }
 
   _createClass(SplashPage, [{
     key: "render",
     value: function render() {
-      // debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_main__WEBPACK_IMPORTED_MODULE_1__["default"], {
         props: this.props
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));

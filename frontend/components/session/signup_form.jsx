@@ -8,7 +8,9 @@ class SignupForm extends React.Component {
             email: "",
             first_name: "",
             last_name: "",
-            password: ""
+            password: "",
+            form_errors: []
+            
         };
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -21,24 +23,30 @@ class SignupForm extends React.Component {
 
     checkFormValidations() {
         let validForm = true;
-        let errors = {};
+        let form_errors = [];
 
-        if (this.state["email"].length > 1) {
+        if (this.state["email"].length < 1) {
             validForm = false;
-            errors["email"] = "Cannot be empty";
+            // errors["email"] = "Cannot be empty";
+            form_errors.push("email cannot be empty")
         }
-        if (this.state["first_name"].length > 1) {
+        if (this.state["first_name"].length < 1) {
             validForm = false;
-            errors["first_name"] = "Cannot be empty";
+            // errors["first_name"] = "Cannot be empty";
+            form_errors.push("first_name cannot be empty")
         }
-        if (this.state["last_name"].length > 1) {
+        if (this.state["last_name"].length < 1) {
             validForm = false;
-            errors["last_name"] = "Cannot be empty";
+            // errors["last_name"] = "Cannot be empty";
+            form_errors.push("email cannot be empty")
         }
-        if (this.state["password"].length > 6) {
+        if (this.state["password"].length < 6) {
             validForm = false;
-            errors["password"] = "Cannot be empty";
+            // errors["password"] = "Cannot be empty";
+            form_errors.push("email cannot be empty")
         }
+        this.setState({ form_errors })
+        return form_errors
 
     }
 
@@ -46,8 +54,12 @@ class SignupForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-            
-        
+       
+        if (this.checkFormValidations().length === 0) {
+            //    return <Redirect to="root"></Redirect>
+            this.props.history.push("/")
+        }
+        else{ this.render()}
     }
 
     render() {

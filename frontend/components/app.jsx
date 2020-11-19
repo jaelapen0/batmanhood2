@@ -8,7 +8,6 @@ import SplashMainContainer from "./splash/splash_main_container"
 import SplashContainer from "./splash/splash_container"
 import { AuthRoute } from "../util/route_util"
 const App = () => {
-    // debugger;
     return(
     <div>
         <div id="splashnav">

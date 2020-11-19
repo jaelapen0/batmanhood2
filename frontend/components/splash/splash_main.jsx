@@ -12,14 +12,11 @@ class SplashMain extends React.Component {
 
     handleSubmit(e){
         e.preventDefault()
-        // debugger
-        // console.log(this.state)
         this.state = {
             email: "demo1234",
             password: "demo1234",
         };
         const user = Object.assign({}, this.state);
-        // debugger
 
         this.props.props.login(user);
 

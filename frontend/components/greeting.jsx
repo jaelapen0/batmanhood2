@@ -13,11 +13,10 @@ const Greeting = ({ currentUser, logout }) => {
     const personalGreeting = () => (
         <nav className="header-group">
             {/* <h2 className="header-name"> My Account</h2> */}
-            <a href="">My Account</a>
+            <a href="#/signup">My Account</a>
             <button className="header-button" onClick={logout}>Log Out</button>
         </nav>
     );
-    // debugger
     return currentUser ? personalGreeting() : sessionLinks();
 };
 

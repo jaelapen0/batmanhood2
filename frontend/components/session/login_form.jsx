@@ -30,18 +30,18 @@ class SignupForm extends React.Component {
         let validForm = true;
         let form_errors = [];
 
-        if (this.state["email"].length > 1) {
+        if (this.state["email"].length < 1) {
             validForm = false;
-            form_errors["email"] = "Cannot be empty";
+            form_errors.push("Email cannot be empty")
         }
       
-        if (this.state["password"].length > 6) {
+        if (this.state["password"].length < 6) {
             validForm = false;
-            form_errors["password"] = "Cannot be empty";
+            form_errors.push("Password cannot be empty")
         }
 
         this.setState({ form_errors})
-        return validForm;
+        return form_errors
     }
 
     handleSubmit(e) {
@@ -49,21 +49,14 @@ class SignupForm extends React.Component {
         
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-        if (this.checkFormValidations()){
-           return <Redirect to="root"></Redirect>
-            // this.props.history.push("/")
-            // const user = Object.assign({}, this.state);
-            // this.props.processForm(user);
-
+        if (this.checkFormValidations().length === 0) {
+            //    return <Redirect to="root"></Redirect>
+            this.props.history.push("/")
         }
-        // else{
-        //     
-        //     this.render();
-        //     //  alert(this.state.form_errors)
-        //     }
+        else { this.render() }
     }
 
-    render() {
+    render(){
    
         return (
             

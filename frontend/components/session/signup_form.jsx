@@ -45,6 +45,7 @@ class SignupForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
+            
         
     }
 
@@ -55,9 +56,6 @@ class SignupForm extends React.Component {
                 <h1>Sign Up</h1>
             <p>{this.props.errors ? this.props.errors : null}</p>
                 <form onSubmit={this.handleSubmit} >
-                    
-                    
-                   
                         <input
                             name="first_name"
                             type="text"
@@ -65,7 +63,6 @@ class SignupForm extends React.Component {
                             value={this.state.first_name}
                             onChange={this.update('first_name')}   
                         />
-                  
                         <input
                             name="last_name"
                             type="text"
@@ -81,9 +78,7 @@ class SignupForm extends React.Component {
                             onChange={this.update('email')}
                             placeholder="Email"
                         />
-                
                     <br/>
-                    
                         <input
                             type="password"
                             placeholder="Password"

@@ -4,14 +4,26 @@ import { Switch, Route } from "react-router-dom";
 import GreetingContainer from "../components/greeting_container"
 import LoginFormContainer from "../components/session/login_form_container"
 import SignupFormContainer from "../components/session/signup_form_container"
+import SplashMainContainer from "./splash/splash_main_container"
+import SplashContainer from "./splash/splash_container"
 import { AuthRoute } from "../util/route_util"
-const App = () => (
+const App = () => {
+    debugger;
+    return(
     <div>
-        <h1>batmanhood</h1>
-        <GreetingContainer />
+        <div id="splashnav">
+                <p id="logo">batmanhood</p>
+                <GreetingContainer />
+        </div>
+       {/* <Switch> */}
+        <Route path="/" component={SplashContainer}/>
+            {/* <AuthRoute path="/" component={SplashMainContainer} /> */}
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
+        {/* <Route exact path="/" component={GreetingContainer} /> */}
+        {/* </Switch> */}
     </div>
-);
+    )
+};
 
 export default App;

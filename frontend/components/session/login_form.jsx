@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Redirect} from "react-router-dom"
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
@@ -45,11 +45,13 @@ class SignupForm extends React.Component {
         
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-        // if (this.checkFormValidations()){
-        //     
-        //     const user = Object.assign({}, this.state);
-        //     this.props.processForm(user);
-        // }
+        if (this.checkFormValidations()){
+           return <Redirect to="/"></Redirect>
+            // this.props.history.push("/")
+            // const user = Object.assign({}, this.state);
+            // this.props.processForm(user);
+
+        }
         // else{
         //     
         //     this.render();
@@ -61,7 +63,7 @@ class SignupForm extends React.Component {
    
         return (
             
-            <div>
+            <div id="login-div">
                 <p id="login_errors">{this.props.form_errors ? this.props.form_errors : null}</p>
                 <p id="login_errors" color="red">{this.props.errors ? this.props.errors : null}</p>
                 <form onSubmit={this.handleSubmit} >

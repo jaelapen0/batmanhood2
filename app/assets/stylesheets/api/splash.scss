@@ -1,0 +1,100 @@
+// html{
+//     // width: 100%;
+// }
+
+body{
+ font-family: "DM Sans",sans-serif;
+    // float: left;
+//  width: 100%;']
+display: block;
+}
+
+#splash-main {
+background-color: #afe34b;
+height: 550px;
+font-family: "DM Sans",sans-serif;
+width: 100%;
+font-size: 30px;
+padding-left: 8%;
+ 
+ border-bottom: 1px solid black;
+//  overflow: hidden;
+// float: left;
+}
+
+#splash-main-header{
+    margin-left: 20px;
+    // margin-top: 300px;
+    padding-top: 125px;
+    display: flex;
+    padding-bottom: 23px;
+    font-size: 45px;
+    width: 20%;
+}
+
+#splash-paragraph{
+    font-size: 21px;
+    margin: 10px 2%;
+    width: 35%;
+    margin-bottom: 45px;
+}
+#demo-login{
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    margin-left: 40px;
+    font-size: 17px;
+    border-width: 0;
+    font-weight: bold;
+}   
+#demo-login:focus {
+    outline: none;
+    // background-color: gray;
+}
+
+#demo-login:hover{
+    background-color: #2a2a30;
+}
+
+#splashnav{
+    display: flex;
+    //  flex-flow: row nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    // box-shadow: 2px 2px gray;
+    font-size: 20px;
+    width: 100%;
+    height: 50px;
+    text-decoration: none;
+}
+
+.header-group{
+    display: inline;
+    justify-content: space-around;
+    margin-right: 10px;
+}
+
+.header-button{
+    background-color: #21ce99;
+    border-radius: 30px;
+    // font-weight: bolder;
+    border-width: 0;
+    padding: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+    padding-top: 2px;
+}
+
+#logo{
+    font-size: 25px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}

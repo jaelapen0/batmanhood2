@@ -54,12 +54,15 @@ class SignupForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-       
-        if (this.checkFormValidations().length === 0) {
+        
+        if (this.checkFormValidations().length === 0 && !this.props.errors) {
+            debugger;
             //    return <Redirect to="root"></Redirect>
             this.props.history.push("/")
         }
-        else{ this.render()}
+        else{ 
+            debugger;
+            this.render()}
     }
 
     render() {

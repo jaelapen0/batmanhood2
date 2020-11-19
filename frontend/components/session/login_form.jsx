@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect} from "react-router-dom"
+import LoginBackground from "./login_background"
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
@@ -59,15 +60,18 @@ class SignupForm extends React.Component {
     render(){
    
         return (
-            
+            <div id="login-main"> 
+            <LoginBackground/>
             <div id="login-div">
                 <p id="login_errors">{this.props.form_errors ? this.props.form_errors : null}</p>
                 <p id="login_errors" color="red">{this.props.errors ? this.props.errors : null}</p>
                 <form onSubmit={this.handleSubmit} >
-                    
-                    <label>Email:
+                    <h3 className="login-header">Welcome to Batmanhood</h3>
+                    <label className="login-label">Email
+                        <br/>
                         <input
                             type="text"
+                            className="login-input"
                             placeholder="Email"
                             value={this.state.email}
                             onChange={this.update('email')}
@@ -76,9 +80,11 @@ class SignupForm extends React.Component {
                     </label>
                     <br />
                    
-                    <label>Password:
+                        <label className="login-label">Password
+                        <br/>
                         <input
                             type="password"
+                                className="login-input"
                             placeholder="Password"
                             value={this.state.password}
                             onChange={this.update('password')}
@@ -89,7 +95,9 @@ class SignupForm extends React.Component {
                     <input id="form-button" type="submit" value={this.props.formType} />
                 </form>
                     
-            </div>)
+            </div>
+            </div>
+            )
     }
 }
 

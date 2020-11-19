@@ -2,15 +2,20 @@
     height: 100%;
     width: 100%;
     background-color: white;
-    padding-left: 20%;
+    padding-left: 10%;
+    padding-top: 20%;
 }
 
 input[type=text]:focus{
     outline-color: #21ce99;
+    width: 300px;
+     padding: 5px;
 }
 
 input[type=password]:focus{
     outline-color: #21ce99;
+    width: 300px;
+    padding: 5px;
 }
 
 #form-button{
@@ -19,10 +24,11 @@ input[type=password]:focus{
     border-radius: 3px;
     // font-weight: bolder; 
     border-width: 0;
-    padding: 10px;
+    padding: 15px 40px;
     margin-left: 10px;
     text-decoration: none;
-    padding-top: 4px;
+    padding-top: 9px;
+    color: white;
 }
 
 #form-button:hover{
@@ -31,9 +37,32 @@ input[type=password]:focus{
 
 #form-button:focus{
     outline: none;
+    
 }
 .login-input{
     margin: 8px 10px;
-    padding: 0 5px;
+    padding: 0 10px;
     border-width: 0;
+    height: 35px;
+
+}
+.login-input::placeholder{
+    padding-left: 10px;
+}
+#login-main{
+    display: flex;
+
+}
+.login-img{
+   width: 100%;
+  height: auto;
+}
+
+.login-header{
+    font-weight: normal;
+}
+
+.login-label{
+    font-size: 12px;
+    padding-left: 14px;
 }

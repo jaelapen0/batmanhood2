@@ -1,7 +1,9 @@
 import { connect } from "react-redux"
 import {logout, login} from "../../actions/session_actions"
 import SplashMain from "./splash_main.jsx"
-const mstp = ({ session, entities: { users } }) => {
+const mstp = (state,{ session, entities: { users } }) => {
+    // debugger;
+    // debugger;
     if (users[session.id]) {
         return { currentUser: users[session.id] }
     }
@@ -11,9 +13,10 @@ const mstp = ({ session, entities: { users } }) => {
 }
 
 const mdtp = dispatch => {
+    // debugger;
     return  { 
-        logout: () => dispatch(logout()),
-        login: (user) => dispatch(login(user))
+        login: (user) => dispatch(login(user)),
+        processForm: (user) => dispatch(login(user))
     }
 }
 

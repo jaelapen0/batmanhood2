@@ -5,14 +5,16 @@ import Greeting from "../greeting_container"
 class SplashPage extends React.Component {
     constructor(props) {
         super(props)
-
+        // debugger;
     }
 
     render() {
+
+        // debugger;
         return (
             <div>
-                {/* <Greeting/> */}
-                <SplashMain/>
+                
+                <SplashMain props={this.props}/>
                 
                 <SplashFooter/>
             </div>

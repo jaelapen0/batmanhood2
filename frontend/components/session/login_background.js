@@ -4,7 +4,9 @@ const LoginBackground = () => {
 
     return (
         <div>
-            <img className="login-img" src="assets/robinhood-login.jpg" alt={"logo"} />         </div>
+            <img src={window.login_img} className="login-img"/>
+            {/* <img className="login-img" src="assets/robinhood-login.jpg" alt={"logo"} />         */}
+             </div>
     )
 }
 

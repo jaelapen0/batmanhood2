@@ -678,10 +678,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var LoginBackground = function LoginBackground() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "login-img",
-    src: "assets/robinhood-login.jpg",
-    alt: "logo"
-  }), "         ");
+    src: window.login_img,
+    className: "login-img"
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LoginBackground);

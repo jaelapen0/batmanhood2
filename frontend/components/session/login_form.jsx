@@ -71,6 +71,7 @@ class SignupForm extends React.Component {
                         <br/>
                         <input
                             type="text"
+                            autoFocus
                             className="login-input"
                             placeholder="Email"
                             value={this.state.email}

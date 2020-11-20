@@ -22,7 +22,7 @@ class SplashMain extends React.Component {
     }
     render(){
         return(
-            <div>
+            <div className="splash-root">
             <div id = "splash-main" >
                 <div id="splash-main-header">Investing for Everyone</div>
 

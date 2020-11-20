@@ -80,6 +80,7 @@ class SignupForm extends React.Component {
                             className="login-input"
                             name="first_name"
                             type="text"
+                            autoFocus
                             placeholder="First Name"
                             value={this.state.first_name}
                             onChange={this.update('first_name')}   

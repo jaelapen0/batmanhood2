@@ -820,6 +820,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         className: "login-label"
       }, "Email", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
+        autoFocus: true,
         className: "login-input",
         placeholder: "Email",
         value: this.state.email,
@@ -1054,6 +1055,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         className: "login-input",
         name: "first_name",
         type: "text",
+        autoFocus: true,
         placeholder: "First Name",
         value: this.state.first_name,
         onChange: this.update('first_name')
@@ -1300,7 +1302,9 @@ var SplashMain = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-root"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "splash-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "splash-main-header"
@@ -1440,7 +1444,9 @@ var SplashPage = /*#__PURE__*/function (_React$Component) {
   _createClass(SplashPage, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_main__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-root"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_main__WEBPACK_IMPORTED_MODULE_1__["default"], {
         props: this.props
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }

@@ -17,10 +17,10 @@ display: block;
    
 }
 #splash-main {
-background-color: #c7fb65;
+background-color: #c9fd42;
 height: 550px;
 font-family: "DM Sans",sans-serif;
-width: 97%;
+width: 96.45%;
 font-size: 30px;
 padding-left: 3.5%;
 padding-right: 5%;
@@ -41,6 +41,7 @@ padding-right: 5%;
     padding-bottom: 23px;
     font-size: 50px;
     width: 40%;
+    z-index: 1;
 }
 
 .splash-h3{

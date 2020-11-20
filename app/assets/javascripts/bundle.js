@@ -1329,7 +1329,7 @@ var SplashMain = /*#__PURE__*/function (_React$Component) {
         loop: true,
         playsInline: true
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-        src: "assets/videoanimation.mp4",
+        src: window.splash_vid,
         type: "video/mp4"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "splash-footer"

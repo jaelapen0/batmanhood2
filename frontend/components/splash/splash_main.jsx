@@ -36,7 +36,7 @@ class SplashMain extends React.Component {
                     
                     </div>
                     <video className="vid" width="600" autoPlay muted loop playsInline>
-                        <source src="assets/videoanimation.mp4" type="video/mp4" />
+                        <source src={window.splash_vid} type="video/mp4" />
                     </video>
                 </div>
 

@@ -1,13 +1,9 @@
 import { connect } from "react-redux"
 import { logout, login } from "../../actions/session_actions"
-import SplashPage from "./splash_page.jsx"
+import Home from "./home"
 const mstp = ({ session, entities: { users } }) => {
-    // if (users[session.id]) {
-    //     return { currentUser: users[session.id] }
-    // }
-    // else {
-        return { currentUser: users[session.currentId] }
-    // }
+    
+    return { currentUser: users[session.currentId] }
 }
 
 const mdtp = dispatch => {
@@ -17,4 +13,4 @@ const mdtp = dispatch => {
     }
 }
 
-export default connect(mstp, mdtp)(SplashPage)
+export default connect(mstp, mdtp)(Home)

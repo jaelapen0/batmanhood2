@@ -7,6 +7,7 @@ import SignupFormContainer from "../components/session/signup_form_container"
 import SplashMainContainer from "./splash/splash_main_container"
 import SplashContainer from "./splash/splash_container"
 import { AuthRoute } from "../util/route_util"
+import MainContainer from "./main/main_container"
 const App = () => {
     return(
     <div>
@@ -18,7 +19,8 @@ const App = () => {
             {/* <AuthRoute path="/" component={SplashMainContainer} /> */}
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
-        <Route path="/" component={SplashContainer}/>
+        {/* <Route path="/" component={SplashContainer}/> */}
+        <Route path="/" component={MainContainer} />
         {/* <Route exact path="/" component={GreetingContainer} /> */}
         </Switch>
     </div>

@@ -4,12 +4,12 @@ import Greeting from './greeting';
 
 const mstp = ({session, entities: {users} }) => {
 
-    if (users[session.id]){
-        return{currentUser: users[session.id] }
-    }
-    else {
+    // if (users[session.id]){
+    //     return{currentUser: users[session.id] }
+    // }
+    // else {
         return{ currentUser: users[session.currentId]}
-    }
+    // }
 }
 
 

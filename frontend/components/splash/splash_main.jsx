@@ -17,12 +17,12 @@ class SplashMain extends React.Component {
             password: "demo1234",
         };
         const user = Object.assign({}, this.state);
-
         this.props.props.login(user);
 
     }
     render(){
         return(
+            <div>
             <div id = "splash-main" >
                 <div id="splash-main-header">Investing for Everyone</div>
 
@@ -33,6 +33,16 @@ class SplashMain extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <button id="demo-login" value="Demo Login">Demo Login</button>
                 </form>
+            </div>
+                <div id="splash-footer">
+                    <div id="footer-name">
+                        by Jae Song November 2020
+
+                    </div>
+                    <div id="foot-paragraph">
+                        Keep your portfolio in your pocket. Everything you need to manage your assets is available in a single site.
+                    </div>
+                </div>
             </div>
 
         )

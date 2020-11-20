@@ -1,0 +1,23 @@
+
+.home-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.watchlist-container{
+    margin-top: 70px;
+    margin-right: 10%;
+    border: 1px solid darkgray;
+    padding: 10px;
+    display: block;
+}
+
+.watchlist-header{
+    border-bottom: 1px solid darkgray;
+
+}
+
+.portfolio-container{
+    margin-left: 10%;
+    margin-top: 30px;
+}

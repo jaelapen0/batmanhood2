@@ -4,6 +4,7 @@
     background-color: white;
     padding-left: 10%;
     padding-top: 20%;
+    
 }
 
 input[type=text]:focus{
@@ -51,11 +52,12 @@ input[type=password]:focus{
 }
 #login-main{
     display: flex;
-
+    
 }
 .login-img{
    width: 100%;
-  height: auto;
+  height: 100%;
+  margin-left: -1.4%;
 }
 
 .login-header{
@@ -66,3 +68,4 @@ input[type=password]:focus{
     font-size: 12px;
     padding-left: 14px;
 }
+

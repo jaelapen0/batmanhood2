@@ -12,7 +12,7 @@ const App = () => {
     return(
     <div>
         <div id="splashnav">
-                <p id="logo">batmanhood</p>
+                <a id="logo" href="/">Batmanhood</a>
                 <GreetingContainer />
         </div>
        <Switch>

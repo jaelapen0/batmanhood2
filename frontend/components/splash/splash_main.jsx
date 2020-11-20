@@ -24,23 +24,33 @@ class SplashMain extends React.Component {
         return(
             <div className="splash-root">
             <div id = "splash-main" >
-                <div id="splash-main-header">Investing for Everyone</div>
-
-                <div id="splash-paragraph">
-                    Batmanhood, a pioneer of commission-free investing, gives you more ways to make your money work harder.
+                <div className="splash-top">
+                    <div id="splash-main-header">
+                            <h3 className="splash-h3">Investing for Everyone</h3>
+                        <div id="splash-paragraph">
+                                Batmanhood, a pioneer of commission-free investing, gives you more ways to make your money work harder.
+                        <form className="demo-form" onSubmit={this.handleSubmit}>
+                            <button id="demo-login" value="Demo Login">Demo Login</button>
+                        </form> 
                     </div>
-                
-                <form onSubmit={this.handleSubmit}>
-                    <button id="demo-login" value="Demo Login">Demo Login</button>
-                </form>
+                    
+                    </div>
+                    <video className="vid" width="600" autoPlay muted loop playsInline>
+                        <source src="assets/videoanimation.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+               
+             
             </div>
+
                 <div id="splash-footer">
                     <div id="footer-name">
                         by Jae Song November 2020
 
                     </div>
                     <div id="foot-paragraph">
-                        Keep your portfolio in your pocket. Everything you need to manage your assets is available in a single site.
+                        Keep your portfolio at your fingertips. Everything you need to manage your assets is available in a single site.
                     </div>
                 </div>
             </div>

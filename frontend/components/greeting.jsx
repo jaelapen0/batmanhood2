@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 const Greeting = ({ currentUser, logout }) => {
     const sessionLinks = () => (
         <nav className="header-group">
-            <Link to="/login">Login</Link>
-            <Link className="header-button" to="/signup">Sign up</Link>
+            <Link to="/login">Log In</Link>
+            <Link className="header-button" to="/signup">Sign Up</Link>
         </nav>
     );
     const personalGreeting = () => (

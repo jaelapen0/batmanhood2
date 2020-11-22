@@ -1,3 +1,19 @@
 // Place all the styles related to the Api::Stocks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.stockshow-container {
+     margin-top: 70px;
+    margin-left: 30px;
+    // border: 1px solid darkgray;
+    padding: 10px;
+    display: block;
+    width: 740;
+   
+    // box-shadow: 0 5px 4px 0 lightgrey;
+}
+
+.linechart{
+     border-bottom: 1px solid lightgray;
+     padding-bottom: 10px;
+}

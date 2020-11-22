@@ -1,26 +1,43 @@
 import React from "react"
 import {fetchDailyStockData} from "../../util/stock_util"
-import { LineChart, Line } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+// import _ from 'lodash'
+
 class StockPage extends React.Component {
     constructor(props) {
         super(props)
 
-        // this.state = {data: ""}
     }
+ 
     componentDidMount() {
-       
         let ticker = this.props.location.pathname.split("/")[2]
         this.props.fetchStock(ticker.toUpperCase())
         debugger;
-       const info = {}
+      
         fetchDailyStockData(ticker.toUpperCase())
             .then(data => {
-                // debugger;
-                // object.assign(info, data)
-                this.setState({ ticker, data: data.filter(arr => (arr.average != null)) })
+                debugger
+
+                const data1 = data.filter(arr => (arr.average != null))
+                const dif  = data1[data1.length - 1].average - data1[0].average;
+                
+                const percentChange = (dif / data1[0].average).toFixed(2)
+                const low = data1.reduce(function (prev, current) {
+                    return (prev.low < current.low) ? prev : current
+                })
+                debugger;
+                const high = data1.reduce(function (prev, current) {
+                    return (prev.high < current.high) ? prev : current
+                })
+
+                const currentPrice = data1[data1.length-1].average
+                const color =  dif < 0 ? "red" : '#21ce99' 
+
+                this.setState({ data: data1, low: low.low, high: high.high, 
+                               dif: dif.toFixed(2), percentChange: percentChange, 
+                               currentPrice: currentPrice, color: color })
             })
-        // debugger
-        // this.state.data.filter(arr => (arr.average != null))
+   
     }
 
     componentDidUpdate(prevProps) {
@@ -30,43 +47,30 @@ class StockPage extends React.Component {
         // if (this.props.match.params.dropId !== prevProps.match.params.dropId) {
         //     this.props.fetchDrop(this.props.match.params.dropId);
         // }
+       
+        
     }
 
-    // update(field){
-    //     // return e => this.setState({ [field]: e.currentTarget.value })
-    //     // return e => this.setState({ stock_price: "", stock_data: {} })
-    //     // fetchDailyStockData
-    //    let ticker = this.props.location.pathname.split("/")[2]
-    // //    fetchDailyStockData(ticker.toUpperCase())
-    // //         .then(data => {
-    // //             this.setState({ data: data })
-    // //         })
-    // }
 
     render() {
-        // this.setState({ stock_price: "", stock_data: {} })
-        // debugger;
-        let ticker = this.props.location.pathname.split("/")[2]
-        // this.props.fetchStock(ticker.toUpperCase())
         debugger;
-        // this.state.data.forEach(info => { <p>{info.average}</p> })
-        // this.state.data.forEach(info => { console.log(info.average)})
-        // <p >{this.state ? this.state.data.map(info => (
-        //     info + ". "
-        // )) : null}</p>
+        let ticker = this.props.location.pathname.split("/")[2]
+        
         return (
-            <div className="watchlist-container">
-                <h3 className="watchlist-header">{ticker.toUpperCase()}</h3>
-                <p>
 
-                    {this.state ? this.state.data.map(info => (
-                        info.label + " : $" + info.average + " \n"
-                    )) : null}
-                    {/* {this.state ? 
-                        this.state.data[this.state.data.length - 1].average : ""} */}
-                    {/* onChange={this.componentDidMount()}
-                    // onChange={this.update("data")} */}
-                </p>
+            <div className="stockshow-container">
+                <h3 className="show-header">{ticker.toUpperCase()}</h3>
+                <h2>${this.state ? this.state.currentPrice.toFixed(2) : 0}</h2>
+                
+                <h3>${this.state ? this.state.dif : 0} ({this.state ? this.state.percentChange : 0})% Today </h3>
+
+
+                <LineChart className="linechart" width={700} height={200} data={this.state ? this.state.data : []}>
+                    {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
+                    <Tooltip></Tooltip>
+                    <YAxis domain={this.state ? [this.state.low.toFixed(2), this.state.high.toFixed(2)] : [0, 0]}/>
+                    <Line type="monotone" dataKey="average" stroke={this.state ? this.state.color : '#21ce99'} dot={false} strokeWidth='3' animationDuration={2000} />
+                </LineChart>
             </div>
         )
     }

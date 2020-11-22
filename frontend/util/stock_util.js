@@ -31,7 +31,7 @@ export const fetchWeeklyStockData = ticker_symbol => {
 
 export const fetchCompanyProfile = ticker_symbol => {
     const token = `566d181c1a1f7b076ecd3598648ea847`
-    debugger
+    // debugger
     return $.ajax({
         method: `GET`,
         url: `https://financialmodelingprep.com/api/v3/profile/${ticker_symbol}?apikey=${token}`

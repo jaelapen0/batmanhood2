@@ -4,7 +4,7 @@ import CompanyProfile from "./company_profile.jsx"
 import { fetchStock, pullStockDetails } from "../../actions/stock_actions"
 
 const mstp = (state) => {
-    debugger;
+    // debugger;
     return {
        state
     }

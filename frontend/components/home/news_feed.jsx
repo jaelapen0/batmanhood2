@@ -9,18 +9,18 @@ class NewsFeed extends React.Component {
     componentDidMount() {
         fetchNews()
             .then(news => {
-                debugger;
+                // debugger;
                 const newsList = news.articles;
 
                 this.setState({
                     articles: newsList
                     // .splice(10,10)
                 })
-                debugger
+                // debugger
             })
     }
     render() {
-        debugger;
+        // debugger;
 
         return (
             <div>

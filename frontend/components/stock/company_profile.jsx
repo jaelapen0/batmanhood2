@@ -9,7 +9,7 @@ class CompanyProfile extends React.Component{
     componentDidMount(){
         fetchCompanyProfile(this.props.ticker)
         .then(companyProfile => {
-            debugger;
+            // debugger;
             const company = companyProfile[0]
 
             this.setState({ ceo: company.ceo, 
@@ -22,11 +22,11 @@ class CompanyProfile extends React.Component{
                             website: company.website,
                             companyName: company.companyName,
                             description: company.description  })
-            debugger
+            // debugger
         })
     }
     render(){
-        debugger;
+        // debugger;
        
         return(
             <div>

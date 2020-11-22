@@ -4,7 +4,7 @@ import NewsFeed from "./news_feed"
 import { fetchStock, pullStockDetails } from "../../actions/stock_actions"
 
 const mstp = (state) => {
-    debugger;
+    // debugger;
     return {
         state
     }

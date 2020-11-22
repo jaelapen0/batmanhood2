@@ -12,11 +12,11 @@ class StockPage extends React.Component {
     componentDidMount() {
         let ticker = this.props.location.pathname.split("/")[2]
         this.props.fetchStock(ticker.toUpperCase())
-        debugger;
+        // debugger;
       
         fetchDailyStockData(ticker.toUpperCase())
             .then(data => {
-                debugger
+                // debugger
 
                 const data1 = data.filter(arr => (arr.average != null))
                 const dif  = data1[data1.length - 1].average - data1[0].average;
@@ -25,7 +25,7 @@ class StockPage extends React.Component {
                 const low = data1.reduce(function (prev, current) {
                     return (prev.low < current.low) ? prev : current
                 })
-                debugger;
+                // debugger;
                 const high = data1.reduce(function (prev, current) {
                     return (prev.high < current.high) ? prev : current
                 })
@@ -53,7 +53,7 @@ class StockPage extends React.Component {
 
 
     render() {
-        debugger;
+        // debugger;
         let ticker = this.props.location.pathname.split("/")[2]
         
         return (

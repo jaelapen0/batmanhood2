@@ -2,7 +2,7 @@ import React from "react"
 
 const SplashFooter = () => {
 
-    debugger;
+    // debugger;
     return (
         <div id="splash-footer">
             <div id="footer-name">

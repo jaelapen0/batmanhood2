@@ -1,12 +1,12 @@
-import * as StockActions from "../util/stock_util"
+import * as StockUtils from "../util/stock_util"
 
 export const RECEIVE_STOCK = "RECEIVE_STOCK"
 export const RECEIVE_ALL_STOCKS = "RECEIVE_ALL_STOCKS"
-
-const receiveStock = stock => {
+export const RECEIVE_STOCK_DATA = "RECEIVE_STOCK_DATA"
+const receiveStock = ticker_symbol => {
     return {
         type: RECEIVE_STOCK,
-        stock
+        ticker_symbol
     }
 }
 
@@ -17,12 +17,24 @@ const receiveStocks = stocks => {
     }
 }
 
+const receiveStockData = data => {
+    return {
+        type: RECEIVE_STOCK_DATA,
+        data
+    }
+}
+
 export const fetchStocks = () => dispatch => (
-    StockActions.fetchStocks()
+    StockUtils.fetchStocks()
     .then(stocks =>dispatch(receiveStocks(stocks)))
 )
 
-export const fetchStock = stockId => dispatch => (
-    StockActions.fetchStock(stockId)
+export const fetchStock = ticker_symbol => dispatch => (
+    StockUtils.fetchStock(ticker_symbol)
     .then(stock => dispatch(receiveStock(stock)))
+)
+
+export const pullStockDetails = ticker_symbol => dispatch => (
+    StockUtils.fetchDailyStockData(ticker_symbol)
+    .then(data => dispatch(receiveStockData(data)))
 )

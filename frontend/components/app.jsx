@@ -15,14 +15,12 @@ const App = () => {
                 <a id="logo" href="/">Batmanhood</a>
                 <GreetingContainer />
         </div>
+
        <Switch>
-            {/* <AuthRoute path="/" component={SplashMainContainer} /> */}
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
-        {/* <Route path="/" component={SplashContainer}/> */}
-        {/* <ProtectedRoute path="/stocks/:stockId" component={StockPageContainer} /> */}
+        <Route path="/stocks/:ticker_symbol" component={StockPageContainer} />
         <Route path="/" component={MainContainer} />
-        {/* <Route exact path="/" component={GreetingContainer} /> */}
         </Switch>
     </div>
     )

@@ -64,7 +64,7 @@ class SignupForm extends React.Component {
             debugger;
             this.render()}
     }
-
+    
     render() {
         return (
             <div id="signup-form">
@@ -73,7 +73,9 @@ class SignupForm extends React.Component {
                 <SignupSide />
 
                 <h4>Robinhood lets you invest in companies you love, commission-free.</h4>
-            <p>{this.props.errors ? this.props.errors : null}</p>
+                <p id="login_errors">{this.props.errors ? this.props.errors.map(error=>(
+                        error + ". "
+                    )) : null}</p>
             
                 <form onSubmit={this.handleSubmit} >
                         <input

@@ -41,6 +41,6 @@ export const fetchNews = () => {
     const token = "88ee272f7d8e437ea3768f3847c82023"
     return $.ajax({
         method: `GET`,
-        url: `http://newsapi.org/v2/everything?q=finance&apiKey=${token}`
+        url: `https://newsapi.org/v2/everything?q=finance&apiKey=${token}`
     })
 }

@@ -7,6 +7,7 @@ class NewsFeed extends React.Component {
     }
 
     componentDidMount() {
+        // debugger;
         fetchNews()
             .then(news => {
                 // debugger;

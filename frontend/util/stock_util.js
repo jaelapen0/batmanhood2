@@ -37,11 +37,19 @@ export const fetchCompanyProfile = ticker_symbol => {
         url: `https://financialmodelingprep.com/api/v3/profile/${ticker_symbol}?apikey=${token}`
     })
 }
+// export const fetchNews = () => {
+//     const token = "88ee272f7d8e437ea3768f3847c82023"
+//     return $.ajax({
+//         method: `GET`,
+//         url: `https://newsapi.org/v2/top-headlines?country=us&apiKey=${token}`
+//         // url: `https://newsapi.org/v2/everything?q=finance&apiKey=${token}`
+//     })
+// }
+
 export const fetchNews = () => {
-    const token = "88ee272f7d8e437ea3768f3847c82023"
     return $.ajax({
         method: `GET`,
-        url: `https://newsapi.org/v2/top-headlines?country=us&apiKey=${token}`
-        // url: `https://newsapi.org/v2/everything?q=finance&apiKey=${token}`
+        url: `/api/news`
     })
+
 }

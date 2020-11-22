@@ -2,7 +2,7 @@ import React from "react"
 import {fetchDailyStockData} from "../../util/stock_util"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 // import _ from 'lodash'
-
+import CompanyProfile from "./company_profile_container"
 class StockPage extends React.Component {
     constructor(props) {
         super(props)
@@ -65,13 +65,17 @@ class StockPage extends React.Component {
                 <h3>${this.state ? this.state.dif : 0} ({this.state ? this.state.percentChange : 0})% Today </h3>
 
 
-                <LineChart className="linechart" width={700} height={200} data={this.state ? this.state.data : []}>
+                <LineChart className="linechart" width={670} height={200} data={this.state ? this.state.data : []}>
                     {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
                     <Tooltip></Tooltip>
                     <YAxis domain={this.state ? [this.state.low.toFixed(2), this.state.high.toFixed(2)] : [0, 0]}/>
                     <Line type="monotone" dataKey="average" stroke={this.state ? this.state.color : '#21ce99'} dot={false} strokeWidth='3' animationDuration={2000} />
                 </LineChart>
+                <br/>
+                <CompanyProfile ticker={ticker}/>
             </div>
+
+            
         )
     }
 }

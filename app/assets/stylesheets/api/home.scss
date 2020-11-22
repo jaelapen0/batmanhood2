@@ -10,8 +10,10 @@
     border: 1px solid darkgray;
     padding: 10px;
     display: block;
-    width: 30%;
+    width: 300px;
     box-shadow: 0 5px 4px 0 lightgrey;
+    position: fixed;
+    left: 900px;
 }
 
 .watchlist-header{
@@ -24,4 +26,49 @@
     margin-top: 30px;
     box-shadow: 0 5px 4px 0 lightgrey;
     padding: 5px 10px;
+}
+
+.newsfeed-container {
+    width: 750px;
+    margin: 100px 50px;
+}
+.article-container{
+    display: flex;
+    padding: 25px 0;
+    border-top: 1px solid lightgray;
+}
+.article-header-container{
+    position: relative;
+     right: 10px;
+}
+.article-header{
+    font-size: smaller;
+    position: relative;
+    bottom: 30px;
+    width: 200px;
+}
+.article-content{
+    width: 500px;
+    position: relative;
+    right: 185px;
+    top: 7px;
+    padding-top: 10px;
+}
+.article-title{
+    font-weight: bold;
+    
+}
+.img-div{
+    height: 100px; 
+    width: 200px; 
+    padding-left: 30px;
+    position: relative;
+    right: 152px;
+    // overflow: hidden;
+}
+.article-img{
+     height: 100px; 
+    width: 200px; 
+    border-radius: 3%;
+    
 }

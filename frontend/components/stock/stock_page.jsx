@@ -26,7 +26,7 @@ class StockPage extends React.Component {
                 const low = data1.reduce(function (prev, current) {
                     return (prev.low < current.low) ? prev : current
                 })
-                // debugger;
+                debugger;
                 const high = data1.reduce(function (prev, current) {
                     return (prev.high < current.high) ? prev : current
                 })
@@ -48,19 +48,12 @@ class StockPage extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // prevProps -> props prior to update (react will provide this arg)
-        // we need this so can fetch a new drop if we navigate to a different drop's show page
-        // debugger
-        // if (this.props.match.params.dropId !== prevProps.match.params.dropId) {
-        //     this.props.fetchDrop(this.props.match.params.dropId);
-        // }
-       
-        
+      
     }
 
 
     render() {
-        // debugger;
+        debugger;
         let ticker = this.props.location.pathname.split("/")[2]
         
         return (

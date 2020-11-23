@@ -66,22 +66,23 @@ class StockPage extends React.Component {
         return (
 
             <div className="stockshow-container">
-                <h3 className="show-header">{ticker.toUpperCase()}</h3>
-                <h2>${this.state ? this.state.currentPrice.toFixed(2) : 0}</h2>
-                
-                <h3>${this.state ? this.state.dif : 0} ({this.state ? this.state.percentChange : 0})% Today </h3>
-
-
-                <LineChart className="linechart" width={670} height={200} data={this.state ? this.state.data : []}>
-                    {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
-                    <Tooltip></Tooltip>
-                    <YAxis domain={this.state ? [this.state.low.toFixed(2), this.state.high.toFixed(2)] : [0, 0]}/>
-                    <Line type="monotone" dataKey="average" stroke={this.state ? this.state.color : '#21ce99'} dot={false} strokeWidth='3' animationDuration={2000} />
-                </LineChart>
-                <br/>
-                <CompanyProfile ticker={ticker}/>
-                <StockNews ticker={ticker}/>
-            </div>
+                {this.state?
+                    (<div>
+                    <h3 className="show-header">{ticker.toUpperCase()}</h3>
+                    <h2>${this.state.currentPrice.toFixed(2)}</h2>
+                    
+                    <h3>${this.state.dif} ({this.state.percentChange})% Today </h3>
+                    <LineChart className="linechart" width={670} height={200} data={this.state.data}>
+                        {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
+                        <Tooltip></Tooltip>
+                        <YAxis domain={[this.state.low.toFixed(2), this.state.high.toFixed(2)]}/>
+                        <Line type="monotone" dataKey="average" stroke={this.state.color} dot={false} strokeWidth='3' animationDuration={1500} />
+                    </LineChart>
+                    <br/>
+                    <CompanyProfile ticker={ticker}/>
+                    <StockNews ticker={ticker}/>
+                </div>): "" }
+             </div>
 
             
         )

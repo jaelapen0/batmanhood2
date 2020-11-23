@@ -9,6 +9,7 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util"
 import MainContainer from "./main/main_container"
 import StockPageContainer from "../components/stock/stock_page_container"
 const App = () => {
+    debugger;
     return(
     <div>
         <div id="splashnav">
@@ -17,9 +18,9 @@ const App = () => {
         </div>
 
        <Switch>
+        <ProtectedRoute exact path="/stocks/:ticker_symbol" component={StockPageContainer} />
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
-        <Route path="/stocks/:ticker_symbol" component={StockPageContainer} />
         <Route path="/" component={MainContainer} />
         </Switch>
     </div>

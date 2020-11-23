@@ -3,7 +3,7 @@ import { logout, login } from "../../actions/session_actions"
 import StockPage from "./stock_page.jsx"
 import {fetchStock, pullStockDetails} from "../../actions/stock_actions"
 
-const mstp = ({ session, entities: { users } }, state) => {
+const mstp = ({ session, entities: { users } }, state, props) => {
     // debugger;
     // let ticker = this.props.location.pathname.split("/")[2]
     return { 

@@ -25,6 +25,29 @@ class CompanyProfile extends React.Component{
             // debugger
         })
     }
+    componentDidUpdate(prevProps) {
+        if (this.props.ticker !== prevProps.ticker) {
+            fetchCompanyProfile(this.props.ticker)
+                .then(companyProfile => {
+                    // debugger;
+                    const company = companyProfile[0]
+
+                    this.setState({
+                        ceo: company.ceo,
+                        mktCap: company.mktCap,
+                        sector: company.sector,
+                        city: company.city,
+                        state: company.state,
+                        ipoDate: company.ipoDate,
+                        industry: company.industry,
+                        website: company.website,
+                        companyName: company.companyName,
+                        description: company.description
+                    })
+                    // debugger
+                })
+        }
+    }
     render(){
         // debugger;
        

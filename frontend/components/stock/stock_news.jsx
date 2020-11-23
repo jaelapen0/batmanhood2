@@ -42,14 +42,14 @@ class StockNews extends React.Component {
                                             <h4 className="article-header">{article.source.name}</h4>
                                         </div>
                                         <div className="article-body">
-                                            <div className="article-content">
+                                            <div className="stock-article-content">
                                                 <div className="article-title">{article.title}</div>
                                                 <br />
                                                 <div className="article-body">{article.description}</div>
                                             </div>
                                             <div className="article.image"></div>
                                         </div>
-                                        <div className="img-div">
+                                        <div className="stock-img-div">
                                             <img className="article-img" src={article.urlToImage} />
 
                                         </div>

@@ -17,7 +17,9 @@ const receiveStocks = stocks => {
     }
 }
 
+
 const receiveStockData = data => {
+    debugger;
     return {
         type: RECEIVE_STOCK_DATA,
         data
@@ -34,7 +36,8 @@ export const fetchStock = ticker_symbol => dispatch => (
     .then(stock => dispatch(receiveStock(stock)))
 )
 
-export const pullStockDetails = ticker_symbol => dispatch => (
-    StockUtils.fetchDailyStockData(ticker_symbol)
+export const pullStockDetails = ticker_symbol => dispatch => {
+ debugger
+    return   StockUtils.fetchDailyStockData(ticker_symbol)
     .then(data => dispatch(receiveStockData(data)))
-)
+}

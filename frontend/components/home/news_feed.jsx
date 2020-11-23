@@ -10,10 +10,11 @@ class NewsFeed extends React.Component {
         // debugger;
         fetchNews()
             .then(news => {
-                
+                debugger;
                 const newsList =[]
                 news.articles.forEach(article => {
-                     if (article.urlToImage) newsList.push(article)
+                    //  if (article.urlToImage) newsList.push(article)
+                    if (article.image) newsList.push(article)
                 })
                 // const newsList = news.articles;
 
@@ -25,7 +26,7 @@ class NewsFeed extends React.Component {
             })
     }
     render() {
-        // debugger;
+        debugger;
 
         return (
             <div>
@@ -49,7 +50,8 @@ class NewsFeed extends React.Component {
                                     <div className="article.image"></div>
                                 </div>
                                 <div className="img-div">
-                                    <img className="article-img" src={article.urlToImage} />
+                                    {/* <img className="article-img" src={article.urlToImage} /> */}
+                                    <img className="article-img" src={article.image} />
                                     
                                 </div>
                             </div>

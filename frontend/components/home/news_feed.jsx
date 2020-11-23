@@ -10,7 +10,7 @@ class NewsFeed extends React.Component {
         // debugger;
         fetchNews()
             .then(news => {
-                #debugger;
+                
                 const newsList =[]
                 news.articles.forEach(article => {
                      if (article.urlToImage) newsList.push(article)

@@ -53,3 +53,11 @@ export const fetchNews = () => {
     })
 
 }
+
+export const fetchCompanyNews = ticker_symbol => {
+    return $.ajax({
+        method: `GET`,
+        url: `/api/news/${ticker_symbol}`
+    })
+
+}

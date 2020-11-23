@@ -1,8 +1,9 @@
 import React from "react"
-import {fetchDailyStockData} from "../../util/stock_util"
+import {fetchDailyStockData, fetchCompanyNews} from "../../util/stock_util"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 // import _ from 'lodash'
 import CompanyProfile from "./company_profile_container"
+import StockNews from "./stock_news_container"
 class StockPage extends React.Component {
     constructor(props) {
         super(props)
@@ -37,7 +38,13 @@ class StockPage extends React.Component {
                                dif: dif.toFixed(2), percentChange: percentChange, 
                                currentPrice: currentPrice, color: color })
             })
-   
+            
+            // fetchCompanyNews(ticker)
+            // .then(news => {
+            //     debugger;
+
+            //     this.setState({news: news})
+            // })
     }
 
     componentDidUpdate(prevProps) {
@@ -73,6 +80,7 @@ class StockPage extends React.Component {
                 </LineChart>
                 <br/>
                 <CompanyProfile ticker={ticker}/>
+                <StockNews ticker={ticker}/>
             </div>
 
             

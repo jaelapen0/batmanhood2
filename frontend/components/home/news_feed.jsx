@@ -10,8 +10,12 @@ class NewsFeed extends React.Component {
         // debugger;
         fetchNews()
             .then(news => {
-                // debugger;
-                const newsList = news.articles;
+                debugger;
+                const newsList =[]
+                news.articles.forEach(article => {
+                     if (article.urlToImage) newsList.push(article)
+                })
+                // const newsList = news.articles;
 
                 this.setState({
                     articles: newsList
@@ -30,24 +34,26 @@ class NewsFeed extends React.Component {
                   <div className="newsfeed-container"> 
                   <h2>News</h2>
                     {this.state.articles.map(article =>(
-                        <div className="article-container">
-                            <div className='article-header-container'>
+                        <a href={article.url} key={article.title}>
+                            <div className="article-container">
+                                <div className='article-header-container'>
 
-                            <h4 className="article-header">{article.source.name}</h4>
-                            </div>
-                            <div className="article-body">
-                                <div className="article-content">
-                                    <div className="article-title">{article.title}</div>
-                                    <br/>
-                                    <div className="article-body">{article.description}</div>
+                                <h4 className="article-header">{article.source.name}</h4>
                                 </div>
-                                <div className="article.image"></div>
+                                <div className="article-body">
+                                    <div className="article-content">
+                                        <div className="article-title">{article.title}</div>
+                                        <br/>
+                                        <div className="article-body">{article.description}</div>
+                                    </div>
+                                    <div className="article.image"></div>
+                                </div>
+                                <div className="img-div">
+                                    <img className="article-img" src={article.urlToImage} />
+                                    
+                                </div>
                             </div>
-                            <div className="img-div">
-                                <img className="article-img" src={article.urlToImage} />
-                                
-                            </div>
-                        </div>
+                        </a>
                     ))}  
 
                   </div>  

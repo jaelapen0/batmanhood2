@@ -7,8 +7,7 @@ class StockNews extends React.Component {
     }
 
     componentDidMount() {
-        // debugger;
-      
+
         fetchCompanyNews(this.props.ticker)
             .then(news => {
                 // debugger;
@@ -17,17 +16,34 @@ class StockNews extends React.Component {
                     if (article.urlToImage) newsList.push(article)
                 })
                 // const newsList = news.articles;
-
                 this.setState({
                     articles: newsList
                     // .splice(10,10)
                 })
-                // debugger
             })
     }
+
+    componentDidMount(prevProps) {
+        // debugger;
+        if ( this.props.ticker !== prevProps.ticker ) {
+
+            fetchCompanyNews(this.props.ticker)
+                .then(news => {
+                    const newsList = []
+
+                    news.articles.slice(10).forEach(article => {
+                        if (article.urlToImage) newsList.push(article)
+                    })
+                    this.setState({
+                        articles: newsList
+                    })
+                })
+        }
+    }
+
+
     render() {
         // debugger;
-
         return (
             <div>
                 {this.state ?
@@ -38,7 +54,6 @@ class StockNews extends React.Component {
                                 <a href={article.url} key={article.title}>
                                     <div className="article-container">
                                         <div className='article-header-container'>
-
                                             <h4 className="article-header">{article.source.name}</h4>
                                         </div>
                                         <div className="article-body">
@@ -51,12 +66,10 @@ class StockNews extends React.Component {
                                         </div>
                                         <div className="stock-img-div">
                                             <img className="article-img" src={article.urlToImage} />
-
                                         </div>
                                     </div>
                                 </a>
                             ))}
-
                         </div>
                     ) : ""}
             </div>

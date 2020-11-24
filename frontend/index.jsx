@@ -5,7 +5,7 @@ import { fetchStock, fetchStocks, fetchDailyStockData, fetchCompanyProfile , fet
 import {pullStockDetails} from "./actions/stock_actions"
 import configureStore from "./store/store"
 import Root from "./components/root";
-
+import {userOrders, userPortfolio} from "./util/order_util"
 document.addEventListener("DOMContentLoaded", () => {
     let store;
     if (window.currentUser) {
@@ -30,4 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.pullStockDetails = pullStockDetails;
     window.fetchCompanyProfile = fetchCompanyProfile;
     window.fetchNews= fetchNews;
+    window.userOrders = userOrders;
+    window.userPortfolio = userPortfolio;
 });

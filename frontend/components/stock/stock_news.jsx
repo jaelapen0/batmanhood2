@@ -10,7 +10,7 @@ class StockNews extends React.Component {
 
         fetchCompanyNews(this.props.ticker)
             .then(news => {
-                debugger;
+                // debugger;
                 const newsList = []
                 news.articles.slice(10).forEach(article => {
                     if (article.urlToImage) newsList.push(article)
@@ -24,7 +24,7 @@ class StockNews extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        debugger;
+        // debugger;
         if ( this.props.ticker !== prevProps.ticker ) {
 
             fetchCompanyNews(this.props.ticker)

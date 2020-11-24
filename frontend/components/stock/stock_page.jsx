@@ -81,7 +81,7 @@ class StockPage extends React.Component {
                     const low = data1.reduce(function (prev, current) {
                         return (prev.low < current.low) ? prev : current
                     })
-                    debugger;
+                    // debugger;
                     const high = data1.reduce(function (prev, current) {
                         return (prev.high < current.high) ? prev : current
                     })
@@ -119,7 +119,7 @@ class StockPage extends React.Component {
     }
 
     render() {
-        debugger;
+        // debugger;
         let ticker = this.props.location.pathname.split("/")[2]
         
 

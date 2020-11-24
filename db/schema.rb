@@ -10,29 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_175008) do
+ActiveRecord::Schema.define(version: 2020_11_24_031810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "order_type", null: false
+    t.string "shares_quanity", null: false
+    t.boolean "is_completed", null: false
+    t.decimal "price_per_share", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ticker_symbol", null: false
+    t.index ["ticker_symbol"], name: "index_orders_on_ticker_symbol"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
 
   create_table "stocks", force: :cascade do |t|
     t.string "stock_name", null: false
     t.string "ticker_symbol", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "symbol_ticker", null: false
-    t.string "transaction_type", null: false
-    t.string "shares_quanity", null: false
-    t.boolean "is_completed", null: false
-    t.decimal "price_per_share", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["symbol_ticker"], name: "index_transactions_on_symbol_ticker"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

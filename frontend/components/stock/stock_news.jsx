@@ -11,12 +11,10 @@ class StockNews extends React.Component {
       
         fetchCompanyNews(this.props.ticker)
             .then(news => {
-            
                 // debugger;
                 const newsList = []
-                news.articles.forEach(article => {
+                news.articles.slice(10).forEach(article => {
                     if (article.urlToImage) newsList.push(article)
-                    // if (article.image) newsList.push(article)
                 })
                 // const newsList = news.articles;
 
@@ -26,27 +24,6 @@ class StockNews extends React.Component {
                 })
                 // debugger
             })
-    }
-
-    componentDidUpdate(prevProps) {
-        // debugger;
-        if (this.props.ticker !== prevProps.ticker)
-       { fetchCompanyNews(this.props.ticker)
-            .then(news => {
-                // debugger;
-                const newsList = []
-                news.articles.forEach(article => {
-                    if (article.urlToImage) newsList.push(article)
-                    // if (article.image) newsList.push(article)
-                })
-                // const newsList = news.articles;
-
-                this.setState({
-                    articles: newsList
-                    // .splice(10,10)
-                })
-                // debugger
-            })}
     }
     render() {
         // debugger;
@@ -73,7 +50,6 @@ class StockNews extends React.Component {
                                             <div className="article.image"></div>
                                         </div>
                                         <div className="stock-img-div">
-                                            {/* <img className="article-img" src={article.image} /> */}
                                             <img className="article-img" src={article.urlToImage} />
 
                                         </div>

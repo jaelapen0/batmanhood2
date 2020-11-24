@@ -13,8 +13,6 @@ class Api::NewsController < ApplicationController
     def show
         ticker_symbol = params["ticker_symbol"]
         url = "https://newsapi.org/v2/everything?q=#{ticker_symbol}&apiKey=88ee272f7d8e437ea3768f3847c82023"
-        # eb4524ebf8b28d6153214ffe70b45e4c
-        # url = "https://gnews.io/api/v4/search?q=#{ticker_symbol}&token=eb4524ebf8b28d6153214ffe70b45e4c&lang=en"
         @response = JSON.parse(open(url).read)
         # debugger
         render json: @response

@@ -1,7 +1,7 @@
 import { RECEIVE_STOCK, RECEIVE_ALL_STOCKS, RECEIVE_STOCK_DATA} from "../actions/stock_actions"
 
 const stocksReducer = (oldState = {}, action) => {
-    debugger
+    // debugger
     Object.freeze(oldState);
     switch(action.type){
     case RECEIVE_STOCK:

@@ -2,11 +2,8 @@ class Api::OrdersController < ApplicationController
     before_action :ensure_logged_in!
 
     def create
-        debugger
          @order = Order.new(order_params)
-         debugger
         if @order.save
-            debugger
             render json: @order
         else
             render json: @order, status: :unprocessable_entity 

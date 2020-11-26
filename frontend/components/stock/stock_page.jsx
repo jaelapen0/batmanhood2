@@ -62,7 +62,7 @@ class StockPage extends React.Component {
                         
             })
 
-            debugger
+            // debugger
 
     }
 
@@ -162,7 +162,7 @@ class StockPage extends React.Component {
                     </LineChart>
                     <br/>
                     <CompanyProfile ticker={ticker}/>
-                    {/* <StockNews ticker={ticker}/> */}
+                    <StockNews ticker={ticker}/>
                 </div>): "" }
              </div>
 

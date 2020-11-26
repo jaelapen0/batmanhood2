@@ -27,22 +27,22 @@ class Portfolio extends React.Component {
                     }
                 })
                 let final =[];
-                debugger;
+                // debugger;
                 for (key in orders) { 
                     if (orders[key] > 0){
-                        debugger;
+                        // debugger;
                         
                     }
                  }
-                debugger;
+                // debugger;
                 // console.log(orders)
                 this.setState({portfolio})
             })
-            debugger;
+            // debugger;
         
     }
     render(){
-        debugger;
+        // debugger;
         // if (this.state){
         //     debugger
         //     const { portfolio } = this.state.portfolio

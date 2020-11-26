@@ -40,7 +40,7 @@ export const fetchOrderHistory = () => dispatch => {
 }
 
 export const fetchPortfolio = () => dispatch => { 
-    debugger;
+    // debugger;
     return AccountUtils.getPortfolio()
       .then(portfolio => dispatch(receivePortfolio(portfolio)))
 }

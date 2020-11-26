@@ -5,7 +5,7 @@ import {fetchPortfolio} from "../../actions/account_actions"
 import Portfolio from "./portfolio"
 
 const mstp = ({entities}, ownProps) => {
-    debugger;
+    // debugger;
     return { entities }
 }
 

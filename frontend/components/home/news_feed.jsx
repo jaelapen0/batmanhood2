@@ -7,10 +7,10 @@ class NewsFeed extends React.Component {
     }
 
     componentDidMount() {
-        // debugger;
+        // ;
         fetchNews()
             .then(news => {
-                // debugger;
+                // ;
                 const newsList =[]
                 news.articles.forEach(article => {
                     //  if (article.urlToImage) newsList.push(article)
@@ -22,11 +22,11 @@ class NewsFeed extends React.Component {
                     articles: newsList
                     // .splice(10,10)
                 })
-                // debugger
+                // 
             })
     }
     render() {
-        // debugger;
+        // ;
 
         return (
             <div>

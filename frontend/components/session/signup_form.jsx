@@ -56,12 +56,12 @@ class SignupForm extends React.Component {
         this.props.processForm(user);
         
         if (this.checkFormValidations().length === 0 && !this.props.errors) {
-            // debugger;
+            // ;
             //    return <Redirect to="root"></Redirect>
             this.props.history.push("/")
         }
         else{ 
-            // debugger;
+            // ;
             this.render()}
     }
     

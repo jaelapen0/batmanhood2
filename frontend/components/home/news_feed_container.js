@@ -4,7 +4,7 @@ import NewsFeed from "./news_feed"
 import { fetchStock, pullStockDetails } from "../../actions/stock_actions"
 
 const mstp = (state) => {
-    // debugger;
+    // ;
     return {
         state
     }
@@ -12,7 +12,7 @@ const mstp = (state) => {
 }
 
 const mdtp = dispatch => {
-    // debugger;
+    // ;
     return {
         logout: () => dispatch(logout()),
         login: (user) => dispatch(login(user)),

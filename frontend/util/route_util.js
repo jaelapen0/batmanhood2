@@ -13,7 +13,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
 );
 
 const Protected = ({ component: Component, path, loggedIn, exact }) => {
-    // debugger;
+    // ;
     return <Route path={path} exact={exact} render={(props) => (
         loggedIn ? (
             <Component {...props} />
@@ -24,7 +24,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => {
 };
 
 const mstp = state => {
-//    debugger
+//    
     return { loggedIn: Boolean(state.session.currentId) }
 };
 

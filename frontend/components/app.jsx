@@ -9,7 +9,7 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util"
 import MainContainer from "./main/main_container"
 import StockPageContainer from "../components/stock/stock_page_container"
 const App = () => {
-    // debugger;
+    // ;
     return(
     <div>
         <div id="splashnav">

@@ -1,6 +1,6 @@
 class Api::PortfolioController < ApplicationController
      def index
-        # debugger;
+        # ;
         @portfolio = current_user.stocks
 
         @orders = current_user.orders

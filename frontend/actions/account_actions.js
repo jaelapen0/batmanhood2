@@ -20,7 +20,7 @@ const receivePortfolio = portfolio => {
 }
 
 const receiveOrder = order => {
-    debugger;
+    ;
    return { 
        type: RECEIVE_ORDER,
        order
@@ -41,13 +41,13 @@ export const fetchOrderHistory = () => dispatch => {
 }
 
 export const fetchPortfolio = () => dispatch => { 
-    // debugger;
+    // ;
     return AccountUtils.getPortfolio()
       .then(portfolio => dispatch(receivePortfolio(portfolio)))
 }
 
 export const createOrder = order => dispatch => {
-    debugger;
+    ;
     return AccountUtils.createOrder(order)
         .then(order => dispatch(receiveOrder(order)))
 }

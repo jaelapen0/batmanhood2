@@ -21,13 +21,13 @@ class OrderForm extends React.Component {
     }
 
     componentDidMount(){
-        // debugger;
+        // ;
         this.props.fetchBuyingPower(this.props.currentUser)
             .then(info => {
                 this.setState({buying_power: info.buying_power.buying_power})
-                // debugger;
+                // ;
             })
-        // debugger;
+        // ;
     }
 
     componentDidUpdate(){
@@ -42,20 +42,20 @@ class OrderForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        // debugger;
+        // ;
           // this.setState({shares_quantity: parseInt(this.state.shares_quantity)})
        if (this.state.order_type === "buy"){
-           debugger
+        //    
            const totalAmount = this.props.currentPrice * this.state.shares_quantity;
             if (totalAmount > this.state.buying_power){
-                debugger
+                // 
                 this.state.errors = "Not enough Buying Power"
             }
             else if( this.state.shares_quantity === 0) {
-                debugger
+                // 
                 this.state.errors = "Must be at least 1 share"}
             else{
-                debugger
+                // 
                 const newTotal = this.state.buying_power - totalAmount
                 this.props.setBuyingPower(this.state.user_id, { buying_power: newTotal})
                 this.props.createOrder(this.state)
@@ -68,12 +68,12 @@ class OrderForm extends React.Component {
             }
        }
     //    this.render()
-        // debugger
+        // 
     }
 
 
     render(){
-            debugger;
+            // ;
             
         return(
             <div>

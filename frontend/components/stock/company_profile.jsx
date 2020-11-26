@@ -9,7 +9,7 @@ class CompanyProfile extends React.Component{
     componentDidMount(){
         fetchCompanyProfile(this.props.ticker)
         .then(companyProfile => {
-            // debugger;
+            // ;
             const company = companyProfile[0]
 
             this.setState({ ceo: company.ceo, 
@@ -22,14 +22,14 @@ class CompanyProfile extends React.Component{
                             website: company.website,
                             companyName: company.companyName,
                             description: company.description  })
-            // debugger
+            // 
         })
     }
     componentDidUpdate(prevProps) {
         if (this.props.ticker !== prevProps.ticker) {
             fetchCompanyProfile(this.props.ticker)
                 .then(companyProfile => {
-                    // debugger;
+                    // ;
                     const company = companyProfile[0]
 
                     this.setState({
@@ -44,12 +44,12 @@ class CompanyProfile extends React.Component{
                         companyName: company.companyName,
                         description: company.description
                     })
-                    // debugger
+                    // 
                 })
         }
     }
     render(){
-        // debugger;
+        // ;
        
         return(
             <div>

@@ -13,19 +13,19 @@ class Api::UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        # debugger
+        # 
       
         render "api/users/buying_power"
     end
 
     def update
         @user = User.find(params[:id])
-        # debugger
+        # 
         # if @user.update(params)
 
         @user.buying_power = params["undefined"]["buying_power"]
         if @user.save
-            # debugger;
+            # ;
             render "api/users/buying_power"
         else
             render json: @user.errors.full_messages, status: 422

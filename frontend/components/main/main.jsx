@@ -6,11 +6,11 @@ class Main extends React.Component{
     constructor(props)
     {
         super(props)
-        // debugger
+        // 
     }
 
     render(){
-        // debugger
+        // 
         return this.props.currentUser ? <Home props={this.props}/> : <SplashMain props={this.props}/>
     }
 

@@ -2,7 +2,7 @@ import { RECEIVE_PORTFOLIO, RECEIVE_ORDER_HISTORY, RECEIVE_ORDER, RECEIVE_BUYING
 
 const accountReducer = (oldState ={}, action) => {
     Object.freeze(oldState)
-    // debugger;
+    // ;
     switch(action.type){
         case RECEIVE_ORDER_HISTORY:
             return Object.assign({}, oldState, { orderHistory: action.orderHistory})

@@ -15,7 +15,7 @@ class Api::NewsController < ApplicationController
         ticker_symbol = params["ticker_symbol"]
         url = "https://newsapi.org/v2/everything?q=#{ticker_symbol}&apiKey=88ee272f7d8e437ea3768f3847c82023"
         @response = JSON.parse(URI.open(url).read)
-        # debugger
+        # 
         render json: @response
     end
 

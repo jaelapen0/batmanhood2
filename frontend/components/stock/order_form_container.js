@@ -3,7 +3,7 @@ import OrderForm from "./order_form.jsx"
 import { fetchBuyingPower, setBuyingPower } from "../../actions/account_actions"
 
 const mstp = (state) => {
-    // debugger;
+    // ;
     return {
         state
     }
@@ -11,7 +11,7 @@ const mstp = (state) => {
 }
 
 const mdtp = dispatch => {
-    // debugger;
+    // ;
     return {
         createOrder: order => dispatch(createOrder(order)),
         fetchBuyingPower: currentId => dispatch(fetchBuyingPower(currentId)),

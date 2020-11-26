@@ -2,8 +2,11 @@ class Api::OrdersController < ApplicationController
     before_action :ensure_logged_in!
 
     def create
-         @order = current_user.order.new(order_params)
+        debugger
+         @order = Order.new(order_params)
+         debugger
         if @order.save
+            debugger
             render json: @order
         else
             render json: @order, status: :unprocessable_entity 
@@ -25,9 +28,9 @@ class Api::OrdersController < ApplicationController
         params.require(:order)
         .permit(
             :user_id,
-            :symbol_ticker, 
+            :ticker_symbol, 
             :order_type,
-            :shares_quanity,
+            :shares_quantity,
             :is_completed,
             :price_per_share
         )

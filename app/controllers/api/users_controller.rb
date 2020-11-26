@@ -11,12 +11,18 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = User.find(params[:id])
+        # debugger
+      
+        render "api/users/buying_power"
+    end
    
 
     private
 
     def user_params
-        params.require(:user).permit(:email, :first_name, :last_name, :password)
+        params.require(:user).permit(:email, :first_name, :last_name, :password, :buying_power)
     end
 
 end

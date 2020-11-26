@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {login, logout, signup} from "./util/session_api_util"
+// import {createOrder} from "./util/account_util"
 import { fetchStock, fetchStocks, fetchDailyStockData, fetchCompanyProfile , fetchNews} from "./util/stock_util"
 import {pullStockDetails} from "./actions/stock_actions"
 import configureStore from "./store/store"
 import Root from "./components/root";
-import {userOrders, userPortfolio} from "./util/order_util"
+import {getPortfolio, getOrderHistory, createOrder, getBuyingPower} from "./util/account_util"
 document.addEventListener("DOMContentLoaded", () => {
     let store;
     if (window.currentUser) {
@@ -30,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.pullStockDetails = pullStockDetails;
     window.fetchCompanyProfile = fetchCompanyProfile;
     window.fetchNews= fetchNews;
-    window.userOrders = userOrders;
-    window.userPortfolio = userPortfolio;
+    window.getOrderHistory = getOrderHistory;
+    window.getPortfolio = getPortfolio;
+    window.createOrder = createOrder;
+    window.getBuyingPower = getBuyingPower;
 });

@@ -5,10 +5,12 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 import CompanyProfile from "./company_profile_container"
 import StockNews from "./stock_news_container"
 import { Link } from 'react-router-dom';
+import OrderForm from "./order_form_container"
 class StockPage extends React.Component {
     constructor(props) {
         super(props)
 
+       
         
     }
  
@@ -16,6 +18,8 @@ class StockPage extends React.Component {
         let ticker = this.props.location.pathname.split("/")[2]
         // this.props.fetchStock(ticker.toUpperCase())
         // debugger;
+
+       
       
         fetchDailyStockData(ticker.toUpperCase())
         // this.props.pullStockDetails(ticker.toUpperCase())
@@ -54,9 +58,11 @@ class StockPage extends React.Component {
                 this.setState({ data: data1, low: low.low, high: high.high, 
                                dif: dif.toFixed(2), percentChange: percentChange, 
                                CustomTooltip: CustomTooltip,
-                               currentPrice: currentPrice, color: color })
+                               currentPrice: currentPrice, color: color, ticker})
                         
             })
+
+            debugger
 
     }
 
@@ -73,6 +79,7 @@ class StockPage extends React.Component {
                 // this.props.pullStockDetails(ticker.toUpperCase())
                 .then(data => {
                     // debugger
+                    
 
                     const data1 = data.filter(arr => (arr.average != null))
                     const dif = data1[data1.length - 1].average - data1[0].average;
@@ -118,10 +125,11 @@ class StockPage extends React.Component {
 
     }
 
+   
     render() {
         // debugger;
         let ticker = this.props.location.pathname.split("/")[2]
-        
+        const {id} = this.props.currentUser
 
        
      
@@ -137,6 +145,10 @@ class StockPage extends React.Component {
                 </div>
                 {this.state?
                     (<div>
+                        <OrderForm
+                            ticker={this.state.ticker}
+                            currentUser={this.props.currentUser.id}
+                            currentPrice={this.state.currentPrice} />
                     <h3 className="show-header">{ticker.toUpperCase()}</h3>
                     <h2>${this.state.currentPrice.toFixed(2)}</h2>
                     
@@ -150,7 +162,7 @@ class StockPage extends React.Component {
                     </LineChart>
                     <br/>
                     <CompanyProfile ticker={ticker}/>
-                    <StockNews ticker={ticker}/>
+                    {/* <StockNews ticker={ticker}/> */}
                 </div>): "" }
              </div>
 

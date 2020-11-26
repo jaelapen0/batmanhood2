@@ -6,7 +6,7 @@ import { fetchStock, fetchStocks, fetchDailyStockData, fetchCompanyProfile , fet
 import {pullStockDetails} from "./actions/stock_actions"
 import configureStore from "./store/store"
 import Root from "./components/root";
-import {getPortfolio, getOrderHistory, createOrder, getBuyingPower} from "./util/account_util"
+import {getPortfolio, getOrderHistory, createOrder, getBuyingPower, updateBuyingPower} from "./util/account_util"
 document.addEventListener("DOMContentLoaded", () => {
     let store;
     if (window.currentUser) {
@@ -35,4 +35,5 @@ document.addEventListener("DOMContentLoaded", () => {
     window.getPortfolio = getPortfolio;
     window.createOrder = createOrder;
     window.getBuyingPower = getBuyingPower;
+    window.updateBuyingPower = updateBuyingPower;
 });

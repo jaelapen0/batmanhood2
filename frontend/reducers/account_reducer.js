@@ -1,4 +1,4 @@
-import {RECEIVE_PORTFOLIO, RECEIVE_ORDER_HISTORY, RECEIVE_ORDER, RECEIVE_BUYING_POWER} from "../actions/account_actions"
+import { RECEIVE_PORTFOLIO, RECEIVE_ORDER_HISTORY, RECEIVE_ORDER, RECEIVE_BUYING_POWER} from "../actions/account_actions"
 
 const accountReducer = (oldState ={}, action) => {
     Object.freeze(oldState)

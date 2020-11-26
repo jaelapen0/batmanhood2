@@ -7,16 +7,29 @@
     
 }
 
+input[type=text]{
+    outline-color: #21ce99;
+    width: 200px;
+     padding: 3px 5px;  
+}
+
+input[type=password]{
+    outline-color: #21ce99;
+    width: 200px;
+    padding: 3px 5px;
+}
+
+
 input[type=text]:focus{
     outline-color: #21ce99;
-    width: 300px;
-     padding: 5px;
+    width: 200px;
+     padding: 3px 5px;  
 }
 
 input[type=password]:focus{
     outline-color: #21ce99;
-    width: 300px;
-    padding: 5px;
+    width: 200px;
+    padding: 3px 5px;
 }
 
 #form-button{

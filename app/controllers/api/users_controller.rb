@@ -17,12 +17,26 @@ class Api::UsersController < ApplicationController
       
         render "api/users/buying_power"
     end
+
+    def update
+        @user = User.find(params[:id])
+        # debugger
+        # if @user.update(params)
+
+        @user.buying_power = params["undefined"]["buying_power"]
+        if @user.save
+            # debugger;
+            render "api/users/buying_power"
+        else
+            render json: @user.errors.full_messages, status: 422
+        end
+    end
    
 
     private
 
     def user_params
-        params.require(:user).permit(:email, :first_name, :last_name, :password, :buying_power)
+        params.require(:user).permit( :email, :first_name, :last_name, :password, :buying_power)
     end
 
 end

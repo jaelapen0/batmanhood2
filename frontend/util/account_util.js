@@ -28,3 +28,11 @@ export const getBuyingPower = currentId => {
         url: `/api/users/${currentId}`
      })
 }
+
+export const updateBuyingPower = (currentId, buyingPower) => (
+    $.ajax({
+        method: `PATCH`,
+        url: `/api/users/${currentId}`,
+        data: { [currentId.buyingPower]: buyingPower }
+    })
+)

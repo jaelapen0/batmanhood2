@@ -65,11 +65,66 @@
 .order-container{
       margin-top: 70px;
     margin-right: 10%;
-    border: 1px solid darkgray;
-    padding: 10px;
+    // border: 1px solid darkgray;
+    padding: 10px 20px 10px 20px;
     display: block;
-    width: 300px;
+    width: 200px;
     box-shadow: 0 5px 4px 0 lightgrey;
     position: fixed;
     left: 780px;
+    bottom: 230px;
+
+    // justify-content: center;
+}
+
+.order-container label{
+    font-size: 12px;
+}
+
+.order-container div{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.order-container p{
+    font-size: 12px;
+}
+.order-container input[type=number]{
+    font-size: smaller;
+    padding: 10px 3px 10px 5px;
+     outline-color: #21ce99;
+     width: 30px;
+     margin-left: 10px;
+     background-color: lightgray;
+     border: none;
+     border-radius: 5px;
+}
+.estimatedcost {
+    border-bottom: 1px solid lightgray;
+}
+
+.order-button{
+    
+    margin-top: 10px;
+     background-color: #21ce99;
+    border-radius: 3px;
+    // font-weight: bolder; 
+    border-width: 0;
+    padding: 15px 40px;
+    margin-left: 10px;
+    text-decoration: none;
+    padding-top: 9px;
+    color: white;
+    width: 90%;
+}
+
+.order-button:hover{
+    background-color: #25a17b;
+}
+
+.order-button:focus{
+    outline: none;
+}
+.bold{
+    font-weight: bold;
 }

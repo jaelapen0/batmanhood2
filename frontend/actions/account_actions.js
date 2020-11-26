@@ -20,6 +20,7 @@ const receivePortfolio = portfolio => {
 }
 
 const receiveOrder = order => {
+    debugger;
    return { 
        type: RECEIVE_ORDER,
        order
@@ -46,11 +47,17 @@ export const fetchPortfolio = () => dispatch => {
 }
 
 export const createOrder = order => dispatch => {
+    debugger;
     return AccountUtils.createOrder(order)
-    .then(order => dispatch(receiveOrder(order)))
+        .then(order => dispatch(receiveOrder(order)))
 }
 
 export const fetchBuyingPower = currentId => dispatch => {
     return AccountUtils.getBuyingPower(currentId)
     .then(buying_power => dispatch(receiveBuyingPower(buying_power)))
+}
+
+export const setBuyingPower = (currentId, buying_power) => dispatch => {
+    return AccountUtils.updateBuyingPower(currentId, buying_power)
+        .then(buying_power => dispatch(receiveBuyingPower(buying_power)))
 }

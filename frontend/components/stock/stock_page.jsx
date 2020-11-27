@@ -114,7 +114,8 @@ class StockPage extends React.Component {
                         data: data1, low: low.low, high: high.high,
                         dif: dif.toFixed(2), percentChange: percentChange,
                         CustomTooltip: CustomTooltip,
-                        currentPrice: currentPrice, color: color
+                        currentPrice: currentPrice, color: color,
+                        ticker
                     })
 
                 })
@@ -162,7 +163,7 @@ class StockPage extends React.Component {
                     </LineChart>
                     <br/>
                     <CompanyProfile ticker={ticker}/>
-                    {/* <StockNews ticker={ticker}/> */}
+                    <StockNews ticker={ticker}/>
                 </div>): "" }
              </div>
 

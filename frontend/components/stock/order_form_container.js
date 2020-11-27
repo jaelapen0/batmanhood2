@@ -4,6 +4,7 @@ import { fetchBuyingPower, setBuyingPower } from "../../actions/account_actions"
 
 const mstp = (state) => {
     // ;
+    debugger
     return {
         state
     }

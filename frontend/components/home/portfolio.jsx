@@ -95,13 +95,26 @@ class Portfolio extends React.Component {
             // for (key in this.state.stockDetails) {
                 // this.
                 const stockDetails = this.state.stockDetails
-                debugger;
-                if (stockDetails["12:59"]) {last = stockDetails["12:59"].reduce((sum, x) => sum + x)}
+                // debugger;
+                if (stockDetails["12:59"]) {
+                    // last = stockDetails["12:59"].reduce((sum, x) => sum + x)
+                   for(let i = 0; i< stockDetails["12:59"].length; i++){
+                       last += stockDetails["12:59"][i]
+                   }
+                }
                 // if (stockDetails["01:59"]) { last = stockDetails["01:59"].reduce((sum, x) => sum + x) }
                 // if (stockDetails["02:59"]) { last = stockDetails["02:59"].reduce((sum, x) => sum + x) }
-                if (stockDetails["03:59"]) { last = stockDetails["03:59"].reduce((sum, x) => sum + x) }
-                
-                first = stockDetails["09:30"].reduce((sum, x) => sum + x)
+                if (stockDetails["03:59"]) {
+                    //  last = stockDetails["03:59"].reduce((sum, x) => sum + x) 
+                    for (let i = 0; i < stockDetails["03:59"].length; i++) {
+                        last += stockDetails["03:59"][i]
+                    }
+                    }
+                let first = 0;  
+                for (let i = 0; i < stockDetails["09:30"].length; i++) {
+                    first += stockDetails["09:30"][i]}
+
+                // first = stockDetails["09:30"].reduce((sum, x) => sum + x)
                 if(first > last) {
                     color = "red";
                     dif = last - first
@@ -113,7 +126,10 @@ class Portfolio extends React.Component {
                     if (stockDetails[min].length === req) {
                         // debugger;
                         stockDetails[min].push(parseInt(buyingPower))
-                        let added = stockDetails[min].reduce((sum, x) => sum + x)
+                        let added = 0 
+                        for (let i = 0; i < stockDetails[min].length; i++) {
+                            added += stockDetails[min][i]}
+                        //  stockDetails[min].reduce((sum, x) => sum + x)
                          if (added < dataMin ) {dataMin = added}
                         if (added > dataMax) { dataMax = added }
                         theLast.push({ time: min, average: added.toFixed(2)});

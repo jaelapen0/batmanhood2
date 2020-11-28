@@ -150,7 +150,7 @@ class Portfolio extends React.Component {
                     <div>
                             <h1 className="portfolio-header">${last.toFixed(2)}</h1>
                             {/* <h5>{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({dif / this.state.stockDetails["9:30"]}) </h5> */}
-                        <LineChart className="linechart" width={500} height={200} data={theLast}>
+                        <LineChart className="linechart" width={670} height={300} data={theLast}>
                             <XAxis dataKey="time" hide={true}></XAxis>
                             {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
                                 <YAxis dataKey="average" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>

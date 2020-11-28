@@ -166,8 +166,8 @@ class StockPage extends React.Component {
                             currentPrice={this.state.currentPrice} />
                             </div>   
                     <br/>
-                    {/* <CompanyProfile ticker={ticker}/> */}
-                    {/* <StockNews ticker={ticker}/> */}
+                    <CompanyProfile ticker={ticker}/>
+                    <StockNews ticker={ticker}/>
                 </div>): "" }
              </div>
 

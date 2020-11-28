@@ -41,14 +41,17 @@ class Portfolio extends React.Component {
                 //  debugger
                  const stocksDetails = {}
                  
-                Object.keys(trimmed).forEach(name =>{
-                    this.props.pullStockDetails(name)
+                // Object.keys(trimmed).forEach(name =>{
+                    // this.props.pullStockDetails("AAPL")
+                    this.props.pullStockDetails("AAPL")
                         .then(data =>{
-                            // const data1 = data.data.filter(arr => 
-                            //     {   
-                            //     return arr.average != null})
-                            const quantity = orders[name]
-                            const req = Object.keys(orders).length
+                          
+                            
+                            // const quantity = orders[name]
+                            const quantity = orders["AAPL"]
+                            // const req = Object.keys(orders).length
+                            const req = 1
+                            
                             const data1 = data.data.forEach(minInfo => {
                                 if(minInfo.average != null) {
                                     if(!stocksDetails[minInfo.minute]){
@@ -68,31 +71,9 @@ class Portfolio extends React.Component {
                         //    debugger;
 
                         })
-                 })
+                //  })
                 //  debugger;
-            //    const nextOne = {}
-        
-                // debugger;
-                // this.setState({portfolio: stocksDetails})
-                // console.log(stocksDetails)
-                // debugger;
-                // const theLast = {};
-                // if (stockDetails[0].length === Object.keys(orders).length && stockDetails[1].length === Object.keys(orders).length){
             
-                //             let req = Object.keys(orders).length
-                //             // debugger;
-                //             for (min in stocksDetails){
-                //                 debugger;
-                //                 if (stocksDetails[min].length === req){
-                //                     debugger;
-                //                     stocksDetails[min].push(parseInt(buyingPower.buying_power))
-                //                     theLast[min] = stocksDetails;
-                                    
-                //                 }
-                //             }
-                        
-                // }
-                // debugger;
             }
             // )
             // ;
@@ -117,8 +98,8 @@ class Portfolio extends React.Component {
                 const stockDetails = this.state.stockDetails
                 debugger;
                 if (stockDetails["12:59"]) {last = stockDetails["12:59"].reduce((sum, x) => sum + x)}
-                if (stockDetails["01:59"]) { last = stockDetails["01:59"].reduce((sum, x) => sum + x) }
-                if (stockDetails["02:59"]) { last = stockDetails["02:59"].reduce((sum, x) => sum + x) }
+                // if (stockDetails["01:59"]) { last = stockDetails["01:59"].reduce((sum, x) => sum + x) }
+                // if (stockDetails["02:59"]) { last = stockDetails["02:59"].reduce((sum, x) => sum + x) }
                 if (stockDetails["03:59"]) { last = stockDetails["03:59"].reduce((sum, x) => sum + x) }
                 
                 first = stockDetails["09:30"].reduce((sum, x) => sum + x)

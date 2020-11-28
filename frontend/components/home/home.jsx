@@ -8,13 +8,22 @@ class Home extends React.Component{
     constructor(props){
         super(props)
     }    
-   
+    componentDidMount(){
+        // debugger;
+        this.props.fetchBuyingPower(this.props.currentUser.id)
+        .then(buyingPower => {
+            // debugger
+            this.setState({ buyingPower: buyingPower.buying_power.buying_power})
+        })
+    }
     render(){
         // ;
+        // debugger;
         return(
             <div>
+                {this.state? (
                 <div className="home-container">
-                    <Portfolio props={this.props}/> 
+                    <Portfolio props={this.props} buyingPower={this.state.buyingPower}/> 
                     {/* YEAHHHHHH HOMMMEEE */}
                     {/* <input className="search-bar" type="text"/> */}
                     <div>
@@ -27,7 +36,7 @@ class Home extends React.Component{
                     
                     <Watchlist props={this.props}/>
                     
-                </div>
+                </div>) : "" }
                 <NewsFeed/>
             </div>
         )

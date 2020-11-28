@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { logout, login } from "../../actions/session_actions"
+import {fetchBuyingPower} from "../../actions/account_actions"
 import Home from "./home"
 const mstp = ({ session, entities: { users } }) => {
     
@@ -9,7 +10,8 @@ const mstp = ({ session, entities: { users } }) => {
 const mdtp = dispatch => {
     return {
         logout: () => dispatch(logout()),
-        login: (user) => dispatch(login(user))
+        login: (user) => dispatch(login(user)),
+        fetchBuyingPower: currentId => dispatch(fetchBuyingPower(currentId))
     }
 }
 

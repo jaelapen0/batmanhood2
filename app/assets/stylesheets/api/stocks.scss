@@ -4,8 +4,8 @@
 
 .stockshow-container {
      margin-top: 70px;
-    margin-left: 100px;
-    // margin-left: 10%;
+    // margin-left: 100px;
+    margin-left: 8%; 
     // border: 1px solid darkgray;
     padding: 10px;
     display: block;
@@ -65,15 +65,16 @@
 
 .order-container{
       margin-top: 70px;
-    margin-right: 10%;
+    // margin-right: 10%;
+    margin-left: 20%;
     // border: 1px solid darkgray;
     padding: 10px 20px 10px 20px;
     display: block;
-    width: 200px;
+    width: 220px;
     box-shadow: 0 5px 4px 0 lightgrey;
-    position: fixed;
-    left: 880px;
-    bottom: 300px;
+    position: relative;
+    // left: 880px;
+    bottom: 220px;
 
     // justify-content: center;
 }
@@ -92,9 +93,9 @@
 }
 .order-container input[type=number]{
     font-size: smaller;
-    padding: 10px 3px 10px 5px;
+    padding: 5px 0px 5px 10px;
      outline-color: #21ce99;
-     width: 30px;
+     width: 50px;
      margin-left: 10px;
      background-color: lightgray;
      border: none;
@@ -133,4 +134,14 @@
 .selected {
     color: #21ce99;
     border-bottom: 1px solid #21ce99;
+}
+
+.show-top{
+    display: flex;
+    flex-direction: row;;
+}
+
+.bpow{
+    margin-top: 20px;
+    margin-left: 50px;
 }

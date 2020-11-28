@@ -118,7 +118,7 @@ class OrderForm extends React.Component {
                         <button className="order-button">{order_type.toUpperCase()}</button>
                         {this.state ? (
                             <div>
-                                <p>Buying Power: ${parseFloat(buying_power).toFixed(2)}</p>
+                                <p className="bpow">Buying Power: ${parseFloat(buying_power).toFixed(2)}</p>
                             </div>
                         ) : ""}
                         {this.state.errors? <p> {this.state.errors}</p> : ""}

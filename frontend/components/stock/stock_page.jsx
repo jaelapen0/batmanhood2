@@ -133,7 +133,7 @@ class StockPage extends React.Component {
         const {id} = this.props.currentUser
 
        
-     
+        debugger;
         return (
        
             <div className="stockshow-container">
@@ -146,24 +146,28 @@ class StockPage extends React.Component {
                 </div>
                 {this.state?
                     (<div>
+                        
+                        <h3 className="show-header">{ticker.toUpperCase()}</h3>
+                        <h2>${this.state.currentPrice.toFixed(2)}</h2>
+                        
+                        <h3>${this.state.dif} ({this.state.percentChange})% Today </h3>
+                        <div className="show-top"> 
+                        <LineChart className="linechart" width={670} height={200} data={this.state.data}>
+                            <XAxis dataKey="time" hide={true}></XAxis>
+                            {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
+                            <YAxis dataKey="average" domain={[this.state.low.toFixed(2), this.state.high.toFixed(2)]} axisLine={false} hide={true} />
+                            <Tooltip></Tooltip>
+                            <Line type="monotone" dataKey="average" stroke={this.state.color} dot={false} strokeWidth='3' animationDuration={1500} />
+                        </LineChart>
+
                         <OrderForm
                             ticker={this.state.ticker}
                             currentUser={this.props.currentUser.id}
                             currentPrice={this.state.currentPrice} />
-                    <h3 className="show-header">{ticker.toUpperCase()}</h3>
-                    <h2>${this.state.currentPrice.toFixed(2)}</h2>
-                    
-                    <h3>${this.state.dif} ({this.state.percentChange})% Today </h3>
-                    <LineChart className="linechart" width={670} height={200} data={this.state.data}>
-                        <XAxis dataKey="time" hide={true}></XAxis>
-                        {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
-                        <YAxis dataKey="average" domain={[this.state.low.toFixed(2), this.state.high.toFixed(2)]} axisLine={false} hide={true} />
-                        <Tooltip></Tooltip>
-                        <Line type="monotone" dataKey="average" stroke={this.state.color} dot={false} strokeWidth='3' animationDuration={1500} />
-                    </LineChart>
+                            </div>   
                     <br/>
-                    <CompanyProfile ticker={ticker}/>
-                    <StockNews ticker={ticker}/>
+                    {/* <CompanyProfile ticker={ticker}/> */}
+                    {/* <StockNews ticker={ticker}/> */}
                 </div>): "" }
              </div>
 

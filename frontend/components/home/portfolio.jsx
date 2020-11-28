@@ -75,9 +75,8 @@ class Portfolio extends React.Component {
                 //  debugger;
             
             }
-            // )
-            // ;
-            )
+            
+        )
     }
     render(){
         // debugger
@@ -126,7 +125,8 @@ class Portfolio extends React.Component {
         // debugger
         return (
             <div>
-                {dataMax !== 0 ? 
+                {this.state.stockDetails?
+                // dataMax !== 0 ? 
                 (
                     <div>
                             <h1 className="portfolio-header">${last.toFixed(2)}</h1>

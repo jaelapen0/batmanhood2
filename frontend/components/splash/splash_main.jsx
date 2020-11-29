@@ -4,8 +4,8 @@ class SplashMain extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            email: "demo1234",
-            password: "demo1234",
+            email: "jeffrey",
+            password: "jeffrey",
         };
        this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -13,8 +13,8 @@ class SplashMain extends React.Component {
     handleSubmit(e){
         e.preventDefault()
         this.state = {
-            email: "demo1234",
-            password: "demo1234",
+            email: "jeffrey",
+            password: "jeffrey",
         };
         const user = Object.assign({}, this.state);
         this.props.props.login(user);

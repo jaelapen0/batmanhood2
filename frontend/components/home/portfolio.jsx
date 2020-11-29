@@ -61,16 +61,15 @@ class Portfolio extends React.Component {
                              this.setState({stockDetails: stocksDetails, 
                                             req: req,
                                             trimmed: trimmed
-                        
                                             })
-                        //    debugger;
+                        
 
                         })
                  })
             })
     }
     render(){
-        // debugger
+        // 
         const theLast = [];
         let dataMin = 10000000000
         let dataMax = 0
@@ -82,7 +81,7 @@ class Portfolio extends React.Component {
         if (this.state.req && Object.values(this.state.stockDetails["09:30"]) && this.state.req === Object.values(this.state.stockDetails["09:30"]).length ){
             trimmed = this.state.trimmed;
             const stockDetails = this.state.stockDetails
-            // debugger;
+            // ;
             // if      (stockDetails["03:59"]) { last += stockDetails["03:59"].reduce((sum, x) => sum + x) }
             // else if (stockDetails["03:29"]) { last += stockDetails["03:29"].reduce((sum, x) => sum + x) }
             // else if (stockDetails["02:59"]) { last += stockDetails["02:59"].reduce((sum, x) => sum + x) }
@@ -107,9 +106,9 @@ class Portfolio extends React.Component {
                 const buyingPower = parseFloat(this.props.buyingPower);
                 const req = this.state.req;
                 Object.keys(this.state.stockDetails).forEach(min =>{
-                    // debugger;
+                    // ;
                     if (stockDetails[min].length === req) {
-                        // debugger;
+                        // ;
                         stockDetails[min].push(parseInt(buyingPower))
                         let added = stockDetails[min].reduce((sum, x) => sum + x)
                          if (added < dataMin ) {dataMin = added}
@@ -123,12 +122,12 @@ class Portfolio extends React.Component {
                 color = "red";
                 dif = last - first
             } else { dif = first - last }
-                // debugger
+                // 
         }
         
         return (
             <div>
-                {dataMax !== 0 ? 
+                {first !== 0 ? 
                     (<div className="port-list"> 
                          <div>
                             <h1 className="portfolio-header">${theLast[0] ? theLast[theLast.length-1].average : ""}</h1>
@@ -142,7 +141,7 @@ class Portfolio extends React.Component {
                             </LineChart>
                         </div>
                         
-                        {/* <div className="stocklist-container">
+                        <div className="stocklist-container">
                             <h1>Stocks</h1>
                             {Object.keys(trimmed).map(name => (
                                 <div>
@@ -154,7 +153,7 @@ class Portfolio extends React.Component {
                                     </Link>
                                 </div>
                                 ))}
-                        </div> */}
+                        </div>
                     </div>) : "GOTHAM" }
             </div>
         )

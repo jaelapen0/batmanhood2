@@ -1,5 +1,5 @@
-// import { connect } from "react-redux"
-import SearchBar from "./order_form.jsx"
+import { connect } from "react-redux"
+import SearchBar from "./search_bar.jsx"
 // import { fetchBuyingPower, setBuyingPower } from "../../actions/account_actions"
 import {fetchSearchResults} from "../../actions/stock_actions"
 

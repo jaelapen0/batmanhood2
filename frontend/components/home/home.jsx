@@ -1,6 +1,6 @@
 import React from "react"
 // import Portfolio from "../portfolio/portfolio_container"
-import Watchlist from "../watchlist/watch_list_container"
+// import Watchlist from "../watchlist/watch_list_container"
 import { Link } from 'react-router-dom';
 import NewsFeed from "./news_feed_container"
 import Portfolio from "./portfolio_container"
@@ -37,7 +37,7 @@ class Home extends React.Component{
                     {/* <Watchlist props={this.props}/> */}
                     
                 </div>) : "" }
-                <NewsFeed/>
+                    <NewsFeed/>
             </div>
         )
     }

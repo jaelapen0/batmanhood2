@@ -72,6 +72,9 @@ input[type=password]:focus{
   height: 100%;
   margin-left: -1.4%;
 }
+.login-img:hover{
+  filter: invert(.8);
+}
 
 .login-header{
     font-weight: normal;

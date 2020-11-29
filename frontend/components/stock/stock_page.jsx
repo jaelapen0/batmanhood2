@@ -168,7 +168,7 @@ class StockPage extends React.Component {
                             </div>   
                     <br/>
                     <CompanyProfile ticker={ticker}/>
-                    {/* <StockNews ticker={ticker}/> */}
+                    <StockNews ticker={ticker}/>
                 </div>): "" }
              </div>
 

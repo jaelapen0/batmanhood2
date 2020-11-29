@@ -148,7 +148,7 @@ class StockPage extends React.Component {
                     (<div>
                         
                         <h3 className="show-header">{ticker.toUpperCase()}</h3>
-                        <h2>${this.state.currentPrice.toFixed(2)}</h2>
+                        <h2>${parseFloat(this.state.currentPrice.toFixed(2)).toLocaleString()}</h2>
                         
                         <h3>${this.state.dif} ({this.state.percentChange})% Today </h3>
                         <div className="show-top"> 

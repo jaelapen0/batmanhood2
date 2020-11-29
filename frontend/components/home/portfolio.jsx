@@ -82,21 +82,21 @@ class Portfolio extends React.Component {
             trimmed = this.state.trimmed;
             const stockDetails = this.state.stockDetails;
             
-            if      (stockDetails["03:59"]) { last += stockDetails["03:59"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["03:29"]) { last += stockDetails["03:29"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["02:59"]) { last += stockDetails["02:59"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["02:29"]) { last += stockDetails["02:29"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["01:59"]) { last += stockDetails["01:59"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["01:29"]) { last += stockDetails["01:29"].reduce((sum, x) => sum + x) }
+            // if      (stockDetails["03:59"]) { last += stockDetails["03:59"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["03:29"]) { last += stockDetails["03:29"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["02:59"]) { last += stockDetails["02:59"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["02:29"]) { last += stockDetails["02:29"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["01:59"]) { last += stockDetails["01:59"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["01:29"]) { last += stockDetails["01:29"].reduce((sum, x) => sum + x) }
             
-            else if (stockDetails["12:59"]) { last += stockDetails["12:59"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["12:29"]) { last += stockDetails["12:29"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["11:59"]) { last += stockDetails["11:59"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["11:29"]) { last += stockDetails["11:29"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["10:59"]) { last += stockDetails["10:59"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["10:29"]) { last += stockDetails["10:29"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["09:59"]) { last += stockDetails["09:59"].reduce((sum, x) => sum + x) }
-            else if (stockDetails["09:30"]) { last += stockDetails["09:30"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["12:59"]) { last += stockDetails["12:59"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["12:29"]) { last += stockDetails["12:29"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["11:59"]) { last += stockDetails["11:59"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["11:29"]) { last += stockDetails["11:29"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["10:59"]) { last += stockDetails["10:59"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["10:29"]) { last += stockDetails["10:29"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["09:59"]) { last += stockDetails["09:59"].reduce((sum, x) => sum + x) }
+            // else if (stockDetails["09:30"]) { last += stockDetails["09:30"].reduce((sum, x) => sum + x) }
 
                 // first += stockDetails["09:30"].reduce((sum, x) => sum + x)
                 // if(first > last) {
@@ -130,7 +130,7 @@ class Portfolio extends React.Component {
                 {first !== 0 ? 
                     (<div className="port-list"> 
                          <div>
-                            <h1 className="portfolio-header">${theLast[0] ? theLast[theLast.length-1].average : ""}</h1>
+                            <h1 className="portfolio-header">${theLast[0] ? parseFloat(theLast[theLast.length-1].average).toLocaleString() : ""}</h1>
                             <h4>{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ?  ((dif / theLast[0].average).toFixed(2)): ""}%) </h4>
                             <LineChart className="linechart" width={750} height={300} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>

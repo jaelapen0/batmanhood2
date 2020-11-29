@@ -43,7 +43,7 @@
 
 .stocknews-container{
     width: 670px;
-    font-size: smaller;
+    // font-size: smaller;
 }
 
 .stock-article-content{
@@ -73,8 +73,9 @@
     width: 220px;
     box-shadow: 0 5px 4px 0 lightgrey;
     position: fixed;
+    top: 200px;
     // left: 880px;
-    bottom: 300px;
+    // bottom: 300px;
 
     // justify-conent: center;
 }

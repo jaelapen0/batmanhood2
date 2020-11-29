@@ -66,7 +66,7 @@ class CompanyProfile extends React.Component{
                                     </div>
                                     <div>
                                     <p className="profile-list-label">Market CAP</p>
-                                        <p>{this.state.mktCap}</p>
+                                        <p>{(this.state.mktCap).toLocaleString()}</p>
                                     </div>
                                     <div>
                                     <p className="profile-list-label">Sector</p>

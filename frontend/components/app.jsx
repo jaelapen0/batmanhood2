@@ -14,6 +14,7 @@ const App = () => {
     <div>
         <div id="splashnav">
                 <a id="logo" href="/">Batmanhood</a>
+                
                 <GreetingContainer />
         </div>
 

@@ -133,17 +133,17 @@ class StockPage extends React.Component {
         const {id} = this.props.currentUser
 
        
-        debugger;
+        // debugger;
         return (
        
             <div className="stockshow-container">
-                <div>
+                {/* <div>
                     <Link to="/stocks/fsly">FSLY</Link>
                     <Link to="/stocks/aapl">AAPL</Link>
                     <Link to="/stocks/bynd">BYND</Link>
                     <Link to="/stocks/fb">FB</Link>
                     <Link to="/stocks/googl">GOOGL</Link>
-                </div>
+                </div> */}
                 {this.state?
                     (<div>
                         

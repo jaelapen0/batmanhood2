@@ -1,16 +1,21 @@
 
 .home-container{
-    display: flex;
-    justify-content: space-between;
+    // // display: flex;
+    // justify-content: space-between;
     margin-left: 50px;
     margin-top: 100px;
 }
 
+.port-list{
+    display: flex;
+    justify-content: space-between;
+
+}
 .watchlist-container{
     margin-top: 70px;
     margin-right: 10%;
-    border: 1px solid darkgray;
-    padding: 10px;
+    // border: 1px solid darkgray;
+    padding: 5px 10px;
     display: block;
     width: 300px;
     box-shadow: 0 5px 4px 0 lightgrey;
@@ -18,6 +23,36 @@
     left: 900px;
 }
 
+.stocklist-container{
+    margin-top: 70px;
+    // margin-right: 10%;
+    // border: 1px solid darkgray;
+    padding: 10px;
+    display: block;
+    width: 250px;
+    box-shadow: 0 5px 4px 0 lightgrey;
+    position: fixed;
+    left: 900px;
+    bottom: 200px;
+    box-shadow: 0 5px 4px 0 lightgrey;
+    padding-left: 20px;
+}
+.stocklist-container > h1{
+    border-bottom: 1px solid lightgray;;
+    padding: 5px 10px;
+    font-size: smaller;
+}
+.list-stock{
+    // border-top: 1px solid lightgray;
+    padding-left: 10px;
+    font-size: smaller;
+}
+
+.list-stock:hover{
+    // border-top: 1px solid lightgray;
+    // padding-left: 10px;
+    background-color: rgb(247, 243, 243);
+}
 .watchlist-header{
     border-bottom: 1px solid darkgray;
 
@@ -27,11 +62,11 @@
     // margin-left: 10%;
     margin-top: 30px;
     box-shadow: 0 5px 4px 0 lightgrey;
-    padding: 5px 10px;
+    // padding: 5px 10px;
 }
 
 .newsfeed-container {
-    margin-left: 10%;
+    margin-left: 100px;
     width: 750px;
     margin: 100px 50px;
 }
@@ -39,6 +74,7 @@
     display: flex;
     padding: 25px 0;
     border-top: 1px solid lightgray;
+    font-size: smaller;
 }
 .article-header-container{
     position: relative;

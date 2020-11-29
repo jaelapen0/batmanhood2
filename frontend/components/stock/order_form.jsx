@@ -24,7 +24,7 @@ class OrderForm extends React.Component {
         // ;
         this.props.fetchBuyingPower(this.props.currentUser)
             .then(info => {
-                debugger;
+                // debugger;
                 this.setState({buying_power: info.buying_power.buying_power})
                 // ;
             })
@@ -32,7 +32,7 @@ class OrderForm extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-       debugger;
+    //    debugger;
         if (this.props.state.entities.account.buying_power !== prevProps.state.entities.account.buying_power){
            
             this.setState({ buying_power: this.props.state.entities.account.buying_power.buying_power})
@@ -56,23 +56,26 @@ class OrderForm extends React.Component {
                 this.state.errors = "Not enough Buying Power"
             }
             else if( this.state.shares_quantity === 0) {
-                this.state.errors = "Must be at least 1 share"}
+                // this.state.errors = "Must be at least 1 share"
+                this.setState({errors: "Must be at least 1 share" })
+            }
             else{
                 const newTotal = parseFloat(this.state.buying_power) - totalAmount
                 this.props.setBuyingPower(this.state.user_id, { buying_power: newTotal})
                 this.props.createOrder(this.state)
-                this.setState({ buying_power: newTotal })
-                this.state.errors = "Your shares have been purchased"
+                this.setState({ buying_power: newTotal, errors: "Your shares have been purchased" })
+                // this.state.errors = "Your shares have been purchased"
             }
        } else if (this.state.order_type === "sell"){
-           debugger;
+        //    debugger;
            const newTotal = parseFloat(this.state.buying_power) + totalAmount
            this.props.setBuyingPower(this.state.user_id, { buying_power: newTotal })
            this.props.createOrder(this.state)
-           debugger;
+        //    debugger;
            this.setState({ buying_power: newTotal })
-           debugger;
-           this.state.errors = "Your shares have been sold"
+        //    debugger;
+        //    this.state.errors = "Your shares have been sold"
+           this.setState({ errors: "Your shares have been sold"})
        }
     }
 
@@ -82,7 +85,7 @@ class OrderForm extends React.Component {
     render(){
             // ;
             const {order_type, buying_power, shares_quantity} = this.state;
-            debugger;
+            // debugger;
         return(
             <div>
                 <div className="order-container">
@@ -121,7 +124,7 @@ class OrderForm extends React.Component {
                                 <p className="bpow">Buying Power: ${parseFloat(buying_power).toFixed(2)}</p>
                             </div>
                         ) : ""}
-                        {this.state.errors? <p> {this.state.errors}</p> : ""}
+                        {this.state.errors !== "" ? <p> {this.state.errors}</p> : ""}
                     </form>
                 </div>
             </div>

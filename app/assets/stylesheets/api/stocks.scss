@@ -64,19 +64,19 @@
 }
 
 .order-container{
-      margin-top: 70px;
+      margin-top: 0px;
     // margin-right: 10%;
-    margin-left: 20%;
+    margin-left: 100px;
     // border: 1px solid darkgray;
     padding: 10px 20px 10px 20px;
-    display: block;
+    // display: block;
     width: 220px;
     box-shadow: 0 5px 4px 0 lightgrey;
-    position: relative;
+    position: fixed;
     // left: 880px;
-    bottom: 220px;
+    bottom: 300px;
 
-    // justify-content: center;
+    // justify-conent: center;
 }
 
 .order-container label{

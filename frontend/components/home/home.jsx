@@ -26,15 +26,15 @@ class Home extends React.Component{
                     <Portfolio props={this.props} buyingPower={this.state.buyingPower}/> 
                     {/* YEAHHHHHH HOMMMEEE */}
                     {/* <input className="search-bar" type="text"/> */}
-                    <div>
+                    {/* <div>
                         <Link to="/stocks/fsly">FSLY</Link>
                         <Link to="/stocks/aapl">AAPL</Link>
                         <Link to="/stocks/bynd">BYND</Link>
                         <Link to="/stocks/fb">FB</Link>
                         <Link to="/stocks/googl">GOOGL</Link>
-                    </div>
+                    </div> */}
                     
-                    <Watchlist props={this.props}/>
+                    {/* <Watchlist props={this.props}/> */}
                     
                 </div>) : "" }
                 <NewsFeed/>

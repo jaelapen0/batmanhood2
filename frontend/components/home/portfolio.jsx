@@ -1,6 +1,6 @@
 import React from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Portfolio extends React.Component {
     constructor(props){
@@ -80,23 +80,23 @@ class Portfolio extends React.Component {
         let trimmed = {}
         if (this.state.req && Object.values(this.state.stockDetails["09:30"]) && this.state.req === Object.values(this.state.stockDetails["09:30"]).length ){
             trimmed = this.state.trimmed;
-            const stockDetails = this.state.stockDetails
-            // ;
-            // if      (stockDetails["03:59"]) { last += stockDetails["03:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["03:29"]) { last += stockDetails["03:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["02:59"]) { last += stockDetails["02:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["02:29"]) { last += stockDetails["02:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["01:59"]) { last += stockDetails["01:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["01:29"]) { last += stockDetails["01:29"].reduce((sum, x) => sum + x) }
+            const stockDetails = this.state.stockDetails;
             
-            // else if (stockDetails["12:59"]) { last += stockDetails["12:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["12:29"]) { last += stockDetails["12:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["11:59"]) { last += stockDetails["11:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["11:29"]) { last += stockDetails["11:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["10:59"]) { last += stockDetails["10:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["10:29"]) { last += stockDetails["10:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["09:59"]) { last += stockDetails["09:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["09:30"]) { last += stockDetails["09:30"].reduce((sum, x) => sum + x) }
+            if      (stockDetails["03:59"]) { last += stockDetails["03:59"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["03:29"]) { last += stockDetails["03:29"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["02:59"]) { last += stockDetails["02:59"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["02:29"]) { last += stockDetails["02:29"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["01:59"]) { last += stockDetails["01:59"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["01:29"]) { last += stockDetails["01:29"].reduce((sum, x) => sum + x) }
+            
+            else if (stockDetails["12:59"]) { last += stockDetails["12:59"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["12:29"]) { last += stockDetails["12:29"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["11:59"]) { last += stockDetails["11:59"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["11:29"]) { last += stockDetails["11:29"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["10:59"]) { last += stockDetails["10:59"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["10:29"]) { last += stockDetails["10:29"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["09:59"]) { last += stockDetails["09:59"].reduce((sum, x) => sum + x) }
+            else if (stockDetails["09:30"]) { last += stockDetails["09:30"].reduce((sum, x) => sum + x) }
 
                 // first += stockDetails["09:30"].reduce((sum, x) => sum + x)
                 // if(first > last) {
@@ -130,18 +130,17 @@ class Portfolio extends React.Component {
                 {first !== 0 ? 
                     (<div className="port-list"> 
                          <div>
-                            <h1 className="portfolio-header">${theLast[0] ? theLast[theLast.length-1].average : ""}</h1>
-                            <h4>{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ?  ((dif / theLast[0].average).toFixed(2)): ""}%) </h4>
+                            {/* <h1 className="portfolio-header">${theLast[0] ? theLast[theLast.length-1].average : ""}</h1> */}
+                            {/* <h4>{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ?  ((dif / theLast[0].average).toFixed(2)): ""}%) </h4> */}
                             <LineChart className="linechart" width={750} height={300} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>
-                                {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
                                     <YAxis dataKey="average" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
                                 <Tooltip></Tooltip>
                                     <Line type="monotone" dataKey="average" stroke={color} dot={false} strokeWidth='3' animationDuration={1500} />
                             </LineChart>
                         </div>
                         
-                        {/* <div className="stocklist-container">
+                        <div className="stocklist-container">
                             <h1>Stocks</h1>
                             {Object.keys(trimmed).map(name => (
                                 <div>
@@ -153,7 +152,7 @@ class Portfolio extends React.Component {
                                     </Link>
                                 </div>
                                 ))}
-                        </div> */}
+                        </div>
                     </div>) : "GOTHAM" }
             </div>
         )

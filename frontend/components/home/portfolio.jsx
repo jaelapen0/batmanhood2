@@ -1,6 +1,6 @@
 import React from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class Portfolio extends React.Component {
     constructor(props){
@@ -141,7 +141,7 @@ class Portfolio extends React.Component {
                             </LineChart>
                         </div>
                         
-                        <div className="stocklist-container">
+                        {/* <div className="stocklist-container">
                             <h1>Stocks</h1>
                             {Object.keys(trimmed).map(name => (
                                 <div>
@@ -153,7 +153,7 @@ class Portfolio extends React.Component {
                                     </Link>
                                 </div>
                                 ))}
-                        </div>
+                        </div> */}
                     </div>) : "GOTHAM" }
             </div>
         )

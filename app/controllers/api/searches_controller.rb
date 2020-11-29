@@ -1,8 +1,10 @@
 class Api::SearchesController < ApplicationController
 
-    def index 
+    def show 
         tags = params["tags"]
-        
-        @stocks = Stock.where('tags ILIKE ?', "%#{t}%").limit(5)
+      #  debugger
+        @stocks = Stock.where('tags ILIKE ?', "%#{tags}%").limit(5)
+       # debugger
+       # render  json: @stocks
     end
 end

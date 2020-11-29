@@ -1,4 +1,4 @@
-import { RECEIVE_STOCK, RECEIVE_ALL_STOCKS, RECEIVE_STOCK_DATA} from "../actions/stock_actions"
+import { RECEIVE_STOCK, RECEIVE_ALL_STOCKS, RECEIVE_STOCK_DATA, RECEIVE_SEARCH_RESULTS} from "../actions/stock_actions"
 
 const stocksReducer = (oldState = {}, action) => {
     // 
@@ -10,6 +10,8 @@ const stocksReducer = (oldState = {}, action) => {
         return Object.assign({}, action.stocks)
     case RECEIVE_STOCK_DATA:
         return Object.assign({}, oldState, action.responseJSON)
+    case RECEIVE_SEARCH_RESULTS:
+        return Object.assign({}, oldState, action.stocks)
     default:
         return oldState;
     }

@@ -61,3 +61,10 @@ export const fetchCompanyNews = ticker_symbol => {
     })
 
 }
+
+export const fetchSearchResults = tags => {
+    return $.ajax({
+        method: `GET`,
+        url: `api/searches/${tags}`
+    })
+}

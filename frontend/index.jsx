@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {login, logout, signup} from "./util/session_api_util"
 // import {createOrder} from "./util/account_util"
-import { fetchStock, fetchStocks, fetchDailyStockData, fetchCompanyProfile , fetchNews} from "./util/stock_util"
+import { fetchStock, fetchStocks, fetchDailyStockData, fetchCompanyProfile , fetchNews, fetchSearchResults} from "./util/stock_util"
 import {pullStockDetails} from "./actions/stock_actions"
 import configureStore from "./store/store"
 import Root from "./components/root";
@@ -36,4 +36,5 @@ document.addEventListener("DOMContentLoaded", () => {
     window.createOrder = createOrder;
     window.getBuyingPower = getBuyingPower;
     window.updateBuyingPower = updateBuyingPower;
+    window.fetchSearchResults = fetchSearchResults;
 });

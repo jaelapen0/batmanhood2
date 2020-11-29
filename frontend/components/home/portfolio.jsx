@@ -132,11 +132,11 @@ class Portfolio extends React.Component {
                          <div>
                             <h1 className="portfolio-header">${theLast[0] ? parseFloat(theLast[theLast.length-1].average).toLocaleString() : ""}</h1>
                             <h4>{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ?  ((dif / theLast[0].average).toFixed(2)): ""}%) </h4>
-                            <LineChart className="linechart" width={750} height={300} data={theLast[0]? theLast : []}>
+                            <LineChart className="linechart" width={693} height={270} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>
                                     <YAxis dataKey="average" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
                                 <Tooltip></Tooltip>
-                                    <Line type="monotone" dataKey="average" stroke={color} dot={false} strokeWidth='3' animationDuration={1500} />
+                                    <Line type="monotone" dataKey="average" stroke={color} dot={false} strokeWidth='2' animationDuration={1500} />
                             </LineChart>
                         </div>
                         

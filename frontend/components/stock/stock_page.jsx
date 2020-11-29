@@ -157,17 +157,18 @@ class StockPage extends React.Component {
                             {/* <YAxis tick={<CustomizedTickY locale={locale} />} domain={['dataMin', 'dataMax']} /> */}
                             <YAxis dataKey="average" domain={[this.state.low.toFixed(2), this.state.high.toFixed(2)]} axisLine={false} hide={true} />
                             <Tooltip></Tooltip>
-                            <Line type="monotone" dataKey="average" stroke={this.state.color} dot={false} strokeWidth='3' animationDuration={1500} />
+                            <Line type="monotone" dataKey="average" stroke={this.state.color} dot={false} strokeWidth='2' animationDuration={1500} />
                         </LineChart>
 
                         <OrderForm
+                            color={this.state.color}
                             ticker={this.state.ticker}
                             currentUser={this.props.currentUser.id}
                             currentPrice={this.state.currentPrice} />
                             </div>   
                     <br/>
                     <CompanyProfile ticker={ticker}/>
-                    <StockNews ticker={ticker}/>
+                    {/* <StockNews ticker={ticker}/> */}
                 </div>): "" }
              </div>
 

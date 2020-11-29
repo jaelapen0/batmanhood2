@@ -12,6 +12,8 @@ class SignupForm extends React.Component {
             errors: {},
             form_errors: []
         };
+
+        this.setState({ errors: [] })
         this.handleSubmit = this.handleSubmit.bind(this)
         this.render = this.render.bind(this)
         this.checkFormValidations = this.checkFormValidations.bind(this)
@@ -23,10 +25,9 @@ class SignupForm extends React.Component {
         });
     }
 
-    componentWillUnmount(){
-        
-    }
-
+   componentDidMount(){
+       this.setState({errors: ""})
+   }
     checkFormValidations() {
         let validForm = true;
         let form_errors = [];
@@ -55,6 +56,16 @@ class SignupForm extends React.Component {
             this.props.history.push("/")
         }
         else { this.render() }
+    }
+    componentDidUpdate(prevProps){
+        // debugger;
+        // if (this.props.errors.length > 0){
+        //     this.state.errors = [];
+        // }
+    }
+
+    componentWillUnmount(){
+        // this.state.errors
     }
 
     render(){

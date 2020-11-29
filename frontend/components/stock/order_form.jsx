@@ -118,7 +118,9 @@ class OrderForm extends React.Component {
                         <p className="bold">Estimated Cost:</p> 
                         <p>${(this.props.currentPrice * shares_quantity).toFixed(2)} </p>
                         </div>
-                        <button className="order-button">{order_type.toUpperCase()}</button>
+                        <button className="order-button" 
+                        // style={this.props.color === "red" ? { "background-color": "red", "background-color": "#25a17b"} : {} }
+                        >{order_type.toUpperCase()}</button>
                         {this.state ? (
                             <div>
                                 <p className="bpow">Buying Power: ${parseFloat(buying_power).toFixed(2)}</p>

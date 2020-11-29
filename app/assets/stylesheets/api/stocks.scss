@@ -5,11 +5,12 @@
 .stockshow-container {
      margin-top: 70px;
     // margin-left: 100px;
-    margin-left: 8%; 
+    // margin-left: 8%; 
+     margin-left: 170px;
     // border: 1px solid darkgray;
     padding: 10px;
     display: block;
-    width: 700px;
+    width: 680px;
    
     // box-shadow: 0 5px 4px 0 lightgrey;
 }
@@ -20,7 +21,7 @@
 }
 
 .profile-outer-container{
-    width: 650px;
+    width: 700px;
     margin-bottom: 20px;
 }
 .profile-outer-container h5{
@@ -66,14 +67,14 @@
 .order-container{
       margin-top: 0px;
     // margin-right: 10%;
-    margin-left: 100px;
+    margin-left: 60px;
     // border: 1px solid darkgray;
     padding: 10px 20px 10px 20px;
     // display: block;
     width: 220px;
     box-shadow: 0 5px 4px 0 lightgrey;
     position: fixed;
-    top: 200px;
+    top: 130px;
     // left: 880px;
     // bottom: 300px;
 
@@ -102,6 +103,7 @@
      border: none;
      border-radius: 5px;
 }
+
 .estimatedcost {
     border-bottom: 1px solid lightgray;
 }

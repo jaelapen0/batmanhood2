@@ -1,9 +1,11 @@
 
 .home-container{
-    // // display: flex;
+    // display: flex;
     // justify-content: space-between;
-    margin-left: 50px;
-    margin-top: 100px;
+    // margin-left: 175px;
+    margin-left: 12%;
+    margin-top: 50px;
+    margin-right: 50px;
 }
 
 .port-list{
@@ -24,27 +26,30 @@
 }
 
 .stocklist-container{
-    margin-top: 70px;
+    margin-top: 30px;
     // margin-right: 10%;
-    // border: 1px solid darkgray;
-    padding: 10px;
+    // border: 1px solid gray;
+    // border-radius: 4px;
+    // padding: 10px;
+    padding-top: 10px;
     display: block;
     width: 250px;
     box-shadow: 0 5px 4px 0 lightgrey;
     position: fixed;
-    left: 900px;
+    left: 970px;
     // bottom: 200px;
     box-shadow: 0 5px 4px 0 lightgrey;
-    padding-left: 20px;
+    // padding-left: 20px;
+    margin-right: 5%;
 }
 .stocklist-container > h1{
     border-bottom: 1px solid lightgray;;
-    padding: 5px 10px;
+    padding: 10px 20px;
     font-size: smaller;
 }
 .list-stock{
     // border-top: 1px solid lightgray;
-    padding-left: 10px;
+    padding: 5px 20px;
     font-size: smaller;
 }
 
@@ -59,22 +64,30 @@
 }
 
 .portfolio-container{
-    // margin-left: 10%;
+    margin-left: 50px;
     margin-top: 30px;
     box-shadow: 0 5px 4px 0 lightgrey;
     // padding: 5px 10px;
 }
 
 .newsfeed-container {
-    margin-left: 100px;
-    width: 750px;
-    margin: 100px 50px;
+    // margin-left: 150px;
+    width: 700px;
+    margin: 100px 175px;
+    margin: 100px 12%;
 }
 .article-container{
     display: flex;
     padding: 25px 0;
     border-top: 1px solid lightgray;
     font-size: smaller;
+}
+
+.article-body{
+    width: 450px;
+}
+.article-container:hover{
+   background-color: lightgray;
 }
 .article-header-container{
     position: relative;

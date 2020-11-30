@@ -129,10 +129,11 @@ class Portfolio extends React.Component {
             <div>
                 {first !== 0 ? 
                     (<div className="port-list"> 
-                         <div>
-                            <h1 className="portfolio-header">${theLast[0] ? parseFloat(theLast[theLast.length-1].average).toLocaleString() : ""}</h1>
-                            <h4>{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ?  ((dif / theLast[0].average).toFixed(2)): ""}%) </h4>
-                            <LineChart className="linechart" width={693} height={270} data={theLast[0]? theLast : []}>
+                         <div className="porheader">
+                            <h2 className="portfolio-header">Investing</h2>
+                            <h3 className="portfolio-header">${theLast[0] ? parseFloat(theLast[theLast.length-1].average).toLocaleString() : ""}</h3>
+                            <h4 className="portfolio-header">{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ?  ((dif / theLast[0].average).toFixed(2)): ""}%) </h4>
+                            <LineChart className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>
                                     <YAxis dataKey="average" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
                                 <Tooltip></Tooltip>

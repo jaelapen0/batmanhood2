@@ -11,7 +11,7 @@ class SearchBar extends React.Component{
             // [results.results]: []
             input: ""
         }
-        this.clickAway = this.clickAway.bind(this)
+        // this.clickAway = this.clickAway.bind(this)
     }
     // componentDidMount(){
     //     debugger;
@@ -32,7 +32,7 @@ class SearchBar extends React.Component{
     //     // if (this.state.results.l)
     // }
     update(field){
-       debugger;
+    //    debugger;
         return e => {
             
             if (this.state.input.length > 0) {
@@ -47,11 +47,11 @@ class SearchBar extends React.Component{
         }
     }
 
-    clickAway(){
-        if (this.state.results.results){
-        this.setState({results: {}})
-        }
-    }
+        // clickAway(){
+        //     if (this.state.results.results){
+        //     this.setState({results: {}})
+        //     }
+        // }
     render(){
         let results = {};
         if (this.state.results.results && Object.keys(this.state.results.results).length) {
@@ -69,8 +69,8 @@ class SearchBar extends React.Component{
                     (   
                         
                         Object.values(results).map(result => {
-                         debugger
-                          return ( <div className="search-result"> 
+                        //  debugger
+                          return ( <div id={result.ticker_symbol} className="search-result"> 
                                 <Link 
                                     to={`/stocks/${result.ticker_symbol}`}> 
                                     {result.tags}

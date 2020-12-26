@@ -119,36 +119,19 @@ button:hover{
 .searchbar-container{
     margin-left: 40px;
     margin-top: 12px;
+   
     
 }
 
 .searchbar-container >input{
-    width: 275px;
+    width: 300px;
     border: none;
-     box-shadow: 0px 1px 3px  darkgray;
-     padding: 8px 10px;
-     border-radius: 4px;
-     padding-left: 15px;
-}
-
-.searchbar-container input:hover{
-    width: 275px;
-    border: none;
-    box-shadow: 0px 1px 3px 0 darkgray;
-    padding: 8px 10px;
+      box-shadow: 0px 1px 3px 0 darkgray;
+    padding: 15px 15px;
     padding-left: 15px;
-
 }
 
-.searchbar-container input:focus{
-    width: 275px;
-    border: none;
-    background-color: lightgray;
-    box-shadow: 0px 1px 3px  darkgray;
-    padding: 8px 10px;
-    padding-left: 15px;
 
-}
 
 .search-result{
     padding: 5px 5px 5px 15px;

@@ -28,29 +28,12 @@ class SignupForm extends React.Component {
    componentDidMount(){
        this.setState({errors: ""})
    }
-    checkFormValidations() {
-        let validForm = true;
-        let form_errors = [];
-
-        if (this.state["email"].length < 1) {
-            validForm = false;
-            form_errors.push("Email cannot be empty")
-        }
-      
-        if (this.state["password"].length < 6) {
-            validForm = false;
-            form_errors.push("Password cannot be empty")
-        }
-
-        this.setState({ form_errors})
-        return form_errors
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        
-        const user = Object.assign({}, this.state);
-        this.props.processForm(user);
+   
+   handleSubmit(e) {
+       e.preventDefault();
+       
+       const user = Object.assign({}, this.state);
+       this.props.processForm(user);
         if (this.checkFormValidations().length === 0) {
             //    return <Redirect to="root"></Redirect>
             this.props.history.push("/")
@@ -60,14 +43,31 @@ class SignupForm extends React.Component {
     componentDidUpdate(prevProps){
         // debugger;
         // if (this.props.errors.length > 0){
-        //     this.state.errors = [];
+            //     this.state.errors = [];
         // }
     }
-
+    
     componentWillUnmount(){
         // this.state.errors
     }
-
+    
+    checkFormValidations() {
+        let validForm = true;
+        let form_errors = [];
+ 
+        if (this.state["email"].length < 1) {
+            validForm = false;
+            form_errors.push("Email cannot be empty")
+        }
+      
+        if (this.state["password"].length < 6) {
+            validForm = false;
+            form_errors.push("Password cannot be empty")
+        }
+ 
+        this.setState({ form_errors})
+        return form_errors
+    }
     render(){
    
         return (

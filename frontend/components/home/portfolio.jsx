@@ -62,11 +62,14 @@ class Portfolio extends React.Component {
                                             req: req,
                                             trimmed: trimmed
                                             })
-                        
-
+            
                         })
                  })
             })
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        debugger;
     }
     render(){
         // 
@@ -82,27 +85,7 @@ class Portfolio extends React.Component {
             trimmed = this.state.trimmed;
             const stockDetails = this.state.stockDetails;
             
-            // if      (stockDetails["03:59"]) { last += stockDetails["03:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["03:29"]) { last += stockDetails["03:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["02:59"]) { last += stockDetails["02:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["02:29"]) { last += stockDetails["02:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["01:59"]) { last += stockDetails["01:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["01:29"]) { last += stockDetails["01:29"].reduce((sum, x) => sum + x) }
-            
-            // else if (stockDetails["12:59"]) { last += stockDetails["12:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["12:29"]) { last += stockDetails["12:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["11:59"]) { last += stockDetails["11:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["11:29"]) { last += stockDetails["11:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["10:59"]) { last += stockDetails["10:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["10:29"]) { last += stockDetails["10:29"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["09:59"]) { last += stockDetails["09:59"].reduce((sum, x) => sum + x) }
-            // else if (stockDetails["09:30"]) { last += stockDetails["09:30"].reduce((sum, x) => sum + x) }
 
-                // first += stockDetails["09:30"].reduce((sum, x) => sum + x)
-                // if(first > last) {
-                //     color = "red";
-                //     dif = last - first
-                // } else { dif = first- last }
                 const buyingPower = parseFloat(this.props.buyingPower);
                 const req = this.state.req;
                 Object.keys(this.state.stockDetails).forEach(min =>{
@@ -124,10 +107,12 @@ class Portfolio extends React.Component {
             } else { dif = first - last }
                 // 
         }
+
+        debugger
         
         return (
             <div>
-                {first !== 0 ? 
+                {first !== null ? 
                     (<div className="port-list"> 
                          <div className="porheader">
                             <h2 className="portfolio-header">Investing</h2>

@@ -7,9 +7,9 @@ class User < ApplicationRecord
     after_initialize :ensure_session_token
     attr_reader :password
 
+    has_many :watchlist, class_name: :Watchlist, foreign_key: :user_id
     has_many :orders, class_name: :Order, foreign_key: :user_id
     has_many :stocks, through: :orders, source: :stock 
-    
 
     def self.find_by_credentials(email, password) 
         user = User.find_by(email: email) 

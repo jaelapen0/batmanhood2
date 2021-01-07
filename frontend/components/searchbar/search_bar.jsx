@@ -81,7 +81,7 @@ class SearchBar extends React.Component{
                        placeholder="Search.." type="text"
                        onChange={this.update("input")}
                 />
-
+                    <ul className="search-ul">
                     {this.state.results.results && this.state.visibleResults === true && Object.keys(this.state.results.results).length > 0? 
                     
                     (   
@@ -97,7 +97,7 @@ class SearchBar extends React.Component{
                         })
                     )
                     : ""
-                }
+                        }</ul>
                 </ClickOutHandler>
             </div>
         )

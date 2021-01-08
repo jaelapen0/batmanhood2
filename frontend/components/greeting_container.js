@@ -4,13 +4,9 @@ import {fetchBuyingPower} from "../actions/account_actions"
 import Greeting from './greeting';
 
 const mstp = ({session, entities: {users} }) => {
+    debugger;
+    return{ currentUser: users[session.currentId]}
 
-    // if (users[session.id]){
-    //     return{currentUser: users[session.id] }
-    // }
-    // else {
-        return{ currentUser: users[session.currentId]}
-    // }
 }
 
 

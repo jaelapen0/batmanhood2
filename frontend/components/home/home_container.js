@@ -3,8 +3,11 @@ import { logout, login } from "../../actions/session_actions"
 import {fetchBuyingPower, setBuyingPower} from "../../actions/account_actions"
 import Home from "./home"
 const mstp = ({ session, entities: { users } }) => {
-    
-    return { currentUser: users[session.currentId] }
+    debugger;
+    return { 
+            currentUser: users[session.currentId],
+            buying_power: users[session.currentId].buying_power
+        }
 }
 
 const mdtp = dispatch => {

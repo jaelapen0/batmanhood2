@@ -26,6 +26,7 @@ class Greeting extends React.Component {
     }
 
     componentDidMount(){
+        debugger
         this.props.fetchBuyingPower(this.props.currentUser.id)
         .then(buyingPower=>{
             debugger;
@@ -69,7 +70,7 @@ class Greeting extends React.Component {
                                     <br/>
                                     <span className="balance">
                                             Cash Balance:
-                                            <br/> ${parseFloat(parseFloat(this.state.buyingPower).toFixed(2)).toLocaleString()}
+                                            <br /> ${parseFloat(parseFloat(this.props.currentUser.buying_power).toFixed(2)).toLocaleString()}
                                     </span>
                                 </h5>
                               

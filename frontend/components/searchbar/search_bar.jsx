@@ -52,7 +52,7 @@ class SearchBar extends React.Component{
     }
     toggleOn(e){
         // let visibleResults = this.state.visibleResults
-        debugger;
+        // debugger;
         // visibleResults === true ? 
         // this.setState({visibleResults: false}) :
         this.setState({visibleResults: true})
@@ -60,7 +60,7 @@ class SearchBar extends React.Component{
 
     toggleOff(e) {
         // let visibleResults = this.state.visibleResults
-        debugger;
+        // debugger;
         // visibleResults === true ?
         //     this.setState({ visibleResults: false }) :
             this.setState({ visibleResults: false })

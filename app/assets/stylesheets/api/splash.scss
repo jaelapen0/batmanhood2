@@ -142,9 +142,17 @@ button:hover{
     background-color: lightgray;    
 }
 .header-group{
-    display: inline;
+    // display: flex;
     justify-content: space-around;
-    margin-right: 20px;
+    margin-right: 30px;
+    font-size: 18px;
+    padding-top: 15px;
+    font-weight: bold;
+}
+.header-group1{
+    display: inline-flex;
+    justify-content: space-around;
+    margin-right: 70px;
     font-size: 18px;
     padding-top: 15px;
     font-weight: bold;
@@ -163,6 +171,23 @@ button:hover{
 .header-button:hover{
     background-color: #25a17b;
 }
+.header-button1{
+    background-color: #21ce99;
+    border-radius: 5px;
+    // font-weight: bolder; 
+    border-width: 0;
+    padding: 3px 40px;
+    // width: 100px;
+    // margin-left: 28px;
+    text-decoration: none;
+    // padding-top: 4px;
+    font-size: smaller;
+    margin-left: 5px;
+}
+.header-button1:hover{
+    background-color: #25a17b;
+}
+
 
 #logo {
     margin-left: 10px;
@@ -197,4 +222,8 @@ a {
     // width: 45%;
     // position: relative;
     // padding-left: 100px;
+}
+
+.username{
+    text-transform: capitalize;
 }

@@ -7,6 +7,7 @@ import Portfolio from "./portfolio_container"
 class Home extends React.Component{
     constructor(props){
         super(props)
+        this.addMoney = this.addMoney.bind(this);
     }    
     componentDidMount(){
         // debugger;
@@ -16,6 +17,24 @@ class Home extends React.Component{
             this.setState({ buyingPower: buyingPower.buying_power.buying_power})
         })
     }
+
+    componentDidUpdate(){
+
+    }
+
+    addMoney(e){
+        // debugger;
+        let amount = parseFloat(e.currentTarget.id);
+        let oldTotal = parseFloat(this.state.buyingPower);
+        let newTotal = amount + oldTotal;
+        debugger;
+
+        this.props.setBuyingPower(this.props.currentUser.id, newTotal)
+            .then(amount=> {
+                debugger;
+            })
+    }
+
     render(){
         // ;
         // debugger;
@@ -37,7 +56,17 @@ class Home extends React.Component{
                     {/* <Watchlist props={this.props}/> */}
                     
                 </div>) : "" }
-                    <NewsFeed/>
+                <div className="add-money-container">
+                    <h2>Add Money</h2>
+                    <div className="amount">
+                        <button id="100" onClick={this.addMoney} className="header-button">$100</button>
+                        <button id="500" onClick={this.addMoney} className="header-button">$500</button>
+                        <button id="1000" onClick={this.addMoney} className="header-button">$1000</button>
+                        <button id="10000" onClick={this.addMoney} className="header-button">$10,000</button>
+                        <button id="100000" onClick={this.addMoney} className="header-button">$100,000</button>
+                    </div>
+                </div>
+                    {/* <NewsFeed/> */}
             </div>
         )
     }

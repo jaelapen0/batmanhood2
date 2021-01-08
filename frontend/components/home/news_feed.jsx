@@ -35,7 +35,7 @@ class NewsFeed extends React.Component {
                   <div className="newsfeed-container"> 
                   <h2>News</h2>
                     {this.state.articles.map(article =>(
-                        <a href={article.url} key={article.title}>
+                        <a href={article.url} key={article.title} target="_blank">
                             <div className="article-container">
                                 <div className='article-header-container'>
 

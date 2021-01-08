@@ -69,7 +69,7 @@ class Portfolio extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        debugger;
+        // debugger;
     }
     render(){
         // 
@@ -108,7 +108,7 @@ class Portfolio extends React.Component {
                 // 
         }
 
-        debugger
+        // debugger
         
         return (
             <div>

@@ -30,3 +30,73 @@
    padding: 0px 1px 0 1px;
 
 }
+.linkedin-img{
+    width: 18px;
+    position: relative;
+    top: 1.5px;
+}
+.linkedin-img:hover{
+   cursor: pointer;
+}
+.github-img{
+   width: 23px;
+    position: relative;
+    bottom: 1px;
+    margin: 0 10px;
+}
+.github-img:hover{
+   cursor: pointer;
+}
+
+a:hover{
+   cursor: pointer;
+}
+.myaccount{
+color: black;
+}
+.myaccount:hover{
+color: black;
+cursor: pointer;
+}
+
+.myaccount2 h5 span {
+color: black;
+text-decoration: none;
+display:inline-block;
+}
+
+.myaccount2 span {
+color: black;
+text-decoration: none;
+display:inline-block;
+}
+
+#logout {
+   text-decoration: none;
+
+}
+.myaccount2{
+   color: #25a17b;
+   text-decoration: underline;
+   text-decoration-color: #25a17b;
+   margin-right: -78px;
+
+}
+.myaccountdropdown{
+   padding: 10px;
+   border-radius: 4px;
+   box-shadow: 0 5px 4px 0 lightgrey;
+   margin-right: 10px;
+   background-color: white;
+   position: relative;
+   right: 65px;
+   width: 150px;
+}
+
+.balance{
+   font-size: smaller;
+}
+.balance1{
+   font-size: smaller;
+   font-weight: normal;
+}

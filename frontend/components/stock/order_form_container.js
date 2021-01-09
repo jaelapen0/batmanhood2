@@ -1,10 +1,8 @@
 import { connect } from "react-redux"
 import OrderForm from "./order_form.jsx"
-import { fetchBuyingPower, setBuyingPower } from "../../actions/account_actions"
+import { fetchBuyingPower, setBuyingPower, fetchOrderHistory } from "../../actions/account_actions"
 
 const mstp = (state) => {
-    // ;
-    // debugger
     return {
         state
     }
@@ -12,11 +10,11 @@ const mstp = (state) => {
 }
 
 const mdtp = dispatch => {
-    // ;
     return {
         createOrder: order => dispatch(createOrder(order)),
         fetchBuyingPower: currentId => dispatch(fetchBuyingPower(currentId)),
-        setBuyingPower: (currentId, buying_power) => dispatch(setBuyingPower(currentId, buying_power))
+        setBuyingPower: (currentId, buying_power) => dispatch(setBuyingPower(currentId, buying_power)),
+        fetchOrderHistory: () => dispatch(fetchOrderHistory()),
     }
 }
 

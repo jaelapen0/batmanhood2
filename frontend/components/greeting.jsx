@@ -26,20 +26,20 @@ class Greeting extends React.Component {
     }
 
     componentDidMount(){
-        debugger
+        // debugger
         this.props.fetchBuyingPower(this.props.currentUser.id)
         .then(buyingPower=>{
-            debugger;
+            // debugger;
             this.setState({ buyingPower: buyingPower.buying_power.buying_power})
         })
     }
     componentDidUpdate(prevProps, prevState){
-        debugger;
+        // debugger;
         
     }
 
     render(){
-        debugger;
+        // debugger;
         return(
             this.props.currentUser ? 
             

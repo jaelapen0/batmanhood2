@@ -13,22 +13,35 @@ class OrderForm extends React.Component {
             is_completed: true,
             ticker_symbol: this.props.ticker.toUpperCase(),
             order_type: "buy",
-            errors: ""
-        
+            errors: "",
+            sharesOwned: 0,
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
-        // ;
-        this.props.fetchBuyingPower(this.props.currentUser)
-            .then(info => {
-                // debugger;
-                this.setState({buying_power: info.buying_power.buying_power})
-                // ;
-            })
-        // ;
+        let {fetchOrderHistory, fetchBuyingPower} = this.props;
+        let currentUser = this.props.currentUser;
+
+        Promise.all([fetchOrderHistory(), fetchBuyingPower(currentUser)])
+        .then(([orders, buying_power]) => {
+            debugger;
+            this.setState({ 
+                buying_power: buying_power.buying_power.buying_power, 
+                orderHistory: orders.orderHistory 
+             })
+        })
+        
+        // this.props.fetchBuyingPower(this.props.currentUser)
+        //     .then(info => {
+        //         debugger;
+        //         this.setState({buying_power: info.buying_power.buying_power})
+        //     }),
+        // this.props.fetchOrderHistory()
+        //     .then(order=> {
+        //         debugger;
+        //     })
     }
 
     componentDidUpdate(prevProps){
@@ -41,7 +54,7 @@ class OrderForm extends React.Component {
     }
 
     update(field){
-        debugger;
+        // debugger;
         return e => this.setState({
             [field]: e.currentTarget.value
         })
@@ -59,7 +72,7 @@ class OrderForm extends React.Component {
                 this.setState({errors: "Must be at least 1 share" })
             }
             else{
-                debugger;
+                // debugger;
                 const newTotal = parseFloat(this.state.buying_power) - totalAmount
                 let props = this.props;
                 let state = this.state;
@@ -70,7 +83,7 @@ class OrderForm extends React.Component {
                 this.setState({ buying_power: newTotal, errors: "Your shares have been purchased", shares_quantity: 0 },
                 )
                  callback(props, state, newTotal)
-                debugger;
+                // debugger;
             }
        } else if (this.state.order_type === "sell"){
 
@@ -91,7 +104,21 @@ class OrderForm extends React.Component {
     render(){
             // ;
             const {order_type, buying_power, shares_quantity} = this.state;
-            debugger;
+            let sharesOwned = 0
+            if (this.state.orderHistory){
+                let orderHistory = this.state.orderHistory
+                debugger
+                for (let i = 0; i < orderHistory.length; i++){
+                    debugger
+                    if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy"){
+                        sharesOwned += orderHistory[i].shares_quantity;
+                    }
+                    else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell"){
+                        sharesOwned -= orderHistory[i].shares_quantity;
+                    }
+                }
+            }
+            // debugger;
         return(
             <div>
                 <div className="order-container">
@@ -133,6 +160,7 @@ class OrderForm extends React.Component {
                             </div>
                         ) : ""}
                         {this.state.errors !== "" ? <p> {this.state.errors}</p> : ""}
+                        {<p>Shares Owned: {sharesOwned}</p>}
                     </form>
                 </div>
             </div>

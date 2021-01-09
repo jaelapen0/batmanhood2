@@ -16,8 +16,14 @@ class Api::OrdersController < ApplicationController
     end
 
     def index
+        
         @orders = current_user.orders
+        # debugger;
         render json: @orders
+    end
+
+    def show
+
     end
 
     def stocks

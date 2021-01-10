@@ -13,6 +13,7 @@ class Api::UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        # debugger;
         render "api/users/buying_power"
     end
 

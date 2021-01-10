@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import OrderForm from "./order_form.jsx"
-import { fetchBuyingPower, setBuyingPower, fetchOrderHistory } from "../../actions/account_actions"
+import { fetchBuyingPower, setBuyingPower, fetchOrderHistory, createOrder} from "../../actions/account_actions"
 
 const mstp = (state) => {
     return {

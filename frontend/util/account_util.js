@@ -8,10 +8,12 @@ export const getPortfolio = () => {
 }
 
 export const getOrderHistory = () => {
-    return $.ajax({
-        method: `GET`,
-        url: `/api/orders`
-    })
+    // setTimeout(() => {
+        return $.ajax({
+            method: `GET`,
+            url: `/api/orders`
+        })
+    //  },100)
 }
 
 export const createOrder = order => {

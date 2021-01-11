@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 class Portfolio extends React.Component {
     constructor(props){
         super(props)
-        this.state = {};
+        this.state = {
+            stocks: {}
+        };
     }
     
     componentDidMount(){
@@ -66,6 +68,31 @@ class Portfolio extends React.Component {
                         })
                  })
             })
+            .then(this.props.fetchOrderHistory()
+                .then(orders => {
+                    let stocks = {}
+                    debugger
+                    let allOrders = orders.orderHistory;
+                    
+                    for (let i = 0; i < allOrders.length; i++){
+                        // debugger;
+                        if (stocks[allOrders[i].ticker_symbol]){
+                            if (allOrders[i].order_type === "buy" ){
+                                stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
+                            }
+                            else if (allOrders[i].order_type === "sell") {
+                                stocks[allOrders[i].ticker_symbol] -= allOrders[i].shares_quantity
+                            }
+                        }else{
+                            stocks[allOrders[i].ticker_symbol] = allOrders[i].shares_quantity
+                        
+                        }
+                    }
+                    debugger;
+                    this.setState({ stocks })
+                }
+
+                ))
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -109,7 +136,7 @@ class Portfolio extends React.Component {
         }
 
         // debugger
-        
+        let stocks = this.state.stocks
         return (
             <div>
                 {first !== null ? 
@@ -126,7 +153,7 @@ class Portfolio extends React.Component {
                             </LineChart>
                         </div>
                         
-                        <div className="stocklist-container">
+                        {/* <div className="stocklist-container">
                             <h1>Stocks</h1>
                             {Object.keys(trimmed).map(name => (
                                 <div>
@@ -138,6 +165,23 @@ class Portfolio extends React.Component {
                                     </Link>
                                 </div>
                                 ))}
+                        </div> */}
+                        <div className="stocklist-container">
+                            <h1>Stocks</h1>
+                            
+                            {Object.keys(stocks).map(stock => {
+                                debugger;
+                                return(
+                                <div>
+                                    <Link to={`/stocks/${stock}`}>
+                                        <div className="list-stock" key={stock}>
+                                            <h4>{stock.toUpperCase()}</h4>
+                                            <p>{stocks[stock]} shares</p>
+                                        </div>
+                                    </Link>
+                                </div>)
+                                }   
+                            )}
                         </div>
                     </div>) : "GOTHAM" }
             </div>

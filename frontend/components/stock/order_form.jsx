@@ -45,16 +45,7 @@ class OrderForm extends React.Component {
                 sharesOwned
              })
         })
-        
-        // this.props.fetchBuyingPower(this.props.currentUser)
-        //     .then(info => {
-        //         debugger;
-        //         this.setState({buying_power: info.buying_power.buying_power})
-        //     }),
-        // this.props.fetchOrderHistory()
-        //     .then(order=> {
-        //         debugger;
-        //     })
+      
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -145,15 +136,14 @@ class OrderForm extends React.Component {
                             buying_power: buying_power.buying_power.buying_power
                         }, )
                     }))
-                // this.setState({ buying_power: newTotal, errors: "Your shares have been purchased", shares_quantity: 0 },
-                // )
-                //  callback(props, state, newTotal)
-                // debugger;
             }
        } else if (this.state.order_type === "sell"){
 
             if (this.state.shares_quantity === 0) {
                 this.setState({ errors: "Must be at least 1 share", shares_quantity: 0 })
+            }
+            else if (this.state.sharesOwned < this.state.shares_quantity){
+                this.setState({ errors: `You have less than ${this.state.shares_quantity} shares` })
             }
             else{
                 const newTotal = parseFloat(this.state.buying_power) + totalAmount
@@ -213,10 +203,6 @@ class OrderForm extends React.Component {
                         this.setState({
                             buying_power: buying_power.buying_power.buying_power})
                     }))
-
-                // this.setState({ buying_power: newTotal, errors: "Your shares have been sold", shares_quantity: 0})
-                // this.props.setBuyingPower(this.state.user_id, { buying_power: newTotal })
-                // this.props.createOrder(this.state)
             }
        }
     }
@@ -227,20 +213,7 @@ class OrderForm extends React.Component {
     render(){
             // ;
             let {order_type, buying_power, shares_quantity, sharesOwned} = this.state;
-            // let sharesOwned = 0
-            // if (this.state.orderHistory){
-            //     let orderHistory = this.state.orderHistory
-            //     debugger
-            //     for (let i = 0; i < orderHistory.length; i++){
-            //         debugger
-            //         if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy"){
-            //             sharesOwned += orderHistory[i].shares_quantity;
-            //         }
-            //         else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell"){
-            //             sharesOwned -= orderHistory[i].shares_quantity;
-            //         }
-            //     }
-            // }
+            
             debugger;
         return(
             <div>

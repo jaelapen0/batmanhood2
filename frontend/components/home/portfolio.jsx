@@ -302,15 +302,19 @@ class Portfolio extends React.Component {
                             
                             {Object.keys(stocks).map(stock => {
                                 // ;
+                               
+                                
                                 return(
-                                <div key={stock}>
-                                    <Link to={`/stocks/${stock}`}>
-                                        <div className="list-stock" >
-                                            <h4>{stock.toUpperCase()}</h4>
-                                            <p>{stocks[stock]} shares</p>
-                                        </div>
-                                    </Link>
-                                </div>)
+                                stocks[stock] > 0 ? 
+                                    <div key={stock}>
+                                        <Link to={`/stocks/${stock}`}>
+                                            <div className="list-stock" >
+                                                <h4>{stock.toUpperCase()}</h4>
+                                                <p>{stocks[stock]} shares</p>
+                                            </div>
+                                        </Link>
+                                    </div> : ""
+                                )
                                 }   
                             )}
                         </div>

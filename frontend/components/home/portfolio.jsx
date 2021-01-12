@@ -21,93 +21,8 @@ class Portfolio extends React.Component {
     }
     
     componentDidMount(){
-        // ;
-        // this.props.fetchPortfolio()
-        //     .then(portfolio => {
-        //         const orders = {}
-        //         portfolio.portfolio[0].forEach(order =>{
-
-        //             if (!orders[order.ticker_symbol])
-        //                 if (order.order_type === "buy"){
-        //                     orders[order.ticker_symbol] = parseInt(order.shares_quantity)}
-        //                 else if ( order.order_type === "sell"){
-        //                     orders[order.ticker_symbol] = -parseInt(order.shares_quantity)}
-        //             else{
-        //                     if (order.order_type === "buy") {
-        //                         orders[order.ticker_symbol] += parseInt(order.shares_quantity)
-        //                     }
-        //                     else if (order.order_type === "sell") {
-        //                         orders[order.ticker_symbol] -= -parseInt(order.shares_quantity)
-        //                     }
-        //             }
-        //         })
-
-        //         const trimmed ={};
-        //         for (name in orders) { 
-        //             if (orders[name] > 0){
-        //                 trimmed[name] = orders[name]
-        //             }
-        //          }
-
-        //          const stocksDetails = {}
-                 
-        //         Object.keys(trimmed).forEach(name =>{
-        //             this.props.pullStockDetails(name)
-        //                 .then(data =>{
-                            
-        //                     const quantity = orders[name]
-        //                     const req = Object.keys(orders).length
-        //                     const data1 = data.data.forEach(minInfo => {
-        //                         if(minInfo.average != null) {
-        //                             if(!stocksDetails[minInfo.minute]){
-        //                                 stocksDetails[minInfo.minute] = [];
-                                        
-        //                                 let totalAmount = minInfo.average * quantity
-        //                                 stocksDetails[minInfo.minute].push(totalAmount);
-        //                             }
-        //                             else{
-        //                                 let totalAmount = minInfo.average * quantity
-        //                                 stocksDetails[minInfo.minute].push(totalAmount);
-        //                             }
-        //                         }
-        //                     })
-        //                      this.setState({stockDetails: stocksDetails, 
-        //                                     req: req,
-        //                                     trimmed: trimmed
-        //                                     })
-            
-        //                 })
-        //          })
-        //     })
-        //     .then(this.props.fetchOrderHistory()
-        //         .then(orders => {
-        //             let stocks = {}
-        //             // 
-        //             let allOrders = orders.orderHistory;
-                    
-        //             for (let i = 0; i < allOrders.length; i++){
-        //                 // ;
-        //                 if (stocks[allOrders[i].ticker_symbol]){
-        //                     if (allOrders[i].order_type === "buy" ){
-        //                         stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
-        //                     }
-        //                     else if (allOrders[i].order_type === "sell") {
-        //                         stocks[allOrders[i].ticker_symbol] -= allOrders[i].shares_quantity
-        //                     }
-        //                 }else{
-        //                     stocks[allOrders[i].ticker_symbol] = allOrders[i].shares_quantity
-                        
-        //                 }
-        //             }
-        //             // ;
-        //             this.setState({ stocks })
-        //         }
-
-        //         ))
     }
-
     componentDidUpdate(prevProps, prevState){
-        // ;
         if (this.props.stocks && Object.keys(this.props.stocks).length > 0 && prevProps.stocks != this.props.stocks){
             const stocksDetails = {};
             const { stocks, buyingPower} = this.props;
@@ -132,7 +47,9 @@ class Portfolio extends React.Component {
                                     stocksDetails[minInfo.minute].push(totalAmount);
                                 }
                             }
-                            if (stocksDetails[minInfo.minute].length > 0) {reqMet += 1};
+                            if (stocksDetails[minInfo.minute] && stocksDetails[minInfo.minute].length > 0) {
+                                // debugger;
+                                reqMet += 1};
                         })
                         // ;
 

@@ -148,7 +148,22 @@ class Portfolio extends React.Component {
         })
     }
     componentDidUpdate(prevProps, prevState){
-        debugger
+        
+
+        if (prevProps.buyingPower != this.props.buyingPower){
+            let newBuyingPower = this.props.buyingPower;
+            let theLast = this.state.theLast;
+            let difference = parseFloat(this.props.buyingPower) - parseFloat(prevProps.buyingPower)
+            let dataMin = 10000000000
+            let dataMax = 0
+            for ( let i = 0; i < theLast.length; i++){
+               theLast[i].average =  (parseFloat(theLast[i].average) + difference).toFixed(2)
+                if (parseFloat(theLast[i].average) < dataMin) { dataMin = parseFloat(theLast[i].average) }
+                if (parseFloat(theLast[i].average) > dataMax) { dataMax = parseFloat(theLast[i].average) }
+            }
+            this.setState({theLast, dataMin, dataMax})
+        }
+
         // if (this.props.stocks && Object.keys(this.props.stocks).length > 0 && prevProps.stocks != this.props.stocks){
             // const stocksDetails = {};
             // const { stocks, buyingPower} = this.props;
@@ -249,16 +264,6 @@ class Portfolio extends React.Component {
        
         let stocks = this.state.stocks
 
-        // const { stocksDetails,
-        //     req,
-        //     theLast,
-        //     dataMin,
-        //     dataMax,
-        //     color,
-        //     dif,
-        //     last,
-        //     first
-        // } = this.state;
           const { 
             theLast,
             dataMin,
@@ -267,15 +272,15 @@ class Portfolio extends React.Component {
             dif,
         } = this.state;
         
-        
+        ;
         return (
             <div>
                 
                     <div className="port-list"> 
                          <div className="porheader">
                             <h2 className="portfolio-header">Investing</h2>
-                            <h3 className="portfolio-header">${theLast[0] ? parseFloat(theLast[theLast.length-1].average).toLocaleString() : ""}</h3>
-                            <h4 className="portfolio-header">{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ?  ((dif / theLast[0].average).toFixed(2)): ""}%) </h4>
+                            <h3 className="portfolio-header">${theLast[0] ? `${parseFloat(parseFloat(theLast[theLast.length-1].average).toFixed(2)).toLocaleString()}` : ""}</h3>
+                        <h4 className="portfolio-header">{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ? ((dif / theLast[0].average * 100).toFixed(2)): ""}%) </h4>
                             <LineChart className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>
                                     <YAxis dataKey="average" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
@@ -284,26 +289,12 @@ class Portfolio extends React.Component {
                             </LineChart>
                         </div>
                         
-                        {/* <div className="stocklist-container">
-                            <h1>Stocks</h1>
-                            {Object.keys(trimmed).map(name => (
-                                <div>
-                                    <Link to={`/stocks/${name}`}>
-                                        <div className="list-stock" key={name}>
-                                            <h4>{name.toUpperCase()}</h4>
-                                            <p>{trimmed[name]} shares</p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                ))}
-                        </div> */}
+                
                         <div className="stocklist-container">
                             <h1>Stocks</h1>
                             
                             {Object.keys(stocks).map(stock => {
-                                // ;
-                               
-                                
+                    
                                 return(
                                 stocks[stock] > 0 ? 
                                     <div key={stock}>

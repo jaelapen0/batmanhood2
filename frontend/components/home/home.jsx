@@ -18,7 +18,8 @@ class Home extends React.Component{
             dif: 0,
             last: 0,
             first: 0,
-            trimmed: {}
+            trimmed: {},
+            buyingPower: 0,
         }
         this.addMoney = this.addMoney.bind(this);
         
@@ -42,12 +43,15 @@ class Home extends React.Component{
         let amount = parseFloat(e.currentTarget.id);
         let oldTotal = parseFloat(this.state.buyingPower);
         let newTotal = amount + oldTotal;
-        ;
+        let id = this.props.currentUser.id;
+    
 
         this.props.setBuyingPower(this.props.currentUser.id, newTotal)
-            .then(amount=> {
+        .then(this.props.fetchBuyingPower(id)
+            .then(buyingPower => {
                 ;
-            })
+                this.setState({ buyingPower: buyingPower.buying_power.buying_power })
+            }))
     }
 
     render(){
@@ -88,7 +92,8 @@ class Home extends React.Component{
                     
                 </div>) : "" }
                 <div className="add-money-container">
-                    <h2>Add Money</h2>
+                    <h3>Add Money</h3>
+                    <h5>Cash Balance: ${parseFloat(parseFloat(this.state.buyingPower).toFixed(2)).toLocaleString()}</h5>
                     <div className="amount">
                         <button id="100" onClick={this.addMoney} className="header-button">$100</button>
                         <button id="500" onClick={this.addMoney} className="header-button">$500</button>

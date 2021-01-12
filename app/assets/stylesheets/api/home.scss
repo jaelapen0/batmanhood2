@@ -57,10 +57,12 @@
     box-shadow: 0 5px 4px 0 lightgrey;
     // padding-left: 20px;
     margin-right: 5%;
+    height: 400px;
+    overflow: auto;
 }
 .stocklist-container > h1{
     border-bottom: 1px solid lightgray;;
-    padding: 10px 20px;
+    padding: 5px 10px;
     font-size: smaller;
 }
 .list-stock{

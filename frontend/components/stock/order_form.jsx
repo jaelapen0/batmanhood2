@@ -49,7 +49,7 @@ class OrderForm extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-       debugger;
+       ;
         if (this.props.state.entities.account.buying_power !== prevProps.state.entities.account.buying_power){
            
             this.setState({ buying_power: this.props.state.entities.account.buying_power.buying_power})

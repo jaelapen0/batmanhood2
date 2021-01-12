@@ -26,7 +26,7 @@ class Portfolio extends React.Component {
         const stocks = {}
         const {
             buyingPower } = this.props;
-            debugger
+            
         this.props.fetchOrderHistory()
             .then(orders => {
 
@@ -51,7 +51,7 @@ class Portfolio extends React.Component {
         )
         .then(() => {
         Object.keys(stocks).forEach(name => {
-            debugger
+            
             this.props.pullStockDetails(name)
                 .then(data => {
                     // ;
@@ -59,9 +59,9 @@ class Portfolio extends React.Component {
                     const req = Object.keys(stocks).length
                     // ;
                     let reqMet = 0;
-                    // debugger
+                    // 
                     const data1 = data.data.forEach(minInfo => {
-                        // debugger
+                        // 
                         if (minInfo.average != null) {
                             if (!stocksDetails[minInfo.minute]) {
                                 stocksDetails[minInfo.minute] = [];
@@ -75,12 +75,12 @@ class Portfolio extends React.Component {
                             }
                         }
                         if (stocksDetails[minInfo.minute] && stocksDetails[minInfo.minute].length > 0) {
-                            // debugger;
+                            // ;
                             reqMet += 1
                         };
                     })
                     // ;
-                    // debugger
+                    // 
                     if (reqMet / Object.keys(stocksDetails).length > .4) {
                         const theLast = [];
                         let dataMin = 10000000000
@@ -90,11 +90,11 @@ class Portfolio extends React.Component {
                         let last = 0;
                         let first = 0;
                         let trimmed = {}
-                        debugger
+                        
                         Object.keys(stocksDetails).forEach(min => {
-                            // debugger
+                            // 
                             if (stocksDetails[min].length === req) {
-                                debugger
+                                
                                 stocksDetails[min].push(parseInt(buyingPower))
                                 let added = stocksDetails[min].reduce((sum, x) => sum + x)
                                 if (added < dataMin) { dataMin = added }
@@ -111,7 +111,7 @@ class Portfolio extends React.Component {
                                 color = "red";
                                 dif = last - first
                             } else { dif = first - last }
-                            debugger;
+                            ;
 
                             // setTimeout(function () {
                             //     //
@@ -173,7 +173,7 @@ class Portfolio extends React.Component {
             //                     }
             //                 }
             //                 if (stocksDetails[minInfo.minute] && stocksDetails[minInfo.minute].length > 0) {
-            //                     // debugger;
+            //                     // ;
             //                     reqMet += 1};
             //             })
             //             // ;
@@ -208,7 +208,7 @@ class Portfolio extends React.Component {
             //                         color = "red";
             //                         dif = last - first
             //                     } else { dif = first - last }
-            //                     debugger;
+            //                     ;
                                 
             //                     // setTimeout(function () {
             //                     //     //
@@ -266,7 +266,7 @@ class Portfolio extends React.Component {
             dif,
         } = this.state;
         
-        debugger
+        
         return (
             <div>
                 

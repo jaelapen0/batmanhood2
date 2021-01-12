@@ -8,43 +8,29 @@ class Home extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            stocks: {}
+            stocks: {},
+            stocksDetails: [],
+            req: 0,
+            theLast: [],
+            dataMin: 10000000000,
+            dataMax: 0,
+            color: "#21ce99",
+            dif: 0,
+            last: 0,
+            first: 0,
+            trimmed: {}
         }
         this.addMoney = this.addMoney.bind(this);
         
     }    
     componentDidMount(){
-        // ;
+      
         this.props.fetchBuyingPower(this.props.currentUser.id)
         .then(buyingPower => {
-            // 
+      
             this.setState({ buyingPower: buyingPower.buying_power.buying_power})
         })
-            .then(this.props.fetchOrderHistory()
-                .then(orders => {
-                    let stocks = {}
-                    // 
-                    let allOrders = orders.orderHistory;
-
-                    for (let i = 0; i < allOrders.length; i++) {
-                        // ;
-                        if (stocks[allOrders[i].ticker_symbol]) {
-                            if (allOrders[i].order_type === "buy") {
-                                stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
-                            }
-                            else if (allOrders[i].order_type === "sell") {
-                                stocks[allOrders[i].ticker_symbol] -= allOrders[i].shares_quantity
-                            }
-                        } else {
-                            stocks[allOrders[i].ticker_symbol] = allOrders[i].shares_quantity
-
-                        }
-                    }
-                    // ;
-                    this.setState({ stocks })
-                }
-
-                ))
+               
     }
 
     componentDidUpdate(){
@@ -67,22 +53,36 @@ class Home extends React.Component{
     render(){
         // ;
         // ;
+        const { stocksDetails,
+            req,
+            theLast,
+            dataMin,
+            dataMax,
+            color,
+            dif,
+            last,
+            first
+        } = this.state;
+
         return(
             <div>
                 {this.state? (
                 <div className="home-container">
+                    {this.state.buyingPower ?
                     <Portfolio props={this.props} buyingPower={this.state.buyingPower} 
-                    stocks={this.state.stocks}
+                    stocks={this.state.stocks} 
+                    
+                    stocksDetails= {stocksDetails}
+                    req = {req}
+                    theLast = {theLast}
+                    dataMin = {dataMin}
+                    dataMax = {dataMax}
+                    color = {color}
+                    dif = {dif}
+                    last = {last}
+                    first = {first}
                     /> 
-                    {/* YEAHHHHHH HOMMMEEE */}
-                    {/* <input className="search-bar" type="text"/> */}
-                    {/* <div>
-                        <Link to="/stocks/fsly">FSLY</Link>
-                        <Link to="/stocks/aapl">AAPL</Link>
-                        <Link to="/stocks/bynd">BYND</Link>
-                        <Link to="/stocks/fb">FB</Link>
-                        <Link to="/stocks/googl">GOOGL</Link>
-                    </div> */}
+                    : ""}
                     
                     {/* <Watchlist props={this.props}/> */}
                     

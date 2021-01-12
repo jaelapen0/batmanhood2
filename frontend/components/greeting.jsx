@@ -26,7 +26,7 @@ class Greeting extends React.Component {
     }
 
     componentDidMount(){
-        debugger
+        // debugger
         if (this.props.currentUser){
         this.props.fetchBuyingPower(this.props.currentUser.id)
         .then(buyingPower=>{

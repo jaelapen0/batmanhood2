@@ -49,11 +49,45 @@ class OrderForm extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-    //    ;
+       debugger;
         if (this.props.state.entities.account.buying_power !== prevProps.state.entities.account.buying_power){
            
             this.setState({ buying_power: this.props.state.entities.account.buying_power.buying_power})
            
+        }
+
+        if (this.props.ticker !== prevProps.ticker){
+            let { fetchOrderHistory, fetchBuyingPower } = this.props;
+            let currentUser = this.props.currentUser;
+
+            Promise.all([fetchOrderHistory(), fetchBuyingPower(currentUser)])
+                .then(([orders, buying_power]) => {
+                    // ;
+                    let sharesOwned = 0
+                    let orderHistory = orders.orderHistory
+                    // 
+                    for (let i = 0; i < orderHistory.length; i++) {
+                        // 
+                        if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
+                            sharesOwned += orderHistory[i].shares_quantity;
+                        }
+                        else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
+                            sharesOwned -= orderHistory[i].shares_quantity;
+                        }
+                    }
+                    this.setState({
+                        buying_power: buying_power.buying_power.buying_power,
+                        orderHistory: orders.orderHistory,
+                        sharesOwned,
+                        price_per_share: this.props.currentPrice,
+                        user_id: this.props.currentUser,
+                        shares_quantity: 0,
+                        is_completed: true,
+                        ticker_symbol: this.props.ticker.toUpperCase(),
+                        order_type: "buy",
+                        errors: "",
+                    })
+                })
         }
     }
 

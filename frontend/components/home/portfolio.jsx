@@ -148,6 +148,7 @@ class Portfolio extends React.Component {
         })
     }
     componentDidUpdate(prevProps, prevState){
+        debugger
         // if (this.props.stocks && Object.keys(this.props.stocks).length > 0 && prevProps.stocks != this.props.stocks){
             // const stocksDetails = {};
             // const { stocks, buyingPower} = this.props;

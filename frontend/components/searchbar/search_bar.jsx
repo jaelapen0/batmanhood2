@@ -20,7 +20,7 @@ class SearchBar extends React.Component{
     }
     
     componentDidUpdate(prevProps, prevState){
-        // debugger;
+        // ;
     //     // if (this.state.results.l)
     }
 
@@ -28,7 +28,7 @@ class SearchBar extends React.Component{
 
     }
     update(field){
-    //    debugger;
+    //    ;
         return e => {
         
             this.setState({ [field]: e.currentTarget.value, }, this.makeSearchRequest)
@@ -44,7 +44,7 @@ class SearchBar extends React.Component{
         
             this.props.fetchSearchResults(this.state.input)
                 .then(results => {
-                    debugger
+                    
                     this.setState({ results }, this.render)
                 })
         }
@@ -52,7 +52,7 @@ class SearchBar extends React.Component{
     }
     toggleOn(e){
         // let visibleResults = this.state.visibleResults
-        // debugger;
+        // ;
         // visibleResults === true ? 
         // this.setState({visibleResults: false}) :
         this.setState({visibleResults: true})
@@ -60,14 +60,14 @@ class SearchBar extends React.Component{
 
     toggleOff(e) {
         // let visibleResults = this.state.visibleResults
-        // debugger;
+        // ;
         // visibleResults === true ?
         //     this.setState({ visibleResults: false }) :
             this.setState({ visibleResults: false })
     }
 
     handleSelect(e){
-        debugger;
+        ;
     }
     render(){
         let results = [];
@@ -87,7 +87,7 @@ class SearchBar extends React.Component{
                     (   
                         
                         Object.values(results).map(result => {
-                        //  debugger
+                        //  
                           return ( <div id={result.ticker_symbol} className="search-result" onClick={this.handleSelect}> 
                               <Link className="searchresult-link" onClick={this.toggleOff}
                                     to={`/stocks/${result.ticker_symbol}`}> 

@@ -4,7 +4,8 @@
 
 .searchbar-input{
    width: 200px;
-  
+  border: 1px solid lightgray;
+  border-radius: 3px;
 }
 .searchresult-link{
   
@@ -24,7 +25,7 @@
    // width: 172px;
    z-index: 1;
    position: relative;
-   bottom: 17px;
+   bottom: 16px;
    
    border-radius: 3px;
    padding: 0px 1px 0 1px;

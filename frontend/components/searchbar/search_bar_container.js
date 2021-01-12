@@ -4,7 +4,7 @@ import SearchBar from "./search_bar.jsx"
 import {fetchSearchResults} from "../../actions/stock_actions"
 
 const mstp = (state) => {
-    // debugger
+    // 
     return {
         state
     }

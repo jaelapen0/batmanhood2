@@ -71,15 +71,9 @@ class StockPage extends React.Component {
         let prevTicker = prevProps.location.pathname.split("/")[2]
 
         if (ticker !== prevTicker){
-            // let ticker = this.props.location.pathname.split("/")[2]
-            // this.props.fetchStock(ticker.toUpperCase())
-            // ;
-
+     
             fetchDailyStockData(ticker.toUpperCase())
-                // this.props.pullStockDetails(ticker.toUpperCase())
                 .then(data => {
-                    // 
-                    
 
                     const data1 = data.filter(arr => (arr.average != null))
                     const dif = data1[data1.length - 1].average - data1[0].average;
@@ -96,7 +90,6 @@ class StockPage extends React.Component {
                     const currentPrice = data1[data1.length - 1].average
                     const color = dif < 0 ? "red" : '#21ce99'
 
-
                     const CustomTooltip = ({ active }) => {
                         if (active) {
 
@@ -109,7 +102,6 @@ class StockPage extends React.Component {
                         return null;
                     };
 
-
                     this.setState({
                         data: data1, low: low.low, high: high.high,
                         dif: dif.toFixed(2), percentChange: percentChange,
@@ -119,7 +111,6 @@ class StockPage extends React.Component {
                     })
 
                 })
-
         }
     }
     componentWillUnmount(){
@@ -128,22 +119,13 @@ class StockPage extends React.Component {
 
    
     render() {
-        // ;
         let ticker = this.props.location.pathname.split("/")[2]
         const {id} = this.props.currentUser
 
-       
-        // debugger;
         return (
        
             <div className="stockshow-container">
-                {/* <div>
-                    <Link to="/stocks/fsly">FSLY</Link>
-                    <Link to="/stocks/aapl">AAPL</Link>
-                    <Link to="/stocks/bynd">BYND</Link>
-                    <Link to="/stocks/fb">FB</Link>
-                    <Link to="/stocks/googl">GOOGL</Link>
-                </div> */}
+              
                 {this.state?
                     (<div>
                         
@@ -167,8 +149,8 @@ class StockPage extends React.Component {
                             currentPrice={this.state.currentPrice} />
                             </div>   
                     <br/>
-                    {/* <CompanyProfile ticker={ticker}/> */}
-                    {/* <StockNews ticker={ticker}/> */}
+                    <CompanyProfile ticker={ticker}/>
+                    <StockNews ticker={ticker}/>
                 </div>): "" }
              </div>
 

@@ -14,20 +14,20 @@ class Home extends React.Component{
         
     }    
     componentDidMount(){
-        // debugger;
+        // ;
         this.props.fetchBuyingPower(this.props.currentUser.id)
         .then(buyingPower => {
-            // debugger
+            // 
             this.setState({ buyingPower: buyingPower.buying_power.buying_power})
         })
             .then(this.props.fetchOrderHistory()
                 .then(orders => {
                     let stocks = {}
-                    // debugger
+                    // 
                     let allOrders = orders.orderHistory;
 
                     for (let i = 0; i < allOrders.length; i++) {
-                        // debugger;
+                        // ;
                         if (stocks[allOrders[i].ticker_symbol]) {
                             if (allOrders[i].order_type === "buy") {
                                 stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
@@ -40,7 +40,7 @@ class Home extends React.Component{
 
                         }
                     }
-                    // debugger;
+                    // ;
                     this.setState({ stocks })
                 }
 
@@ -52,21 +52,21 @@ class Home extends React.Component{
     }
 
     addMoney(e){
-        // debugger;
+        // ;
         let amount = parseFloat(e.currentTarget.id);
         let oldTotal = parseFloat(this.state.buyingPower);
         let newTotal = amount + oldTotal;
-        debugger;
+        ;
 
         this.props.setBuyingPower(this.props.currentUser.id, newTotal)
             .then(amount=> {
-                debugger;
+                ;
             })
     }
 
     render(){
         // ;
-        // debugger;
+        // ;
         return(
             <div>
                 {this.state? (
@@ -97,7 +97,7 @@ class Home extends React.Component{
                         <button id="100000" onClick={this.addMoney} className="header-button">$100,000</button>
                     </div>
                 </div>
-                    {/* <NewsFeed/> */}
+                    <NewsFeed/>
             </div>
         )
     }

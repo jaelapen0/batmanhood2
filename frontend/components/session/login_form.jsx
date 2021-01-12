@@ -41,7 +41,7 @@ class SignupForm extends React.Component {
         else { this.render() }
     }
     componentDidUpdate(prevProps){
-        // debugger;
+        // ;
         // if (this.props.errors.length > 0){
             //     this.state.errors = [];
         // }

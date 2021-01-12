@@ -26,12 +26,12 @@ class OrderForm extends React.Component {
 
         Promise.all([fetchOrderHistory(), fetchBuyingPower(currentUser)])
         .then(([orders, buying_power]) => {
-            // debugger;
+            // ;
             let sharesOwned = 0
             let orderHistory = orders.orderHistory 
-            // debugger
+            // 
             for (let i = 0; i < orderHistory.length; i++) {
-                // debugger
+                // 
                 if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
                     sharesOwned += orderHistory[i].shares_quantity;
                 }
@@ -49,7 +49,7 @@ class OrderForm extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-    //    debugger;
+    //    ;
         if (this.props.state.entities.account.buying_power !== prevProps.state.entities.account.buying_power){
            
             this.setState({ buying_power: this.props.state.entities.account.buying_power.buying_power})
@@ -58,7 +58,7 @@ class OrderForm extends React.Component {
     }
 
     update(field){
-        // debugger;
+        // ;
         return e => this.setState({
             [field]: e.currentTarget.value
         })
@@ -76,7 +76,7 @@ class OrderForm extends React.Component {
                 this.setState({errors: "Must be at least 1 share" })
             }
             else{
-                // debugger;
+                // ;
                 const newTotal = parseFloat(this.state.buying_power) - totalAmount
                 let props = this.props;
                 let state = this.state;
@@ -86,7 +86,7 @@ class OrderForm extends React.Component {
 
                 Promise.all([createOrder(state), setBuyingPower(state.user_id, { buying_power: newTotal }), fetchOrderHistory(), fetchBuyingPower(currentUser)])
                     .then(([createdOrder, settedBuyingPower,  orders, buying_power ]) => {
-                        debugger;
+                        ;
                         this.setState({
                             // buying_power: buying_power.buying_power.buying_power,
                             // orderHistory: orders.orderHistory,
@@ -99,9 +99,9 @@ class OrderForm extends React.Component {
                     .then(fetchOrderHistory().then(orders =>{
                         let sharesOwned = 0
                         let orderHistory = orders.orderHistory
-                        debugger
+                        
                         for (let i = 0; i < orderHistory.length; i++) {
-                            // debugger 
+                            //  
                             if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
                                 sharesOwned += orderHistory[i].shares_quantity;
                             }
@@ -109,16 +109,16 @@ class OrderForm extends React.Component {
                                 sharesOwned -= orderHistory[i].shares_quantity;
                             }
                         }
-                        debugger;
+                        ;
                         this.setState({
                             sharesOwned,})
                     }))
                     .then(fetchOrderHistory().then(orders => {
                         let sharesOwned = 0
                         let orderHistory = orders.orderHistory
-                        debugger
+                        
                         for (let i = 0; i < orderHistory.length; i++) {
-                            // debugger 
+                            //  
                             if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
                                 sharesOwned += orderHistory[i].shares_quantity;
                             }
@@ -126,7 +126,7 @@ class OrderForm extends React.Component {
                                 sharesOwned -= orderHistory[i].shares_quantity;
                             }
                         }
-                        debugger;
+                        ;
                         this.setState({
                             sharesOwned,
                         })
@@ -153,7 +153,7 @@ class OrderForm extends React.Component {
                 let currentUser = this.props.currentUser;
                 Promise.all([createOrder(state), setBuyingPower(state.user_id, { buying_power: newTotal }), fetchOrderHistory(), fetchBuyingPower(currentUser)])
                     .then(([createdOrder, settedBuyingPower, orders, buying_power]) => {
-                        debugger;
+                        ;
                         this.setState({
                             // buying_power: buying_power.buying_power.buying_power,
                             // orderHistory: orders.orderHistory,
@@ -166,9 +166,9 @@ class OrderForm extends React.Component {
                     .then(fetchOrderHistory().then(orders => {
                         let sharesOwned = 0
                         let orderHistory = orders.orderHistory
-                        debugger
+                        
                         for (let i = 0; i < orderHistory.length; i++) {
-                            // debugger 
+                            //  
                             if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
                                 sharesOwned += orderHistory[i].shares_quantity;
                             }
@@ -176,7 +176,7 @@ class OrderForm extends React.Component {
                                 sharesOwned -= orderHistory[i].shares_quantity;
                             }
                         }
-                        debugger;
+                        ;
                         this.setState({
                             sharesOwned,
                         })
@@ -184,9 +184,9 @@ class OrderForm extends React.Component {
                     .then(fetchOrderHistory().then(orders => {
                         let sharesOwned = 0
                         let orderHistory = orders.orderHistory
-                        debugger
+                        
                         for (let i = 0; i < orderHistory.length; i++) {
-                            // debugger 
+                            //  
                             if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
                                 sharesOwned += orderHistory[i].shares_quantity;
                             }
@@ -194,7 +194,7 @@ class OrderForm extends React.Component {
                                 sharesOwned -= orderHistory[i].shares_quantity;
                             }
                         }
-                        debugger;
+                        ;
                         this.setState({
                             sharesOwned,
                         })
@@ -214,7 +214,7 @@ class OrderForm extends React.Component {
             // ;
             let {order_type, buying_power, shares_quantity, sharesOwned} = this.state;
             
-            debugger;
+            ;
         return(
             <div>
                 <div className="order-container">

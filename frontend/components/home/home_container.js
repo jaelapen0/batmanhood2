@@ -3,7 +3,7 @@ import { logout, login } from "../../actions/session_actions"
 import {fetchBuyingPower, setBuyingPower, fetchOrderHistory} from "../../actions/account_actions"
 import Home from "./home"
 const mstp = ({ session, entities: { users } }) => {
-    // debugger;
+    // ;
     return { 
             currentUser: users[session.currentId],
             buying_power: users[session.currentId].buying_power

@@ -6,137 +6,242 @@ class Portfolio extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            stocks: {}
+            stocks: {},
+            stocksDetails: [],
+            req: 0,
+            theLast: [],
+            dataMin: 10000000000,
+            dataMax: 0,
+            color: "#21ce99",
+            dif: 0,
+            last: 0,
+            first: 0,
+            trimmed: {}
         };
     }
     
     componentDidMount(){
-        this.props.fetchPortfolio()
-            .then(portfolio => {
-                const orders = {}
-                portfolio.portfolio[0].forEach(order =>{
+        // debugger;
+        // this.props.fetchPortfolio()
+        //     .then(portfolio => {
+        //         const orders = {}
+        //         portfolio.portfolio[0].forEach(order =>{
 
-                    if (!orders[order.ticker_symbol])
-                        if (order.order_type === "buy"){
-                            orders[order.ticker_symbol] = parseInt(order.shares_quantity)}
-                        else if ( order.order_type === "sell"){
-                            orders[order.ticker_symbol] = -parseInt(order.shares_quantity)}
-                    else{
-                            if (order.order_type === "buy") {
-                                orders[order.ticker_symbol] += parseInt(order.shares_quantity)
-                            }
-                            else if (order.order_type === "sell") {
-                                orders[order.ticker_symbol] -= -parseInt(order.shares_quantity)
-                            }
-                    }
-                })
+        //             if (!orders[order.ticker_symbol])
+        //                 if (order.order_type === "buy"){
+        //                     orders[order.ticker_symbol] = parseInt(order.shares_quantity)}
+        //                 else if ( order.order_type === "sell"){
+        //                     orders[order.ticker_symbol] = -parseInt(order.shares_quantity)}
+        //             else{
+        //                     if (order.order_type === "buy") {
+        //                         orders[order.ticker_symbol] += parseInt(order.shares_quantity)
+        //                     }
+        //                     else if (order.order_type === "sell") {
+        //                         orders[order.ticker_symbol] -= -parseInt(order.shares_quantity)
+        //                     }
+        //             }
+        //         })
 
-                const trimmed ={};
-                for (name in orders) { 
-                    if (orders[name] > 0){
-                        trimmed[name] = orders[name]
-                    }
-                 }
+        //         const trimmed ={};
+        //         for (name in orders) { 
+        //             if (orders[name] > 0){
+        //                 trimmed[name] = orders[name]
+        //             }
+        //          }
 
-                 const stocksDetails = {}
+        //          const stocksDetails = {}
                  
-                Object.keys(trimmed).forEach(name =>{
-                    this.props.pullStockDetails(name)
-                        .then(data =>{
+        //         Object.keys(trimmed).forEach(name =>{
+        //             this.props.pullStockDetails(name)
+        //                 .then(data =>{
                             
-                            const quantity = orders[name]
-                            const req = Object.keys(orders).length
-                            const data1 = data.data.forEach(minInfo => {
-                                if(minInfo.average != null) {
-                                    if(!stocksDetails[minInfo.minute]){
-                                        stocksDetails[minInfo.minute] = [];
+        //                     const quantity = orders[name]
+        //                     const req = Object.keys(orders).length
+        //                     const data1 = data.data.forEach(minInfo => {
+        //                         if(minInfo.average != null) {
+        //                             if(!stocksDetails[minInfo.minute]){
+        //                                 stocksDetails[minInfo.minute] = [];
                                         
-                                        let totalAmount = minInfo.average * quantity
-                                        stocksDetails[minInfo.minute].push(totalAmount);
-                                    }
-                                    else{
-                                        let totalAmount = minInfo.average * quantity
-                                        stocksDetails[minInfo.minute].push(totalAmount);
-                                    }
-                                }
-                            })
-                             this.setState({stockDetails: stocksDetails, 
-                                            req: req,
-                                            trimmed: trimmed
-                                            })
+        //                                 let totalAmount = minInfo.average * quantity
+        //                                 stocksDetails[minInfo.minute].push(totalAmount);
+        //                             }
+        //                             else{
+        //                                 let totalAmount = minInfo.average * quantity
+        //                                 stocksDetails[minInfo.minute].push(totalAmount);
+        //                             }
+        //                         }
+        //                     })
+        //                      this.setState({stockDetails: stocksDetails, 
+        //                                     req: req,
+        //                                     trimmed: trimmed
+        //                                     })
             
-                        })
-                 })
-            })
-            .then(this.props.fetchOrderHistory()
-                .then(orders => {
-                    let stocks = {}
-                    debugger
-                    let allOrders = orders.orderHistory;
+        //                 })
+        //          })
+        //     })
+        //     .then(this.props.fetchOrderHistory()
+        //         .then(orders => {
+        //             let stocks = {}
+        //             // debugger
+        //             let allOrders = orders.orderHistory;
                     
-                    for (let i = 0; i < allOrders.length; i++){
-                        // debugger;
-                        if (stocks[allOrders[i].ticker_symbol]){
-                            if (allOrders[i].order_type === "buy" ){
-                                stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
-                            }
-                            else if (allOrders[i].order_type === "sell") {
-                                stocks[allOrders[i].ticker_symbol] -= allOrders[i].shares_quantity
-                            }
-                        }else{
-                            stocks[allOrders[i].ticker_symbol] = allOrders[i].shares_quantity
+        //             for (let i = 0; i < allOrders.length; i++){
+        //                 // debugger;
+        //                 if (stocks[allOrders[i].ticker_symbol]){
+        //                     if (allOrders[i].order_type === "buy" ){
+        //                         stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
+        //                     }
+        //                     else if (allOrders[i].order_type === "sell") {
+        //                         stocks[allOrders[i].ticker_symbol] -= allOrders[i].shares_quantity
+        //                     }
+        //                 }else{
+        //                     stocks[allOrders[i].ticker_symbol] = allOrders[i].shares_quantity
                         
-                        }
-                    }
-                    debugger;
-                    this.setState({ stocks })
-                }
+        //                 }
+        //             }
+        //             // debugger;
+        //             this.setState({ stocks })
+        //         }
 
-                ))
+        //         ))
     }
 
     componentDidUpdate(prevProps, prevState){
-        // debugger;
+        debugger;
+        if (Object.keys(this.props.stocks).length > 0 && prevProps.stocks != this.props.stocks){
+            const stocksDetails = {};
+            const { stocks, buyingPower} = this.props;
+            Object.keys(stocks).forEach(name => {
+                this.props.pullStockDetails(name)
+                    .then(data => {
+                        debugger;
+                        const quantity = stocks[name]
+                        const req = Object.keys(stocks).length
+                        debugger;
+                        let reqMet = 0;
+                        const data1 = data.data.forEach(minInfo => {
+                            if (minInfo.average != null) {
+                                if (!stocksDetails[minInfo.minute]) {
+                                    stocksDetails[minInfo.minute] = [];
+
+                                    let totalAmount = minInfo.average * quantity
+                                    stocksDetails[minInfo.minute].push(totalAmount);
+                                }
+                                else {
+                                    let totalAmount = minInfo.average * quantity
+                                    stocksDetails[minInfo.minute].push(totalAmount);
+                                }
+                            }
+                            if (stocksDetails[minInfo.minute].length > 0) {reqMet += 1};
+                        })
+                        debugger;
+
+                        if (reqMet / Object.keys(stocksDetails).length > .4){
+                            const theLast = [];
+                            let dataMin = 10000000000
+                            let dataMax = 0
+                            let color = "#21ce99"
+                            let dif = 0;
+                            let last = 0;
+                            let first = 0;
+                            let trimmed = {}
+
+                            Object.keys(stocksDetails).forEach(min => {
+                                // ;
+                                if (stocksDetails[min].length === req) {
+                                    // ;
+                                    stocksDetails[min].push(parseInt(buyingPower))
+                                    let added = stocksDetails[min].reduce((sum, x) => sum + x)
+                                    if (added < dataMin) { dataMin = added }
+                                    if (added > dataMax) { dataMax = added }
+                                    theLast.push({ time: min, average: added.toFixed(2) });
+                                }
+                            })
+                            first = parseFloat(theLast[0].average)
+                            last = parseFloat(theLast[theLast.length - 1].average)
+                            if (first > last) {
+                                color = "red";
+                                dif = last - first
+                            } else { dif = first - last }
+
+                            this.setState({
+                                stocksDetails: stocksDetails,
+                                req: req,
+                                theLast,
+                                dataMin,
+                                dataMax,
+                                color,
+                                dif,
+                                last,
+                                first
+                                // trimmed: trimmed
+                            })
+                        }
+                        else{
+                            this.setState({
+                            stocksDetails: stocksDetails,
+                            req: req,
+                           
+                            // trimmed: trimmed
+                        })
+                    }
+
+                    })
+            })
+        }
+
     }
     render(){
         // 
-        const theLast = [];
-        let dataMin = 10000000000
-        let dataMax = 0
-        let color = "#21ce99"
-        let dif = 0;
-        let last = 0;
-        let first = 0;
-        let trimmed = {}
-        if (this.state.req && Object.values(this.state.stockDetails["09:30"]) && this.state.req === Object.values(this.state.stockDetails["09:30"]).length ){
-            trimmed = this.state.trimmed;
-            const stockDetails = this.state.stockDetails;
+        // const theLast = [];
+        // let dataMin = 10000000000
+        // let dataMax = 0
+        // let color = "#21ce99"
+        // let dif = 0;
+        // let last = 0;
+        // let first = 0;
+        // let trimmed = {}
+        // debugger;
+        // if (this.state.req && Object.values(this.state.stockDetails["09:30"]) && this.state.req === Object.values(this.state.stockDetails["09:30"]).length ){
+        //     trimmed = this.state.trimmed;
+        //     const stockDetails = this.state.stockDetails;
             
 
-                const buyingPower = parseFloat(this.props.buyingPower);
-                const req = this.state.req;
-                Object.keys(this.state.stockDetails).forEach(min =>{
-                    // ;
-                    if (stockDetails[min].length === req) {
-                        // ;
-                        stockDetails[min].push(parseInt(buyingPower))
-                        let added = stockDetails[min].reduce((sum, x) => sum + x)
-                         if (added < dataMin ) {dataMin = added}
-                        if (added > dataMax) { dataMax = added }
-                        theLast.push({ time: min, average: added.toFixed(2)});
-                    }
-                })
-            first = parseFloat(theLast[0].average)
-            last = parseFloat(theLast[theLast.length - 1].average)
-            if (first > last) {
-                color = "red";
-                dif = last - first
-            } else { dif = first - last }
-                // 
-        }
+        //         const buyingPower = parseFloat(this.props.buyingPower);
+        //         const req = this.state.req;
+        //         Object.keys(this.state.stockDetails).forEach(min =>{
+        //             // ;
+        //             if (stockDetails[min].length === req) {
+        //                 // ;
+        //                 stockDetails[min].push(parseInt(buyingPower))
+        //                 let added = stockDetails[min].reduce((sum, x) => sum + x)
+        //                  if (added < dataMin ) {dataMin = added}
+        //                 if (added > dataMax) { dataMax = added }
+        //                 theLast.push({ time: min, average: added.toFixed(2)});
+        //             }
+        //         })
+        //     first = parseFloat(theLast[0].average)
+        //     last = parseFloat(theLast[theLast.length - 1].average)
+        //     if (first > last) {
+        //         color = "red";
+        //         dif = last - first
+        //     } else { dif = first - last }
+        //         // 
+        // }
 
-        // debugger
-        let stocks = this.state.stocks
+        // // debugger
+        let stocks = this.props.stocks
+
+        const { stocksDetails,
+            req,
+            theLast,
+            dataMin,
+            dataMax,
+            color,
+            dif,
+            last,
+            first
+        } = this.state;
         return (
             <div>
                 {first !== null ? 
@@ -170,7 +275,7 @@ class Portfolio extends React.Component {
                             <h1>Stocks</h1>
                             
                             {Object.keys(stocks).map(stock => {
-                                debugger;
+                                // debugger;
                                 return(
                                 <div>
                                     <Link to={`/stocks/${stock}`}>

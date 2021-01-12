@@ -7,7 +7,11 @@ import Portfolio from "./portfolio_container"
 class Home extends React.Component{
     constructor(props){
         super(props)
+        this.state = {
+            stocks: {}
+        }
         this.addMoney = this.addMoney.bind(this);
+        
     }    
     componentDidMount(){
         // debugger;
@@ -16,6 +20,31 @@ class Home extends React.Component{
             // debugger
             this.setState({ buyingPower: buyingPower.buying_power.buying_power})
         })
+            .then(this.props.fetchOrderHistory()
+                .then(orders => {
+                    let stocks = {}
+                    // debugger
+                    let allOrders = orders.orderHistory;
+
+                    for (let i = 0; i < allOrders.length; i++) {
+                        // debugger;
+                        if (stocks[allOrders[i].ticker_symbol]) {
+                            if (allOrders[i].order_type === "buy") {
+                                stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
+                            }
+                            else if (allOrders[i].order_type === "sell") {
+                                stocks[allOrders[i].ticker_symbol] -= allOrders[i].shares_quantity
+                            }
+                        } else {
+                            stocks[allOrders[i].ticker_symbol] = allOrders[i].shares_quantity
+
+                        }
+                    }
+                    // debugger;
+                    this.setState({ stocks })
+                }
+
+                ))
     }
 
     componentDidUpdate(){
@@ -42,7 +71,9 @@ class Home extends React.Component{
             <div>
                 {this.state? (
                 <div className="home-container">
-                    <Portfolio props={this.props} buyingPower={this.state.buyingPower}/> 
+                    <Portfolio props={this.props} buyingPower={this.state.buyingPower} 
+                    stocks={this.state.stocks}
+                    /> 
                     {/* YEAHHHHHH HOMMMEEE */}
                     {/* <input className="search-bar" type="text"/> */}
                     {/* <div>

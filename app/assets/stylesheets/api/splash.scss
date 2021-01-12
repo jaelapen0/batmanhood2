@@ -172,6 +172,9 @@ button:hover{
 .header-button:hover{
     background-color: #25a17b;
 }
+.header-button:focus{
+   outline-width: 0;
+}
 .header-button1{
     background-color: #21ce99;
     border-radius: 5px;

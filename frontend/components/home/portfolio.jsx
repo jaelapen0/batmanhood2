@@ -47,12 +47,12 @@ class Portfolio extends React.Component {
 
                     }
                 }
-                // debugger;
+                // ;
             }
         )
         .then(() => {
         Object.keys(stocks).forEach(name => {
-            // debugger;
+            // ;
             if (stocks[name].amountt > 0){
 
                     this.props.pullStockDetails(name)
@@ -64,7 +64,7 @@ class Portfolio extends React.Component {
                             stocks[name].lastPrice = 0;
                             stocks[name].stockDif = 0;
                             const data1 = data.data.forEach(minInfo => {
-                                // debugger;
+                                // ;
                                 if (minInfo.average != null) {
                                     if (!stocksDetails[minInfo.minute]) {
                                         stocksDetails[minInfo.minute] = [];
@@ -78,18 +78,18 @@ class Portfolio extends React.Component {
                                     }
                                     
                                     if (stocks[name].firstPrice === 0) stocks[name].firstPrice = minInfo.average;
-                                    // debugger;
+                                    // ;
                                     if (minInfo.average != 0) {
                                         stocks[name].lastPrice = minInfo.average;
                                         stocks[name].stockDif = stocks[name].lastPrice - stocks[name].firstPrice;
                                     }
-                                    // debugger;
+                                    // ;
                                 }
                                 if (stocksDetails[minInfo.minute] && stocksDetails[minInfo.minute].length > 0) {
                                     reqMet += 1
                                 };
                             })
-                            // debugger
+                            // 
                             if (reqMet / Object.keys(stocksDetails).length > .4) {
                                 const theLast = [];
                                 let dataMin = 10000000000
@@ -119,7 +119,7 @@ class Portfolio extends React.Component {
                                         color = "red";
                                         dif = last - first
                                     } else { dif = first - last }
-                                    // debugger;
+                                    // ;
                                     this.setState({
                                         stocksDetails: stocksDetails,
                                         req: req,
@@ -138,7 +138,7 @@ class Portfolio extends React.Component {
                                 }
                             }
                                 else {
-                                    // debugger;
+                                    // ;
                                     this.setState({
                                         stocksDetails: stocksDetails,
                                         req: req,
@@ -277,7 +277,7 @@ class Portfolio extends React.Component {
             dif,
         } = this.state;
         let STATE = this.state;
-        // debugger;
+        // ;
         return (
             <div>
                 
@@ -299,7 +299,7 @@ class Portfolio extends React.Component {
                             <h1>Stocks</h1>
                             
                             {Object.keys(stocks).map(stock => {
-                                debugger;
+                                ;
                                 return(
                                     stocks[stock] && stocks[stock].amountt > 0 ? 
                                     <Link to={`/stocks/${stock}`} key={stock}>

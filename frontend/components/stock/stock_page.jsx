@@ -10,26 +10,19 @@ class StockPage extends React.Component {
     constructor(props) {
         super(props)
 
-       
-        
     }
  
     componentDidMount() {
         let ticker = this.props.location.pathname.split("/")[2]
-        // this.props.fetchStock(ticker.toUpperCase())
-        // ;
-
-       
+     
       
         fetchDailyStockData(ticker.toUpperCase())
-        // this.props.pullStockDetails(ticker.toUpperCase())
             .then(data => {
-                // 
 
                 const data1 = data.filter(arr => (arr.average != null))
-                const dif  = data1[data1.length - 1].average - data1[0].average;
+                let dif  = data1[data1.length - 1].average - data1[0].average;
                 
-                const percentChange = (dif / data1[0].average).toFixed(2)
+                const percentChange = ((dif / data1[0].average )* 100).toFixed(2)
                 const low = data1.reduce(function (prev, current) {
                     return (prev.low < current.low) ? prev : current
                 })
@@ -54,11 +47,18 @@ class StockPage extends React.Component {
                     return null;
                 };
 
+                if (dif > 0){
+                    dif = `+$${dif.toFixed(2)}`
+                }
+                else{
+                
+                    dif = `-$${Math.abs(dif).toFixed(2)}`
+                 }
                 
                 this.setState({ data: data1, low: low.low, high: high.high, 
-                               dif: dif.toFixed(2), percentChange: percentChange, 
-                               CustomTooltip: CustomTooltip,
-                               currentPrice: currentPrice, color: color, ticker})
+                               dif, percentChange, 
+                               CustomTooltip,
+                               currentPrice, color, ticker})
                         
             })
 
@@ -132,7 +132,7 @@ class StockPage extends React.Component {
                         <h3 className="show-header">{ticker.toUpperCase()}</h3>
                         <h2>${parseFloat(this.state.currentPrice.toFixed(2)).toLocaleString()}</h2>
                         
-                        <h3>${this.state.dif} ({this.state.percentChange})% Today </h3>
+                        <h4>{this.state.dif} ({this.state.percentChange})% Today </h4>
                         <div className="show-top"> 
                         <LineChart className="linechart" width={670} height={200} data={this.state.data}>
                             <XAxis dataKey="time" hide={true}></XAxis>

@@ -49,14 +49,11 @@ class Home extends React.Component{
         this.props.setBuyingPower(this.props.currentUser.id, newTotal)
         .then(this.props.fetchBuyingPower(id)
             .then(buyingPower => {
-                ;
                 this.setState({ buyingPower: buyingPower.buying_power.buying_power })
             }))
     }
 
     render(){
-        // ;
-        // ;
         const { stocksDetails,
             req,
             theLast,
@@ -74,17 +71,6 @@ class Home extends React.Component{
                 <div className="home-container">
                     {this.state.buyingPower ?
                     <Portfolio props={this.props} buyingPower={this.state.buyingPower} 
-                    stocks={this.state.stocks} 
-                    
-                    stocksDetails= {stocksDetails}
-                    req = {req}
-                    theLast = {theLast}
-                    dataMin = {dataMin}
-                    dataMax = {dataMax}
-                    color = {color}
-                    dif = {dif}
-                    last = {last}
-                    first = {first}
                     /> 
                     : ""}
                     
@@ -102,7 +88,7 @@ class Home extends React.Component{
                         <button id="100000" onClick={this.addMoney} className="header-button">$100,000</button>
                     </div>
                 </div>
-                    <NewsFeed/>
+                    {/* <NewsFeed/> */}
             </div>
         )
     }

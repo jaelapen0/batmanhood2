@@ -36,115 +36,120 @@ class Portfolio extends React.Component {
                     // ;
                     if (stocks[allOrders[i].ticker_symbol]) {
                         if (allOrders[i].order_type === "buy") {
-                            stocks[allOrders[i].ticker_symbol] += allOrders[i].shares_quantity
+                            stocks[allOrders[i].ticker_symbol].amountt += allOrders[i].shares_quantity
                         }
                         else if (allOrders[i].order_type === "sell") {
-                            stocks[allOrders[i].ticker_symbol] -= allOrders[i].shares_quantity
+                            stocks[allOrders[i].ticker_symbol].amountt -= allOrders[i].shares_quantity
                         }
                     } else {
-                        stocks[allOrders[i].ticker_symbol] = allOrders[i].shares_quantity
+                        stocks[allOrders[i].ticker_symbol] = {}
+                        stocks[allOrders[i].ticker_symbol].amountt = allOrders[i].shares_quantity
 
                     }
                 }
-
+                // debugger;
             }
         )
         .then(() => {
         Object.keys(stocks).forEach(name => {
-            
-            this.props.pullStockDetails(name)
-                .then(data => {
-                    // ;
-                    const quantity = stocks[name]
-                    const req = Object.keys(stocks).length
-                    // ;
-                    let reqMet = 0;
-                    // 
-                    const data1 = data.data.forEach(minInfo => {
-                        // 
-                        if (minInfo.average != null) {
-                            if (!stocksDetails[minInfo.minute]) {
-                                stocksDetails[minInfo.minute] = [];
+            // debugger;
+            if (stocks[name].amountt > 0){
 
-                                let totalAmount = minInfo.average * quantity
-                                stocksDetails[minInfo.minute].push(totalAmount);
-                            }
-                            else {
-                                let totalAmount = minInfo.average * quantity
-                                stocksDetails[minInfo.minute].push(totalAmount);
-                            }
-                        }
-                        if (stocksDetails[minInfo.minute] && stocksDetails[minInfo.minute].length > 0) {
-                            // ;
-                            reqMet += 1
-                        };
-                    })
-                    // ;
-                    // 
-                    if (reqMet / Object.keys(stocksDetails).length > .4) {
-                        const theLast = [];
-                        let dataMin = 10000000000
-                        let dataMax = 0
-                        let color = "#21ce99"
-                        let dif = 0;
-                        let last = 0;
-                        let first = 0;
-                        let trimmed = {}
-                        
-                        Object.keys(stocksDetails).forEach(min => {
-                            // 
-                            if (stocksDetails[min].length === req) {
+                    this.props.pullStockDetails(name)
+                        .then(data => {
+                            const quantity = stocks[name].amountt
+                            const req = Object.keys(stocks).length
+                            let reqMet = 0;
+                            stocks[name].firstPrice = 0;
+                            stocks[name].lastPrice = 0;
+                            stocks[name].stockDif = 0;
+                            const data1 = data.data.forEach(minInfo => {
+                                // debugger;
+                                if (minInfo.average != null) {
+                                    if (!stocksDetails[minInfo.minute]) {
+                                        stocksDetails[minInfo.minute] = [];
+
+                                        let totalAmount = minInfo.average * quantity
+                                        stocksDetails[minInfo.minute].push(totalAmount);
+                                    }
+                                    else {
+                                        let totalAmount = minInfo.average * quantity
+                                        stocksDetails[minInfo.minute].push(totalAmount);
+                                    }
+                                    
+                                    if (stocks[name].firstPrice === 0) stocks[name].firstPrice = minInfo.average;
+                                    // debugger;
+                                    if (minInfo.average != 0) {
+                                        stocks[name].lastPrice = minInfo.average;
+                                        stocks[name].stockDif = stocks[name].lastPrice - stocks[name].firstPrice;
+                                    }
+                                    // debugger;
+                                }
+                                if (stocksDetails[minInfo.minute] && stocksDetails[minInfo.minute].length > 0) {
+                                    reqMet += 1
+                                };
+                            })
+                            // debugger
+                            if (reqMet / Object.keys(stocksDetails).length > .4) {
+                                const theLast = [];
+                                let dataMin = 10000000000
+                                let dataMax = 0
+                                let color = "#21ce99"
+                                let dif = 0;
+                                let last = 0;
+                                let first = 0;
+                                let trimmed = {}
                                 
-                                stocksDetails[min].push(parseInt(buyingPower))
-                                let added = stocksDetails[min].reduce((sum, x) => sum + x)
-                                if (added < dataMin) { dataMin = added }
-                                if (added > dataMax) { dataMax = added }
-                                theLast.push({ time: min, average: added.toFixed(2) });
+                                Object.keys(stocksDetails).forEach(min => {
+                                    // 
+                                    if (stocksDetails[min].length === req) {
+                                        
+                                        stocksDetails[min].push(parseInt(buyingPower))
+                                        let added = stocksDetails[min].reduce((sum, x) => sum + x)
+                                        if (added < dataMin) { dataMin = added }
+                                        if (added > dataMax) { dataMax = added }
+                                        theLast.push({ time: min, average: added.toFixed(2) });
+                                    }
+                                })
+
+                                if (theLast.length > 0) {
+                                    first += parseFloat(theLast[0].average)
+                                    last += parseFloat(theLast[theLast.length - 1].average)
+                                    if (first > last) {
+                                        color = "red";
+                                        dif = last - first
+                                    } else { dif = first - last }
+                                    // debugger;
+                                    this.setState({
+                                        stocksDetails: stocksDetails,
+                                        req: req,
+                                        theLast,
+                                        dataMin,
+                                        dataMax,
+                                        color,
+                                        dif,
+                                        last,
+                                        first,
+                                        stocks,
+                                        // [name]: {firstPrice, lastPrice}
+                                    
+                                    }, this.render)
+                                    
+                                }
                             }
+                                else {
+                                    // debugger;
+                                    this.setState({
+                                        stocksDetails: stocksDetails,
+                                        req: req,
+                                    })
+                                }
+
                         })
-
-                        if (theLast.length > 0) {
-                            first += parseFloat(theLast[0].average)
-
-                            last += parseFloat(theLast[theLast.length - 1].average)
-                            if (first > last) {
-                                color = "red";
-                                dif = last - first
-                            } else { dif = first - last }
-                            ;
-
-                            // setTimeout(function () {
-                            //     //
-                            // }, 550)
-                            this.setState({
-                                stocksDetails: stocksDetails,
-                                req: req,
-                                theLast,
-                                dataMin,
-                                dataMax,
-                                color,
-                                dif,
-                                last,
-                                first,
-                                stocks
-                                // trimmed: trimmed
-                            }, this.render)
-                            // setTimeout(function () {
-                            //     //
-                            // }, 100)
-                        }
-                    }
-                    else {
-                        this.setState({
-                            stocksDetails: stocksDetails,
-                            req: req,
-
-                            // trimmed: trimmed
-                        })
-                    }
-
-                })
-            })
+            
+            }
+            else{delete stocks[name]}
+        })
         })
     }
     componentDidUpdate(prevProps, prevState){
@@ -271,8 +276,8 @@ class Portfolio extends React.Component {
             color,
             dif,
         } = this.state;
-        
-        ;
+        let STATE = this.state;
+        // debugger;
         return (
             <div>
                 
@@ -294,17 +299,35 @@ class Portfolio extends React.Component {
                             <h1>Stocks</h1>
                             
                             {Object.keys(stocks).map(stock => {
-                    
+                                debugger;
                                 return(
-                                stocks[stock] > 0 ? 
-                                    <div key={stock}>
-                                        <Link to={`/stocks/${stock}`}>
+                                    stocks[stock] && stocks[stock].amountt > 0 ? 
+                                    <Link to={`/stocks/${stock}`} key={stock}>
+                                        <div className="list-stock-parent" >
                                             <div className="list-stock" >
                                                 <h4>{stock.toUpperCase()}</h4>
-                                                <p>{stocks[stock]} shares</p>
+                                                <p>{stocks[stock].amountt} shares</p>
                                             </div>
-                                        </Link>
-                                    </div> : ""
+                                       
+
+                                            <div>
+                                                {stocks[stock].stockDif >= 0 ?
+                                                
+                                                        <div>
+                                                            <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
+                                                            <h5 className="stocklist-plus">+{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                                        </div>
+                                                        : 
+                                                        <div>
+                                                            <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
+                                                            <h5 className="stocklist-minus">{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                                        </div>
+
+                                                }
+                                            </div>
+                                        </div> 
+                                    </Link>
+                                    : ""
                                 )
                                 }   
                             )}

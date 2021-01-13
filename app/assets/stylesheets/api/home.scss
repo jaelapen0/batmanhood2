@@ -65,16 +65,39 @@
     padding: 5px 10px;
     font-size: smaller;
 }
+.list-stock-parent{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
 .list-stock{
     // border-top: 1px solid lightgray;
     padding: 5px 20px;
     font-size: smaller;
 }
 
-.list-stock:hover{
+.list-stock-parent:hover{
     // border-top: 1px solid lightgray;
     // padding-left: 10px;
     background-color: rgb(247, 243, 243);
+}
+
+.list-stock-parent:nth-child(2){
+    text-align: right;
+}
+
+.stocklist-plus{
+    color: #21ce99;
+    font-weight: lighter;
+    text-align: right;
+    // margin-right: 5px;
+}
+
+.stocklist-minus{
+    color: red;
+    font-weight: lighter;
+    text-align: right;
+    // margin-right: 3px;
 }
 .watchlist-header{
     border-bottom: 1px solid darkgray;

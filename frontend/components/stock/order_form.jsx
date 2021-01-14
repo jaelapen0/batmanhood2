@@ -295,12 +295,13 @@ class OrderForm extends React.Component {
                         ) : ""}
                         {this.state.errors !== "" ? <p> {this.state.errors}</p> : ""}
                         {<p>Shares Owned: {sharesOwned}</p>}
-                        <StockWatchlist
-                            ticker_symbol={this.props.ticker}
-                            color={this.props.color}
-                            props={this.props}
-                        />
+                        
                     </form>
+                    <StockWatchlist
+                        ticker_symbol={this.props.ticker}
+                        color={this.props.color}
+                        props={this.props}
+                    />
                 </div>
          
             </div>

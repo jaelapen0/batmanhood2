@@ -11,20 +11,20 @@ class StockWatchlist extends React.Component {
    }
 
    componentDidMount(){
-      debugger;
+      ;
       this.props.fetchWatchList(this.props.ticker_symbol)
       .then(result =>{
-         debugger;
+         ;
          this.setState({result})
       })
    }
 
    handleWatchList(e){
-      debugger;
+      ;
       if (e.target.innerText.includes("Add")){
          this.props.createWatchlist({ ticker_symbol: this.props.ticker_symbol })
             .then(result =>{
-               debugger;
+               ;
                let watchlist = {}
                watchlist.watchlist = [result]
                this.setState({
@@ -41,7 +41,7 @@ class StockWatchlist extends React.Component {
       }
    }
    render(){
-      // debugger;
+      // ;
       return(
          <div 
             style={{borderTop: "1px solid lightgray"}}

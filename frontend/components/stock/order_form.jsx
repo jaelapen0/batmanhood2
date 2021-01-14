@@ -248,7 +248,7 @@ class OrderForm extends React.Component {
             
             let {order_type, buying_power, shares_quantity, sharesOwned} = this.state;
             
-            debugger
+            
         return(
             <div>
                 <div className="order-container">

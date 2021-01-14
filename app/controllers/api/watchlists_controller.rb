@@ -17,7 +17,7 @@ class Api::WatchlistsController < ApplicationController
 
     def index
         @watchlists = Watchlist.where(user_id: current_user.id)
-        debugger;
+        ;
         render json: @watchlists
     end
 

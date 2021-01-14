@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :searches, param: :tags, only: [:show]
     resources :orders, only: [:create, :index]
     resources :portfolio, only: [:index]
+    resources :watchlists, only: [:create, :index, :show, :destroy]
   end
   root to: "static_pages#root"
 end

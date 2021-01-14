@@ -88,7 +88,7 @@ class Home extends React.Component{
                         <button id="100000" onClick={this.addMoney} className="header-button">$100,000</button>
                     </div>
                 </div>
-                    {/* <NewsFeed/> */}
+                    <NewsFeed/>
             </div>
         )
     }

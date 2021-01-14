@@ -38,3 +38,4 @@ export const updateBuyingPower = (currentId, buyingPower) => (
         data: { [currentId.buyingPower]: buyingPower }
     })
 )
+

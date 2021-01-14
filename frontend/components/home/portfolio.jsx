@@ -118,7 +118,7 @@ class Portfolio extends React.Component {
                                     if (first > last) {
                                         color = "red";
                                         dif = last - first
-                                    } else { dif = first - last }
+                                    } else { dif = last - first }
                                     // ;
                                     this.setState({
                                         stocksDetails: stocksDetails,
@@ -285,7 +285,7 @@ class Portfolio extends React.Component {
                          <div className="porheader">
                             <h2 className="portfolio-header">Investing</h2>
                             <h3 className="portfolio-header">${theLast[0] ? `${parseFloat(parseFloat(theLast[theLast.length-1].average).toFixed(2)).toLocaleString()}` : ""}</h3>
-                        <h4 className="portfolio-header">{dif > 0 ? "+" : ""} {dif.toFixed(2)} {dif > 0 ? "+" : ""} ({theLast[0] ? ((dif / theLast[0].average * 100).toFixed(2)): ""}%) </h4>
+                        <h4 className="portfolio-header">{dif > 0 ? "+$" : "$-"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " +" : " "} ({theLast[0] ? ((dif / theLast[0].average * 100).toFixed(2)): ""}%) </h4>
                             <LineChart className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>
                                     <YAxis dataKey="average" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>

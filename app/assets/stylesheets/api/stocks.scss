@@ -72,13 +72,11 @@
     padding: 10px 20px 10px 20px;
     // display: block;
     width: 220px;
-    box-shadow: 0 5px 4px 0 lightgrey;
+    box-shadow: 2px 5px 4px 2px lightgrey;
     position: fixed;
     top: 130px;
-    // left: 880px;
-    // bottom: 300px;
-
-    // justify-conent: center;
+    border: 1px solid lightgray;
+    border-radius: 3px;
 }
 
 .order-container label{
@@ -124,20 +122,34 @@
 }
 
 .order-button:hover{
-    background-color: #25a17b;
+    // background-color: #25a17b;
+    filter: brightness(85%);
     cursor: pointer;
 }
 
 .order-button:focus{
     outline: none;
 }
+
+.watchlist-container{
+    //  border-top: 1px solid gray;
+}
 .bold{
     font-weight: bold;
 }
 
 .selected {
-    color: #21ce99;
-    border-bottom: 1px solid #21ce99;
+    // color: #21ce99;
+    border-bottom: 1px solid black;
+}
+
+.selected:hover {
+    // color: #21ce99;
+    cursor: pointer;
+}
+
+.non-selected:hover{
+    cursor: pointer;
 }
 
 .show-top{

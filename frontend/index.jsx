@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {login, logout, signup} from "./util/session_api_util"
-// import {createOrder} from "./util/account_util"
-import { fetchStock, fetchStocks, fetchDailyStockData, fetchCompanyProfile , fetchNews, fetchSearchResults} from "./util/stock_util"
-import {pullStockDetails} from "./actions/stock_actions"
 import configureStore from "./store/store"
 import Root from "./components/root";
-import {getPortfolio, getOrderHistory, createOrder, getBuyingPower, updateBuyingPower} from "./util/account_util"
+import {getWatchlist, createWatchlist, getWatchlists, deleteWatchlist} from './util/watchlist_util'
+
 document.addEventListener("DOMContentLoaded", () => {
     let store;
     if (window.currentUser) {
@@ -23,18 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root);
-    // window.dispatch = store.dispatch;
-    // window.getState = store.dispatch;
-    window.fetchStock =fetchStock;
-    window.fetchStocks = fetchStocks;
-    window.fetchDailyStockData = fetchDailyStockData;
-    window.pullStockDetails = pullStockDetails;
-    window.fetchCompanyProfile = fetchCompanyProfile;
-    window.fetchNews= fetchNews;
-    window.getOrderHistory = getOrderHistory;
-    window.getPortfolio = getPortfolio;
-    window.createOrder = createOrder;
-    window.getBuyingPower = getBuyingPower;
-    window.updateBuyingPower = updateBuyingPower;
-    window.fetchSearchResults = fetchSearchResults;
+    window.getWatchlists = getWatchlists;
+    window.getWatchlist = getWatchlist;
+    window.createWatchlist = createWatchlist;
+    window.deleteWatchlist = deleteWatchlist;
 });

@@ -1,5 +1,5 @@
 import React from "react"
-
+import StockWatchlist from "./stock_watchlist_container"
 
 class OrderForm extends React.Component {
     constructor(props) {
@@ -245,10 +245,10 @@ class OrderForm extends React.Component {
        return e =>  this.setState({order_type: field})
     }
     render(){
-            // ;
+            
             let {order_type, buying_power, shares_quantity, sharesOwned} = this.state;
             
-            ;
+            debugger
         return(
             <div>
                 <div className="order-container">
@@ -256,10 +256,13 @@ class OrderForm extends React.Component {
                        <div>
                             <h4 className={order_type === "buy" ?
                                 "selected" : "non-selected"}
+                                style={{ color: this.props.color }}
+                                
                                 onClick={this.changeOrderType("buy")}
                                 >BUY {this.props.ticker.toUpperCase()}</h4>
                             <h4 className={order_type === "sell" ?
                                 "selected" : "non-selected"} 
+                                style={{ color: this.props.color }}
                                 onClick={this.changeOrderType("sell")}
                             >SELL {this.props.ticker.toUpperCase()}</h4>
                         </div>
@@ -282,6 +285,7 @@ class OrderForm extends React.Component {
                         <p>${(this.props.currentPrice * shares_quantity).toFixed(2)} </p>
                         </div>
                         <button className="order-button" 
+                        style={{ backgroundColor: this.props.color }}
                         // style={this.props.color === "red" ? { "background-color": "red", "background-color": "#25a17b"} : {} }
                         >{order_type.toUpperCase()}</button>
                         {this.state ? (
@@ -291,8 +295,14 @@ class OrderForm extends React.Component {
                         ) : ""}
                         {this.state.errors !== "" ? <p> {this.state.errors}</p> : ""}
                         {<p>Shares Owned: {sharesOwned}</p>}
+                        <StockWatchlist
+                            ticker_symbol={this.props.ticker}
+                            color={this.props.color}
+                            props={this.props}
+                        />
                     </form>
                 </div>
+         
             </div>
         )
     }

@@ -36,9 +36,10 @@
     padding: 5px 10px;
     display: block;
     width: 300px;
-    box-shadow: 0 5px 4px 0 lightgrey;
+    box-shadow: 2px 5px 4px 2px lightgrey;
     position: fixed;
     left: 900px;
+    border: 1px solid lightgray;
 }
 
 .stocklist-container{
@@ -53,9 +54,9 @@
     box-shadow: 0 5px 4px 0 lightgrey;
     position: fixed;
     left: 970px;
-    // bottom: 200px;
-    box-shadow: 0 5px 4px 0 lightgrey;
-    // padding-left: 20px;
+    border-radius: 3px;
+    box-shadow: 2px 5px 4px 2px lightgrey;
+    border: 1px solid lightgray;
     margin-right: 5%;
     height: 400px;
     overflow: auto;

@@ -186,6 +186,25 @@ class OrderForm extends React.Component {
                             buying_power: buying_power.buying_power.buying_power
                         }, this.render)
                     }))
+                    .then(this.props.fetchOrderHistory()
+                        .then(orders => {
+                            let sharesOwned = 0
+                            let orderHistory = orders.orderHistory
+
+                            for (let i = 0; i < orderHistory.length; i++) {
+                                //  
+                                if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
+                                    sharesOwned += orderHistory[i].shares_quantity;
+                                }
+                                else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
+                                    sharesOwned -= orderHistory[i].shares_quantity;
+                                }
+                            }
+                            ;
+                            this.setState({
+                                sharesOwned,
+                            }, this.render)
+                        }))
             }
        } else if (this.state.order_type === "sell"){
 
@@ -215,6 +234,25 @@ class OrderForm extends React.Component {
                         this.setState({
                             buying_power: buying_power.buying_power.buying_power})
                     }))
+                    .then(this.props.fetchOrderHistory()
+                        .then(orders => {
+                            let sharesOwned = 0
+                            let orderHistory = orders.orderHistory
+
+                            for (let i = 0; i < orderHistory.length; i++) {
+                                //  
+                                if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
+                                    sharesOwned += orderHistory[i].shares_quantity;
+                                }
+                                else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
+                                    sharesOwned -= orderHistory[i].shares_quantity;
+                                }
+                            }
+                            ;
+                            this.setState({
+                                sharesOwned,
+                            }, this.render)
+                        }))
             }
        }
     }

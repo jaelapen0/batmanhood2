@@ -72,6 +72,25 @@ class OrderForm extends React.Component {
                     sharesOwned,
                 })
             })
+                .then(this.props.fetchOrderHistory()
+                    .then(orders => {
+                        let sharesOwned = 0
+                        let orderHistory = orders.orderHistory
+
+                        for (let i = 0; i < orderHistory.length; i++) {
+                            //  
+                            if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
+                                sharesOwned += orderHistory[i].shares_quantity;
+                            }
+                            else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
+                                sharesOwned -= orderHistory[i].shares_quantity;
+                            }
+                        }
+                        ;
+                        this.setState({
+                            sharesOwned,
+                        }, this.render)
+                    }))
         }
 
         if (this.props.ticker !== prevProps.ticker){

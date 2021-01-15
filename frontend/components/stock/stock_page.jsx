@@ -188,9 +188,14 @@ class StockPage extends React.Component {
                         <h3 className="show-header">{ticker.toUpperCase()}</h3>
                         <h2>${this.state.currentPrice.toFixed(2)}</h2>
 
-                        <h4
+                        <span
+                            className="span-header"
                             style={{ color: this.state.color }}
-                            >{this.state.dif} ({this.state.percentChange})% Today </h4>
+                            >{this.state.dif} ({this.state.percentChange})% </span>
+                        < span className="span-header">Today</span>
+                        <br />
+                        <br />
+                        <br />
                         <div className="show-top">
                             <LineChart
                                 onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseOff}
@@ -214,8 +219,8 @@ class StockPage extends React.Component {
                                 currentPrice={this.state.data ? this.state.data[this.state.data.length - 1].average : undefined}  />
                         </div>
                         <br />
-                        {/* <CompanyProfile ticker={ticker} /> */}
-                        {/* <StockNews ticker={ticker} /> */}
+                        <CompanyProfile ticker={ticker} />
+                        <StockNews ticker={ticker} />
                     </div>) : ""}
             </div>
 

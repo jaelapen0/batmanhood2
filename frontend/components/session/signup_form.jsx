@@ -50,18 +50,13 @@ class SignupForm extends React.Component {
 
     }
 
-    componentDidUpdate(prevProps) {
-        // debugger;
-        if (this.props.errors != prevProps.errors) {
-            this.state.errors = this.props.errors
-        }
-    }
+
 
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-        
+        this.setState({ errors: this.props.errors })
         if (this.checkFormValidations().length === 0 && !this.props.errors) {
             // ;
             //    return <Redirect to="root"></Redirect>
@@ -80,7 +75,7 @@ class SignupForm extends React.Component {
                 <SignupSide />
 
                 <h4>Robinhood lets you invest in companies you love, commission-free.</h4>
-                <p id="login_errors">{this.state.errors ? this.state.errors.map(error=>(
+                <p id="login_errors">{(this.state.errors && this.props.errors.length > 0 && (!this.props.errors[0].includes("Invalid"))) ? this.props.errors.map(error=>(
                         error + ". "
                     )) : null}</p>
             

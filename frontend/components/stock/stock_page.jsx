@@ -179,10 +179,7 @@ class StockPage extends React.Component {
             return null;
         }
 
-        const numberWithCommas = (x) => {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
+        
         return (
 
             <div className="stockshow-container">
@@ -191,7 +188,7 @@ class StockPage extends React.Component {
                     (<div>
 
                         <h3 className="show-header">{ticker.toUpperCase()}</h3>
-                        <h2>${numberWithCommas(parseFloat(this.state.currentPrice.toFixed(2)))}</h2>
+                        <h2>${this.state.currentPrice.toFixed(2)}</h2>
 
                         <span
                             className="span-header"

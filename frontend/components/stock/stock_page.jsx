@@ -209,7 +209,7 @@ class StockPage extends React.Component {
                                     content={<CustomToolTip />}
                                     wrapperStyle={{ left: -35 }}
                                     allowEscapeViewBox={{ x: true, y: true }}
-                                    position={{ y: -30 }} cursor={{ stroke: 'grey' }} isAnimationActive={false}
+                                    position={{ y: -40 }} cursor={{ stroke: 'grey' }} isAnimationActive={false}
                                 ></Tooltip>
                                 <Line type="monotone" dataKey="average" stroke={this.state.color} dot={false} strokeWidth='2' animationDuration={1500} />
                             </LineChart>

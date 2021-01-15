@@ -6,8 +6,8 @@ class Api::NewsController < ApplicationController
         # url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=88ee272f7d8e437ea3768f3847c82023"
         # url = "https://newsapi.org/v2/everything?q=wall%20street&apiKey=88ee272f7d8e437ea3768f3847c82023"
         
-        # url = "https://gnews.io/api/v4/search?q=wall%20street&token=4d1d5f41f2ed41278fa8b717da618ab6&lang=en"
-        url = "https://gnews.io/api/v4/search?q=wall%20street&token=eb4524ebf8b28d6153214ffe70b45e4c&lang=en"
+        url = "https://gnews.io/api/v4/search?q=wall%20street&token=4d1d5f41f2ed41278fa8b717da618ab6&lang=en"
+        # url = "https://gnews.io/api/v4/search?q=wall%20street&token=eb4524ebf8b28d6153214ffe70b45e4c&lang=en"
         @response = JSON.parse(URI.open(url).read)
         render json: @response
     end

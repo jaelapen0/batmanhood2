@@ -53,7 +53,25 @@ class OrderForm extends React.Component {
         if (this.props.state.entities.account.buying_power !== prevProps.state.entities.account.buying_power){
            
             this.setState({ buying_power: this.props.state.entities.account.buying_power.buying_power})
-           
+            this.props.fetchOrderHistory()
+            .then(orders => {
+                let sharesOwned = 0
+                let orderHistory = orders.orderHistory
+
+                for (let i = 0; i < orderHistory.length; i++) {
+                    //  
+                    if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
+                        sharesOwned += orderHistory[i].shares_quantity;
+                    }
+                    else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
+                        sharesOwned -= orderHistory[i].shares_quantity;
+                    }
+                }
+                ;
+                this.setState({
+                    sharesOwned,
+                })
+            })
         }
 
         if (this.props.ticker !== prevProps.ticker){
@@ -92,11 +110,11 @@ class OrderForm extends React.Component {
     }
 
     update(field){
-        // ;
         return e => this.setState({
             [field]: e.currentTarget.value
         })
     }
+
 
     handleSubmit(e) {
         e.preventDefault()
@@ -110,7 +128,6 @@ class OrderForm extends React.Component {
                 this.setState({errors: "Must be at least 1 share" })
             }
             else{
-                // ;
                 const newTotal = parseFloat(this.state.buying_power) - totalAmount
                 let props = this.props;
                 let state = this.state;
@@ -118,57 +135,18 @@ class OrderForm extends React.Component {
                 let { fetchOrderHistory, fetchBuyingPower, setBuyingPower, createOrder } = this.props;
                 let currentUser = this.props.currentUser;
 
-                Promise.all([createOrder(state), setBuyingPower(state.user_id, { buying_power: newTotal }), fetchOrderHistory(), fetchBuyingPower(currentUser)])
-                    .then(([createdOrder, settedBuyingPower,  orders, buying_power ]) => {
+                Promise.all([createOrder(state), setBuyingPower(state.user_id, { buying_power: newTotal })])
+                    .then(([createdOrder, settedBuyingPower]) => {
                         ;
                         this.setState({
-                            // buying_power: buying_power.buying_power.buying_power,
-                            // orderHistory: orders.orderHistory,
-                            // sharesOwned,
                             errors: "Your shares have been purchased",
                             shares_quantity: 0 
-                        }, this.render)
-
-                    })
-                    .then(fetchOrderHistory().then(orders =>{
-                        let sharesOwned = 0
-                        let orderHistory = orders.orderHistory
-                        
-                        for (let i = 0; i < orderHistory.length; i++) {
-                            //  
-                            if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
-                                sharesOwned += orderHistory[i].shares_quantity;
-                            }
-                            else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
-                                sharesOwned -= orderHistory[i].shares_quantity;
-                            }
-                        }
-                        ;
-                        this.setState({
-                            sharesOwned,})
-                    }))
-                    .then(fetchOrderHistory().then(orders => {
-                        let sharesOwned = 0
-                        let orderHistory = orders.orderHistory
-                        
-                        for (let i = 0; i < orderHistory.length; i++) {
-                            //  
-                            if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
-                                sharesOwned += orderHistory[i].shares_quantity;
-                            }
-                            else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
-                                sharesOwned -= orderHistory[i].shares_quantity;
-                            }
-                        }
-                        ;
-                        this.setState({
-                            sharesOwned,
                         })
-                    }))
+                    })
                     .then(fetchBuyingPower(currentUser).then(buying_power => {
                         this.setState({
                             buying_power: buying_power.buying_power.buying_power
-                        }, )
+                        }, this.render)
                     }))
             }
        } else if (this.state.order_type === "sell"){
@@ -185,54 +163,16 @@ class OrderForm extends React.Component {
 
                 let { fetchOrderHistory, fetchBuyingPower, setBuyingPower, createOrder } = this.props;
                 let currentUser = this.props.currentUser;
-                Promise.all([createOrder(state), setBuyingPower(state.user_id, { buying_power: newTotal }), fetchOrderHistory(), fetchBuyingPower(currentUser)])
-                    .then(([createdOrder, settedBuyingPower, orders, buying_power]) => {
+                Promise.all([createOrder(state), setBuyingPower(state.user_id, { buying_power: newTotal })])
+                    .then(([createdOrder, settedBuyingPower]) => {
                         ;
                         this.setState({
-                            // buying_power: buying_power.buying_power.buying_power,
-                            // orderHistory: orders.orderHistory,
-                            // sharesOwned,
                             errors: "Your shares have been sold",
                             shares_quantity: 0
-                        }, this.render)
+                        })
 
                     })
-                    .then(fetchOrderHistory().then(orders => {
-                        let sharesOwned = 0
-                        let orderHistory = orders.orderHistory
-                        
-                        for (let i = 0; i < orderHistory.length; i++) {
-                            //  
-                            if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
-                                sharesOwned += orderHistory[i].shares_quantity;
-                            }
-                            else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
-                                sharesOwned -= orderHistory[i].shares_quantity;
-                            }
-                        }
-                        ;
-                        this.setState({
-                            sharesOwned,
-                        })
-                    }))
-                    .then(fetchOrderHistory().then(orders => {
-                        let sharesOwned = 0
-                        let orderHistory = orders.orderHistory
-                        
-                        for (let i = 0; i < orderHistory.length; i++) {
-                            //  
-                            if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "buy") {
-                                sharesOwned += orderHistory[i].shares_quantity;
-                            }
-                            else if (orderHistory[i].ticker_symbol === this.props.ticker && orderHistory[i].order_type === "sell") {
-                                sharesOwned -= orderHistory[i].shares_quantity;
-                            }
-                        }
-                        ;
-                        this.setState({
-                            sharesOwned,
-                        })
-                    }))
+                    
                     .then(fetchBuyingPower(currentUser).then(buying_power => {
                         this.setState({
                             buying_power: buying_power.buying_power.buying_power})
@@ -307,8 +247,6 @@ class OrderForm extends React.Component {
             </div>
         )
     }
-
-
 
 }
 

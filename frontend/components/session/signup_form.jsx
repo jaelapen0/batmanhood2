@@ -21,56 +21,17 @@ class SignupForm extends React.Component {
         });
     }
 
-    checkFormValidations() {
-        let validForm = true;
-        let form_errors = [];
-
-        if (this.state["email"].length < 1) {
-            validForm = false;
-            // errors["email"] = "Cannot be empty";
-            form_errors.push("email cannot be empty")
-        }
-        if (this.state["first_name"].length < 1) {
-            validForm = false;
-            // errors["first_name"] = "Cannot be empty";
-            form_errors.push("first_name cannot be empty")
-        }
-        if (this.state["last_name"].length < 1) {
-            validForm = false;
-            // errors["last_name"] = "Cannot be empty";
-            form_errors.push("email cannot be empty")
-        }
-        if (this.state["password"].length < 6) {
-            validForm = false;
-            // errors["password"] = "Cannot be empty";
-            form_errors.push("email cannot be empty")
-        }
-        this.setState({ form_errors })
-        return form_errors
-
-    }
-
-
 
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
         this.setState({ errors: this.props.errors })
-        if (this.checkFormValidations().length === 0 && !this.props.errors) {
-            // ;
-            //    return <Redirect to="root"></Redirect>
-            this.props.history.push("/")
-        }
-        else{ 
-            // ;
-            this.render()}
     }
     
     render() {
         return (
             <div id="signup-form">
-                {/* <TextInput style={{ borderColor: this.state.errors.include('first_name') ? 'red' : 'transparent' }} /> */}
                 <h2>Make Your Money Move</h2>
                 <SignupSide />
 

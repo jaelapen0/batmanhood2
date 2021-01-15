@@ -9,14 +9,11 @@ class SignupForm extends React.Component {
             first_name: "",
             last_name: "",
             password: "",
-            // errors: {},
             form_errors: []
         };
 
-        // this.setState({ errors: [] })
         this.handleSubmit = this.handleSubmit.bind(this)
         this.render = this.render.bind(this)
-        this.checkFormValidations = this.checkFormValidations.bind(this)
     }
 
     update(field) {
@@ -24,12 +21,6 @@ class SignupForm extends React.Component {
             [field]: e.currentTarget.value
         });
     }
-
-   componentDidMount(){
-       ;
-    //    this.setState({errors: []})
- 
-   }
    
    handleSubmit(e) {
        e.preventDefault();
@@ -37,54 +28,17 @@ class SignupForm extends React.Component {
        const user = Object.assign({}, this.state);
        this.props.processForm(user);
        this.setState({errors: this.props.errors})
-        if (this.checkFormValidations().length === 0) {
-            //    return <Redirect to="root"></Redirect>
-            // this.props.history.push("/")
-        }
-        else { this.render() }
+        
     }
-    componentDidUpdate(prevProps) {
-        // ;
-        // if (this.props.errors != prevProps.errors) {
-        //     this.setState({errors: this.props.errors})
-        // }
-
-        // if (this.props.errors != this.state.errors){
-        //     {
-        //         thi
-        //     }
-        // }
-    }
-
-    componentWillUnmount(){
-        // this.state.errors
-    }
+   
     
-    checkFormValidations() {
-        let validForm = true;
-        let form_errors = [];
- 
-        if (this.state["email"].length < 1) {
-            validForm = false;
-            form_errors.push("Email cannot be empty")
-        }
-      
-        if (this.state["password"].length < 6) {
-            validForm = false;
-            form_errors.push("Password cannot be empty")
-        }
- 
-        this.setState({ errors}, this.render)
-        return form_errors
-    }
     render(){
-        ;
+        
    
         return (
             <div id="login-main"> 
             <LoginBackground/>
             <div id="login-div">
-                <p id="login_errors">{this.props.form_errors ? this.props.form_errors : null}</p>
                     <p id="login_errors" color="red">{(this.state.errors && this.props.errors.length > 0 && (!this.props.errors[0].includes("blank") && !this.props.errors[0].includes("too short") && !this.props.errors[0].includes("Email"))) ? this.props.errors : null}</p>
                 <form onSubmit={this.handleSubmit} >
                     <h3 className="login-header">Welcome to Batmanhood</h3>

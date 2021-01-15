@@ -5,7 +5,8 @@ class HomeWatchlist extends React.Component {
    constructor(props) {
       super(props)
       this.state = {
-         stocks: {}
+         stocks: {},
+         nowReadyStocks: {}
       }
    }
 
@@ -49,9 +50,9 @@ class HomeWatchlist extends React.Component {
             .then((details, notReadyStocks) =>{
                // ;
               
-              
-               let nowReadyStocks = state.nowReadyStocks || {};  // creating copy of state variable jasper
-               // ;
+               ;
+               let nowReadyStocks = state.nowReadyStocks // creating copy of state variable jasper
+               ;
                
                nowReadyStocks[ticker] = {};
                nowReadyStocks[ticker]["firstPrice"] = details.data[0].average; 
@@ -69,6 +70,7 @@ class HomeWatchlist extends React.Component {
       // ;
       let {stocks} = this.state
       let {nowReadyStocks} = this.state;
+      // ;
       return (
          <div>
             <h1 className="watchlist-container-h1" >Watchlist</h1>

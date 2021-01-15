@@ -16,7 +16,7 @@ const SignupSide = () => {
                 <p>
                 Batmanhood Financial is not a member of SIPC. 
                 Securities in your account are protected up to $500,000. 
-                    For details, please see  <a className="linx" href={"www.sipc.org"}>www.sipc.org</a>.
+                    For details, please see  <a className="linx" href={"https://www.sipc.org"} target="_blank">www.sipc.org</a>.
                 </p>
             <h5>
                 Keep tabs on your money

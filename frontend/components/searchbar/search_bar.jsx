@@ -16,6 +16,7 @@ class SearchBar extends React.Component{
         this.makeSearchRequest = this.makeSearchRequest.bind(this);
         this.toggleOn = this.toggleOn.bind(this);
         this.toggleOff = this.toggleOff.bind(this);
+        this.completeSearch = this.completeSearch.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
     }
     
@@ -51,19 +52,15 @@ class SearchBar extends React.Component{
         else { this.setState({ visibleResults: false })}
     }
     toggleOn(e){
-        // let visibleResults = this.state.visibleResults
-        // ;
-        // visibleResults === true ? 
-        // this.setState({visibleResults: false}) :
         this.setState({visibleResults: true})
     }
 
     toggleOff(e) {
-        // let visibleResults = this.state.visibleResults
-        // ;
-        // visibleResults === true ?
-        //     this.setState({ visibleResults: false }) :
             this.setState({ visibleResults: false })
+    }
+
+    completeSearch(e) {
+        this.setState({ visibleResults: false, input: "" })
     }
 
     handleSelect(e){
@@ -80,6 +77,7 @@ class SearchBar extends React.Component{
                     //    onClickAway={this.clickAway()}
                        placeholder="Search.." type="text"
                        onChange={this.update("input")}
+                       value={this.state.input}
                 />
                     <ul className="search-ul">
                     {this.state.results.results && this.state.visibleResults === true && Object.keys(this.state.results.results).length > 0? 
@@ -89,7 +87,7 @@ class SearchBar extends React.Component{
                         Object.values(results).map(result => {
                         //  
                           return ( <div id={result.ticker_symbol} className="search-result" onClick={this.handleSelect}> 
-                              <Link className="searchresult-link" onClick={this.toggleOff}
+                              <Link className="searchresult-link" onClick={this.completeSearch}
                                     to={`/stocks/${result.ticker_symbol}`}> 
                                     {result.tags}
                                 </Link>

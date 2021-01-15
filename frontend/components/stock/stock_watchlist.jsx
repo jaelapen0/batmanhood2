@@ -19,6 +19,17 @@ class StockWatchlist extends React.Component {
       })
    }
 
+   componentDidUpdate(prevProps, prevState){
+      ;
+      if (this.props.ticker_symbol != prevProps.ticker_symbol){
+         this.props.fetchWatchList(this.props.ticker_symbol)
+            .then(result => {
+               
+               this.setState({ result })
+            })
+      }
+   }
+
    handleWatchList(e){
       ;
       if (e.target.innerText.includes("Add")){

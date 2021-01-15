@@ -175,7 +175,7 @@ class Portfolio extends React.Component {
                 if (parseFloat(theLast[i].average) > dataMax) { dataMax = parseFloat(theLast[i].average) }
             }
 
-            let currentPrice = theLast[theLast.length - 1].average
+            let currentPrice = theLast[0] ? theLast[theLast.length - 1].average : this.props.buyingPower
             this.setState({theLast, dataMin, dataMax, currentPrice})
         }
 
@@ -332,6 +332,9 @@ class Portfolio extends React.Component {
 
             return null;
         }
+        const numberWithCommas = (x) => {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
         // ;
         return (
@@ -340,7 +343,7 @@ class Portfolio extends React.Component {
                     <div className="port-list"> 
                          <div className="porheader">
                             <h2 className="portfolio-header">Investing</h2>
-                            <h3 className="portfolio-header">${theLast[0] ? `${parseFloat(parseFloat(currentPrice).toFixed(2)).toLocaleString()}` : ""}</h3>
+                            <h3 className="portfolio-header">${theLast[0] ? `${numberWithCommas(currentPrice)}` : ""}</h3>
                         <span className="portfolio-header"
                             style={{color: color}}
                             >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].average * 100).toFixed(2)): ""}%) </span> 

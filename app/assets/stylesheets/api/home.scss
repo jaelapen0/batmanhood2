@@ -1,8 +1,5 @@
 
 .home-container{
-    // display: flex;
-    // justify-content: space-between;
-    // margin-left: 175px;
     margin-left: 12%;
     margin-top: 100px;
     margin-right: 50px;
@@ -44,10 +41,6 @@
 
 .stocklist-container{
     margin-top: 30px;
-    // margin-right: 10%;
-    // border: 1px solid gray;
-    // border-radius: 4px;
-    // padding: 10px;
     padding-top: 10px;
     display: block;
     width: 250px;
@@ -60,8 +53,17 @@
     margin-right: 5%;
     height: 400px;
     overflow: auto;
+    padding-bottom: 15px;
 }
 .stocklist-container > h1{
+    border-bottom: 1px solid lightgray;
+    padding: 5px 10px;
+    font-size: smaller;
+}
+
+.watchlist-container-h1{
+    
+    margin-top: 10px;
     border-bottom: 1px solid lightgray;;
     padding: 5px 10px;
     font-size: smaller;
@@ -70,6 +72,27 @@
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
+    height: 75px;
+    margin-top: -5px;
+
+
+}
+
+.list-watch-parent{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    height: 55px;
+    margin-top: -5px;
+
+}
+
+.watchlist-right{
+    margin-top: -10px;
+}
+
+.list-watch-parent:hover{
+    background-color: rgb(247, 243, 243);
 }
 .list-stock{
     // border-top: 1px solid lightgray;
@@ -78,8 +101,6 @@
 }
 
 .list-stock-parent:hover{
-    // border-top: 1px solid lightgray;
-    // padding-left: 10px;
     background-color: rgb(247, 243, 243);
 }
 
@@ -91,14 +112,31 @@
     color: #21ce99;
     font-weight: lighter;
     text-align: right;
-    // margin-right: 5px;
+    margin-top: -5px;
 }
+
+.watchlist-plus{
+    color: #21ce99;
+    font-weight: lighter;
+    text-align: right;
+    margin-top: -5px;
+}
+
+
 
 .stocklist-minus{
     color: red;
     font-weight: lighter;
     text-align: right;
-    // margin-right: 3px;
+    margin-top: -5px;
+}
+
+
+.watchlist-minus{
+    color: red;
+    font-weight: lighter;
+    text-align: right;
+    margin-top: -10px;
 }
 .watchlist-header{
     border-bottom: 1px solid darkgray;

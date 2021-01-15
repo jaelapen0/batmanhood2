@@ -1,6 +1,7 @@
 import React from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Link } from 'react-router-dom';
+import HomeWatchlist from "./home_watchlist_container"
 
 class Portfolio extends React.Component {
     constructor(props){
@@ -131,6 +132,7 @@ class Portfolio extends React.Component {
                                         last,
                                         first,
                                         stocks,
+                                        completed: true
                                         // [name]: {firstPrice, lastPrice}
                                     
                                     }, this.render)
@@ -331,6 +333,10 @@ class Portfolio extends React.Component {
                                 )
                                 }   
                             )}
+                        <HomeWatchlist 
+                        props={this.props}
+                        parentState = {this.state}
+                        />
                         </div>
                     </div>
             </div>

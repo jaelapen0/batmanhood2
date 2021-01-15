@@ -289,12 +289,12 @@ class OrderForm extends React.Component {
                         // style={this.props.color === "red" ? { "background-color": "red", "background-color": "#25a17b"} : {} }
                         >{order_type.toUpperCase()}</button>
                         {this.state ? (
-                            <div>
+                           
                                 <p className="bpow">Buying Power: ${parseFloat(buying_power).toFixed(2)}</p>
-                            </div>
+                           
                         ) : ""}
-                        {this.state.errors !== "" ? <p> {this.state.errors}</p> : ""}
-                        {<p>Shares Owned: {sharesOwned}</p>}
+                        {this.state.errors !== "" ? <p className="bpow" style={{ color: this.props.color }}> {this.state.errors}</p> : ""}
+                        {<p className="bpow">Shares Owned: {sharesOwned}</p>}
                         
                     </form>
                     <StockWatchlist

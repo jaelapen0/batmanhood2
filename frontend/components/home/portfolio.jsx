@@ -341,7 +341,9 @@ class Portfolio extends React.Component {
                          <div className="porheader">
                             <h2 className="portfolio-header">Investing</h2>
                             <h3 className="portfolio-header">${theLast[0] ? `${parseFloat(parseFloat(currentPrice).toFixed(2)).toLocaleString()}` : ""}</h3>
-                        <h4 className="portfolio-header">{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].average * 100).toFixed(2)): ""}%) </h4>
+                        <h4 className="portfolio-header"
+                            style={{color: color}}
+                            >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].average * 100).toFixed(2)): ""}%) Today </h4>
                             <LineChart onMouseMove= {this.handleMouseMove} onMouseLeave= {this.handleMouseOff}
                                 className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>

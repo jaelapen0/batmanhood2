@@ -56,11 +56,11 @@ class SearchBar extends React.Component{
     }
 
     toggleOff(e) {
-            this.setState({ visibleResults: false })
+            this.setState({ visibleResults: false, results: []})
     }
 
     completeSearch(e) {
-        this.setState({ visibleResults: false, input: "" })
+        this.setState({ visibleResults: false, input: "", results: [] })
     }
 
     handleSelect(e){

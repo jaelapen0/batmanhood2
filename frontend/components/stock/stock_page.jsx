@@ -134,7 +134,7 @@ class StockPage extends React.Component {
             
             let percentChange = parseFloat(dif / this.state.data[0].average * 100).toFixed(2)
             if (dif > 0) dif = "+$" + dif;
-            if (dif < 0) dif = "-$" + Math.abs(dif);
+            if (dif < 0) dif = "-$" + parseFloat(-dif).toFixed(2);
             
             this.setState({ currentPrice, dif, percentChange, color })
         }
@@ -142,11 +142,11 @@ class StockPage extends React.Component {
 
     handleMouseOff() {
         let currentPrice = this.state.data[this.state.data.length - 1].average
-        let dif = (currentPrice - this.state.data[0].average).toFixed(2)
+        let dif = (parseFloat(currentPrice - this.state.data[0].average)).toFixed(2)
         const color = dif < 0 ? "red" : '#21ce99'
         let percentChange = parseFloat(dif / this.state.data[0].average * 100).toFixed(2)
-        if (dif > 0) dif = "+$" + dif;
-        if (dif < 0) dif = "-$" + Math.abs(dif);
+        if (dif > 0) dif = "+$" + Math.abs(dif).toFixed(2);
+        if (dif < 0) dif = "-$" + Math.abs(dif).toFixed(2);
         this.setState({
             currentPrice,
             dif,
@@ -188,7 +188,9 @@ class StockPage extends React.Component {
                         <h3 className="show-header">{ticker.toUpperCase()}</h3>
                         <h2>${this.state.currentPrice.toFixed(2)}</h2>
 
-                        <h4>{this.state.dif} ({this.state.percentChange})% Today </h4>
+                        <h4
+                            style={{ color: this.state.color }}
+                            >{this.state.dif} ({this.state.percentChange})% Today </h4>
                         <div className="show-top">
                             <LineChart
                                 onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseOff}
@@ -212,8 +214,8 @@ class StockPage extends React.Component {
                                 currentPrice={this.state.data ? this.state.data[this.state.data.length - 1].average : undefined}  />
                         </div>
                         <br />
-                        <CompanyProfile ticker={ticker} />
-                        <StockNews ticker={ticker} />
+                        {/* <CompanyProfile ticker={ticker} /> */}
+                        {/* <StockNews ticker={ticker} /> */}
                     </div>) : ""}
             </div>
 

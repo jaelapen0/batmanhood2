@@ -9,11 +9,11 @@ class SignupForm extends React.Component {
             first_name: "",
             last_name: "",
             password: "",
-            errors: {},
+            // errors: {},
             form_errors: []
         };
 
-        this.setState({ errors: [] })
+        // this.setState({ errors: [] })
         this.handleSubmit = this.handleSubmit.bind(this)
         this.render = this.render.bind(this)
         this.checkFormValidations = this.checkFormValidations.bind(this)
@@ -26,7 +26,7 @@ class SignupForm extends React.Component {
     }
 
    componentDidMount(){
-       this.setState({errors: ""})
+    //    this.setState({errors: ""})
    }
    
    handleSubmit(e) {
@@ -36,15 +36,15 @@ class SignupForm extends React.Component {
        this.props.processForm(user);
         if (this.checkFormValidations().length === 0) {
             //    return <Redirect to="root"></Redirect>
-            this.props.history.push("/")
+            // this.props.history.push("/")
         }
         else { this.render() }
     }
     componentDidUpdate(prevProps){
-        // ;
-        // if (this.props.errors.length > 0){
-            //     this.state.errors = [];
-        // }
+        // debugger;
+        if (this.props.errors != prevProps.errors){
+                this.state.errors = this.props.errors
+        }
     }
     
     componentWillUnmount(){
@@ -75,7 +75,7 @@ class SignupForm extends React.Component {
             <LoginBackground/>
             <div id="login-div">
                 <p id="login_errors">{this.props.form_errors ? this.props.form_errors : null}</p>
-                <p id="login_errors" color="red">{this.props.errors ? this.props.errors : null}</p>
+                <p id="login_errors" color="red">{this.state.errors ? this.state.errors : null}</p>
                 <form onSubmit={this.handleSubmit} >
                     <h3 className="login-header">Welcome to Batmanhood</h3>
                     <label className="login-label">Email

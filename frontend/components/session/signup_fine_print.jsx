@@ -12,10 +12,10 @@ const SignUpFinePrint = () => {
             </p>
 
             <p>
-                All securities and investments are offered to self-directed customers by Robinhood Financial, LLC, member FINRA & SIPC. 
+                All securities and investments are offered to self-directed customers by Batmanhood Financial, LLC, member FINRA & SIPC. 
                 Additional information about your broker can be found by clicking here. 
-                ßRobinhood Financial, LLC is a wholly owned subsidiary of Robinhood Markets, Inc.
-                Check the background of Robinhood Financial LLC and Robinhood Securities, LLC on FINRA's BrokerCheck.
+                ßBatmanhood Financial, LLC is a wholly owned subsidiary of Batmanhood Markets, Inc.
+                Check the background of Batmanhood Financial LLC and Batmanhood Securities, LLC on FINRA's BrokerCheck.
             </p>
         
 

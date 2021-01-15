@@ -50,6 +50,13 @@ class SignupForm extends React.Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+        // debugger;
+        if (this.props.errors != prevProps.errors) {
+            this.state.errors = this.props.errors
+        }
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
@@ -73,7 +80,7 @@ class SignupForm extends React.Component {
                 <SignupSide />
 
                 <h4>Robinhood lets you invest in companies you love, commission-free.</h4>
-                <p id="login_errors">{this.props.errors ? this.props.errors.map(error=>(
+                <p id="login_errors">{this.state.errors ? this.state.errors.map(error=>(
                         error + ". "
                     )) : null}</p>
             

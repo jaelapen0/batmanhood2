@@ -40,7 +40,7 @@ class HomeWatchlist extends React.Component {
               readyStocks[watchlists[i].ticker_symbol].high = stocks[watchlists[i].ticker_symbol].data.data.reduce(function (prev, current) {
                   return (prev.high < current.high) ? prev : current
                })
-               // debugger;
+               // ;
 
 
             }
@@ -79,7 +79,7 @@ class HomeWatchlist extends React.Component {
                nowReadyStocks[ticker].high = nowReadyStocks[ticker].data.data.reduce(function (prev, current) {
                   return (prev.high < current.high) ? prev : current
                })
-               // debugger;
+               // ;
                this.setState({ nowReadyStocks})
             })
          }
@@ -105,7 +105,7 @@ class HomeWatchlist extends React.Component {
                      // let high = nowReadyStocks[stock].data.data.reduce(function (prev, current) {
                      //    return (prev.high < current.high) ? prev : current
                      // })
-                     debugger;
+                     ;
                      return (
          
                            <Link to={`/stocks/${stock}`} key={stock}>
@@ -152,7 +152,7 @@ class HomeWatchlist extends React.Component {
    
             
             {Object.keys(stocks).map(stock => {
-               // debugger
+               // 
                // let low = stocks[stock].data.data.reduce(function (prev, current) {
                //    return (prev.low < current.low) ? prev : current
                // })
@@ -160,7 +160,7 @@ class HomeWatchlist extends React.Component {
                // let high = stocks[stock].data.data.reduce(function (prev, current) {
                //    return (prev.high < current.high) ? prev : current
                // })
-               // debugger
+               // 
                return (
                   stocks[stock] && stocks[stock].lastPrice > 0 ?
                      <Link to={`/stocks/${stock}`} key={stock}>

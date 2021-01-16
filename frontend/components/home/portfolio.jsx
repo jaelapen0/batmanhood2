@@ -381,7 +381,7 @@ class Portfolio extends React.Component {
                             <h1>Stocks</h1>
                             
                             {Object.keys(stocks).map(stock => {
-                                // debugger
+                                // 
                                 return(
                                     stocks[stock] && stocks[stock].amountt > 0 ? 
                                     <Link to={`/stocks/${stock}`} key={stock}>

@@ -4,6 +4,7 @@ import React from "react"
 import { Link } from 'react-router-dom';
 import NewsFeed from "./news_feed_container"
 import Portfolio from "./portfolio_container"
+
 class Home extends React.Component{
     constructor(props){
         super(props)

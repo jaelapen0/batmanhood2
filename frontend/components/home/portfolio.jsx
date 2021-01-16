@@ -64,9 +64,20 @@ class Portfolio extends React.Component {
                             const quantity = stocks[name].amountt
                             const req = Object.keys(stocks).length
                             let reqMet = 0;
+                            // const data1 = data.filter(arr => (arr.average != null))
                             stocks[name].firstPrice = 0;
                             stocks[name].lastPrice = 0;
                             stocks[name].stockDif = 0;
+                            let data2 = []
+                            data2.data = data.data.filter(arr => (arr.average != null))
+                            stocks[name].data = data2; 
+                            stocks[name].low = data.data.reduce(function (prev, current) {
+                                return (prev.low < current.low) ? prev : current
+                            })
+                            // ;
+                            stocks[name].high = data.data.reduce(function (prev, current) {
+                                return (prev.high < current.high) ? prev : current
+                            })
                             const data1 = data.data.forEach(minInfo => {
                                 // ;
                                 if (minInfo.average != null) {
@@ -370,7 +381,7 @@ class Portfolio extends React.Component {
                             <h1>Stocks</h1>
                             
                             {Object.keys(stocks).map(stock => {
-                                ;
+                                // debugger
                                 return(
                                     stocks[stock] && stocks[stock].amountt > 0 ? 
                                     <Link to={`/stocks/${stock}`} key={stock}>
@@ -379,7 +390,21 @@ class Portfolio extends React.Component {
                                                 <h4>{stock.toUpperCase()}</h4>
                                                 <p>{stocks[stock].amountt} shares</p>
                                             </div>
-                                       
+
+                                                <LineChart 
+                                                    className = "stocks-chart"
+                                                     width={70} height={45} data={stocks[stock].data.data}>
+                                                    <XAxis dataKey="label" hide={true}></XAxis>
+                                                    <YAxis dataKey="average" domain={[stocks[stock].low, stocks[stock].high]} axisLine={false} hide={true} />
+                                                   
+                                                    {stocks[stock].stockDif >= 0 ?
+                                                        <Line type="monotone" dataKey="average" stroke={"#21ce99"} dot={false} strokeWidth='1' />
+                                                        :
+                                                        <Line type="monotone" dataKey="average" stroke={"red"} dot={false} strokeWidth='1' />
+
+                                                    }
+                                                    
+                                                </LineChart>
 
                                             <div>
                                                 {stocks[stock].stockDif >= 0 ?

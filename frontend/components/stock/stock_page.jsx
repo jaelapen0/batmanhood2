@@ -11,14 +11,16 @@ class StockPage extends React.Component {
         super(props)
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseOff = this.handleMouseOff.bind(this);
+        this.fetchStockInfo = this.fetchStockInfo.bind(this)
     }
 
-    componentDidMount() {
+  
+    fetchStockInfo(){
         let ticker = this.props.location.pathname.split("/")[2]
-
 
         fetchDailyStockData(ticker.toUpperCase())
             .then(data => {
+                // const data1 = data.historical.reverse().filter(arr => (arr.open != null))
 
                 const data1 = data.filter(arr => (arr.average != null))
                 let dif = data1[data1.length - 1].average - data1[0].average;
@@ -36,17 +38,6 @@ class StockPage extends React.Component {
                 const color = dif < 0 ? "red" : '#21ce99'
                 const setColor = color
 
-                const CustomTooltip = ({ active }) => {
-                    if (active) {
-
-                        return (
-                            <div className="custom-tooltip">
-                                <p className="label">{`${this.state.data[0].date} : ${this.state.data[0].average}`}</p>
-                            </div>
-                        );
-                    }
-                    return null;
-                };
 
                 if (dif > 0) {
                     dif = `+$${dif.toFixed(2)}`
@@ -59,15 +50,16 @@ class StockPage extends React.Component {
                 this.setState({
                     data: data1, low: low.low, high: high.high,
                     dif, percentChange,
-                    CustomTooltip,
                     currentPrice, color, ticker,
                     setColor
                 })
 
             })
 
-        // 
 
+    }
+    componentDidMount() {
+        this.fetchStockInfo()
     }
 
     componentDidUpdate(prevProps) {
@@ -75,46 +67,7 @@ class StockPage extends React.Component {
         let prevTicker = prevProps.location.pathname.split("/")[2]
 
         if (ticker !== prevTicker) {
-
-            fetchDailyStockData(ticker.toUpperCase())
-                .then(data => {
-
-                    const data1 = data.filter(arr => (arr.average != null))
-                    const dif = data1[data1.length - 1].average - data1[0].average;
-
-                    const percentChange = (dif / data1[0].average*100).toFixed(2)
-                    const low = data1.reduce(function (prev, current) {
-                        return (prev.low < current.low) ? prev : current
-                    })
-                    // ;
-                    const high = data1.reduce(function (prev, current) {
-                        return (prev.high < current.high) ? prev : current
-                    })
-
-                    const currentPrice = data1[data1.length - 1].average
-                    const color = dif < 0 ? "red" : '#21ce99'
-                    const setColor = color
-                    const CustomTooltip = ({ active }) => {
-                        if (active) {
-
-                            return (
-                                <div className="custom-tooltip">
-                                    <p className="label">{`${this.state.data[0].date} : ${this.state.data[0].average}`}</p>
-                                </div>
-                            );
-                        }
-                        return null;
-                    };
-
-                    this.setState({
-                        data: data1, low: low.low, high: high.high,
-                        dif: dif.toFixed(2), percentChange: percentChange,
-                        setColor,
-                        currentPrice: currentPrice, color: color,
-                        ticker
-                    })
-
-                })
+            this.fetchStockInfo()
         }
     }
     componentWillUnmount() {
@@ -173,7 +126,6 @@ class StockPage extends React.Component {
                         <p>{`${label}`}</p>
                     </div>
                 );
-
             }
 
             return null;

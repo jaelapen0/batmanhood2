@@ -18,6 +18,8 @@ export const fetchDailyStockData = ticker_symbol => {
     // ;
     return $.ajax({ 
         method: 'GET', 
+
+        // url: `https://financialmodelingprep.com/api/v3/historical-price-full/stock/${ticker_symbol}?apikey=566d181c1a1f7b076ecd3598648ea847`})
         url: `https://cloud.iexapis.com/stable/stock/${ticker_symbol.toUpperCase()}/intraday-prices?token=${token}&chartIEXOnly=True`})
 }
 
@@ -28,6 +30,15 @@ export const fetchWeeklyStockData = ticker_symbol => {
         url: `https://cloud.iexapis.com/stable/stock/${ticker_symbol.toUpperCase()}/intraday-prices?token=${token}&chartIEXOnly=True`
     })
 }
+
+// three months
+// url: `https://financialmodelingprep.com/api/v3/historical-chart/4hour/AAPL?from=2020-10-15&serietype=line&apikey=566d181c1a1f7b076ecd3598648ea847`
+// 1 month:
+// https://financialmodelingprep.com/api/v3/historical-chart/4hour/AAPL?from=2020-12-15&serietype=line&apikey=566d181c1a1f7b076ecd3598648ea847
+
+// 5 yr
+//https://financialmodelingprep.com/api/v3/historical-chart/4hour/AAPL?from=2016-12-15&serietype=line&apikey=566d181c1a1f7b076ecd3598648ea847
+
 
 export const fetchCompanyProfile = ticker_symbol => {
     const token = `566d181c1a1f7b076ecd3598648ea847`

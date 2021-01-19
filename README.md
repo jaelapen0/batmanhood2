@@ -7,6 +7,7 @@ Batmanhood is a full stack web app that imitates the qualities and features of R
 # Site URL
 
 * https://batmanhood-aa.herokuapp.com/
+* ![alt text](https://github.com/jaelapen0/batmanhood2/blob/main/app/assets/images/batmanhood480.gif?raw=true)
 
 # Under the Hood
 * This full stack application was built on the Ruby on Rails framework, utilizing PSQL as the database, ruby for backend and React/HTML/CsSS for 

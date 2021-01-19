@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Overview
+Batmanhood is a full stack web app that imitates the qualities and features of Robinhood. The purpose of Batmanhiid is to showcase the same functionalities of Robinhood such as simulating trades or managing portfolios, while using APIs to dynamically fetch real time data and Recharts to graph it out. The money used in this application is imaginery, and we are not regulated by financial institutions :) 
 
-Things you may want to cover:
 
-* Ruby version
+# Site URL
 
-* System dependencies
+* https://batmanhood-aa.herokuapp.com/
 
-* Configuration
+# Under the Hood
+* This full stack application was built on the Ruby on Rails framework, utilizing PSQL as the database, ruby for backend and React/HTML/CsSS for 
 
-* Database creation
+# Frontend
+* React-Redux
+* HTML
+* CSS
 
-* Database initialization
+# Backend
+* PSQL
+* Ruby
 
-* How to run the test suite
+# External Libraries / APIs
+* Recharts (for graphing out data)
+* NewsApi (News API for stock specific news)
+* Financial Model Prep API (company profile data)
+* IEXCloud API (real time data)
+* GNews API 
 
-* Services (job queues, cache servers, search engines, etc.)
+# Challenges
 
-* Deployment instructions
+* One of the challenges was figuring out how to reduce the amount of API requests, especially on the home page (while logged in), for every stock in the users portfolio/watchlist.  For stocks in the watchlist, I checked to see if the same stock was in the portfolio list as well, then reuse the data if possible. If not then make a fresh API request.
 
-* ...
+
+
+# Upcoming
+* Adding historical information for Weekly, Monthly, Yearly

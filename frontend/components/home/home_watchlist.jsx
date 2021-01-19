@@ -128,7 +128,7 @@ class HomeWatchlist extends React.Component {
                               </LineChart>
                                  
                                  <div>
-                                    {this.state.nowReadyStocks[stock].stockDif >= 0 ?
+                                 {this.state.nowReadyStocks[stock].stockDif >= 0 && this.state.nowReadyStocks[stock].lastPrice ?
 
                                        <div className="watchlist-right">
                                           <h5>${this.state.nowReadyStocks[stock].lastPrice.toFixed(2)}</h5>

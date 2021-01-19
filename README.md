@@ -4,10 +4,10 @@
 Batmanhood is a full stack web app that imitates the qualities and features of Robinhood. The purpose of Batmanhiid is to showcase the same functionalities of Robinhood such as simulating trades or managing portfolios, while using APIs to dynamically fetch real time data and Recharts to graph it out. The money used in this application is imaginery, and we are not regulated by financial institutions :) 
 
 
-# Site URL
+# Site
 
 * https://batmanhood-aa.herokuapp.com/
-* ![alt text](https://github.com/jaelapen0/batmanhood2/blob/main/app/assets/images/batmanhood480.gif?raw=true)
+ ![alt text](https://github.com/jaelapen0/batmanhood2/blob/main/app/assets/images/batmanhood480.gif?raw=true)
 
 # Under the Hood
 * This full stack application was built on the Ruby on Rails framework, utilizing PSQL as the database, ruby for backend and React/HTML/CsSS for 

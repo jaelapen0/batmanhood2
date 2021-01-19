@@ -7,6 +7,17 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+     <meta property="og:title" content="Batmanhood" />
+     <meta property='og:image' content="<%= image_url('batmanhood480.gif') %>"/>
+     <meta property="og:description"
+       content="Batmanhood is a full stack web app that imitates the qualities and features of Robinhood. The purpose of Batmanhood is to showcase the same functionalities of Robinhood such as simulating trades or managing portfolios, while using APIs to dynamically fetch real time data and Recharts to graph it out. The money used in this application is imaginery, and is not regulated by financial institutions"
+     />
+     <meta property="og:url"
+       content="https://batmanhood-aa.herokuapp.com/"
+     />
+
+
     <script type="text/javascript">
       window.login_img = "<%=image_url("robinhood-login.jpg")%>"
       window.logo = "<%=image_url("batmanHood.png")%>"

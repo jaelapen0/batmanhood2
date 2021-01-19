@@ -32,6 +32,70 @@ Batmanhood is a full stack web app that imitates the qualities and features of R
 
 * One of the challenges was figuring out how to reduce the amount of API requests, especially on the home page (while logged in), for every stock in the users portfolio/watchlist.  For stocks in the watchlist, I checked to see if the same stock was in the portfolio list as well, then reuse the data if possible. If not then make a fresh API request.
 
+```
+   let readyStocks = {};
+         let notReadyStocks = [];
+         let watchlists = this.state.results.watchlists;
+         let stocks = this.props.parentState.stocks;
+
+         for (let i = 0; i < watchlists.length; i++) {
+            if (stocks[watchlists[i].ticker_symbol]){
+               readyStocks[watchlists[i].ticker_symbol] = stocks[watchlists[i].ticker_symbol]
+               
+               readyStocks[watchlists[i].ticker_symbol].low = stocks[watchlists[i].ticker_symbol].data.data.reduce(function (prev, current) {
+                  return (prev.low < current.low) ? prev : current
+               })
+              readyStocks[watchlists[i].ticker_symbol].high = stocks[watchlists[i].ticker_symbol].data.data.reduce(function (prev, current) {
+                  return (prev.high < current.high) ? prev : current
+               })
+               // ;
+
+
+            }
+            else{
+             notReadyStocks.push(watchlists[i].ticker_symbol);
+            }
+         }
+         // ;
+         
+         this.setState({stocks: readyStocks, notReadyStocks})
+         // ;
+
+         for (let i = 0; i < notReadyStocks.length; i++) {
+            let ticker = notReadyStocks[i]
+            let state= this.state;
+            this.props.pullStockDetails(ticker)
+            
+            .then((details, notReadyStocks) =>{
+               // ;
+              
+               ;
+               let nowReadyStocks = state.nowReadyStocks // creating copy of state variable jasper
+               ;
+               
+               nowReadyStocks[ticker] = {};
+               nowReadyStocks[ticker]["firstPrice"] = details.data[0].average; 
+               nowReadyStocks[ticker]["lastPrice"] = details.data[details.data.length-1].average; 
+               nowReadyStocks[ticker]["stockDif"] = details.data[details.data.length - 1].average - details.data[0].average;   // update the name property, assign a new value                 
+               
+               let data2 = []
+               data2.data = details.data.filter(arr => (arr.average != null))
+               nowReadyStocks[ticker].data = data2;
+               nowReadyStocks[ticker].low = nowReadyStocks[ticker].data.data.reduce(function (prev, current) {
+                  return (prev.low < current.low) ? prev : current
+               })
+               nowReadyStocks[ticker].high = nowReadyStocks[ticker].data.data.reduce(function (prev, current) {
+                  return (prev.high < current.high) ? prev : current
+               })
+               // ;
+               this.setState({ nowReadyStocks})
+            })
+         }
+         // ;
+      
+
+```
+
 * Another challenge I dealt with, was figuring out how to put together the data for the home page portfolio chart. Combining the user's buying power, plus fetching stock for each stock the user has, then adding the values of each stock for the given timepoint. There would also be an occasional null value in the response data from the API, so that would have to checked as well. Ton's of data cleaning/process went into this portfolio.
 
 ```

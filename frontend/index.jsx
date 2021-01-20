@@ -4,6 +4,7 @@ import {login, logout, signup} from "./util/session_api_util"
 import configureStore from "./store/store"
 import Root from "./components/root";
 import {getWatchlist, createWatchlist, getWatchlists, deleteWatchlist} from './util/watchlist_util'
+import {fetchHistoricStockData} from './util/stock_util';
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -25,4 +26,5 @@ document.addEventListener("DOMContentLoaded", () => {
     window.getWatchlist = getWatchlist;
     window.createWatchlist = createWatchlist;
     window.deleteWatchlist = deleteWatchlist;
+    window.fetchHistoricStockData = fetchHistoricStockData;
 });

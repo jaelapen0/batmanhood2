@@ -23,11 +23,19 @@ export const fetchDailyStockData = ticker_symbol => {
         url: `https://cloud.iexapis.com/stable/stock/${ticker_symbol.toUpperCase()}/intraday-prices?token=${token}&chartIEXOnly=True`})
 }
 
-export const fetchWeeklyStockData = ticker_symbol => {
-    const token = "pk_9e9f3108dcec42ddbcd6bd227b1ddc6c"
+export const fetchHistoricStockData = (ticker_symbol, days) => {
+    let currentDate = new Date();
+    let pastDate = currentDate;
+    let psty = pastDate.setDate(pastDate.getDate() - days);
+    let datedPsty = new Date(psty);
+    let formattedDate = datedPsty.toISOString().split("T")[0];
+    debugger;
+
+    // const token = "pk_9e9f3108dcec42ddbcd6bd227b1ddc6c"
     return $.ajax({
         method: 'GET',
-        url: `https://cloud.iexapis.com/stable/stock/${ticker_symbol.toUpperCase()}/intraday-prices?token=${token}&chartIEXOnly=True`
+        // url: `https://cloud.iexapis.com/stable/stock/${ticker_symbol.toUpperCase()}/intraday-prices?token=${token}&chartIEXOnly=True`
+        url: `https://financialmodelingprep.com/api/v3/historical-chart/15min/${ticker_symbol}?from=${formattedDate}&serietype=line&apikey=566d181c1a1f7b076ecd3598648ea847`
     })
 }
 

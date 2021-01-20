@@ -66,12 +66,12 @@ class HomeWatchlist extends React.Component {
                ;
                
                nowReadyStocks[ticker] = {};
-               nowReadyStocks[ticker]["firstPrice"] = details.data[0].average; 
-               nowReadyStocks[ticker]["lastPrice"] = details.data[details.data.length-1].average; 
-               nowReadyStocks[ticker]["stockDif"] = details.data[details.data.length - 1].average - details.data[0].average;   // update the name property, assign a new value                 
+               nowReadyStocks[ticker]["firstPrice"] = details.data[0].open; 
+               nowReadyStocks[ticker]["lastPrice"] = details.data[details.data.length-1].open; 
+               nowReadyStocks[ticker]["stockDif"] = details.data[details.data.length - 1].open - details.data[0].open;   // update the name property, assign a new value                 
                
                let data2 = []
-               data2.data = details.data.filter(arr => (arr.average != null))
+               data2.data = details.data.filter(arr => (arr.open != null))
                nowReadyStocks[ticker].data = data2;
                nowReadyStocks[ticker].low = nowReadyStocks[ticker].data.data.reduce(function (prev, current) {
                   return (prev.low < current.low) ? prev : current
@@ -117,12 +117,12 @@ class HomeWatchlist extends React.Component {
                                  className="stocks-chart"
                                  width={70} height={45} data={nowReadyStocks[stock].data.data}>
                                  <XAxis dataKey="label" hide={true}></XAxis>
-                                 <YAxis dataKey="average" domain={[nowReadyStocks[stock].low, nowReadyStocks[stock].high]} axisLine={false} hide={true} />                                 
+                                 <YAxis dataKey="open" domain={[nowReadyStocks[stock].low, nowReadyStocks[stock].high]} axisLine={false} hide={true} />                                 
                                  
                                  {nowReadyStocks[stock].stockDif >= 0.0 ?
-                                    <Line type="monotone" dataKey="average" stroke={"#21ce99"} dot={false} strokeWidth='1' />
+                                    <Line type="monotone" dataKey="open" stroke={"#21ce99"} dot={false} strokeWidth='1' />
                                     :
-                                    <Line type="monotone" dataKey="average" stroke={"red"} dot={false} strokeWidth='1' />
+                                    <Line type="monotone" dataKey="open" stroke={"red"} dot={false} strokeWidth='1' />
 
                                  }
                               </LineChart>
@@ -174,11 +174,11 @@ class HomeWatchlist extends React.Component {
                               className="stocks-chart"
                               width={70} height={45} data={stocks[stock].data.data}>
                               <XAxis dataKey="label" hide={true}></XAxis>
-                              <YAxis dataKey="average" domain={[stocks[stock].low.low, stocks[stock].high.high]} axisLine={false} hide={true} />
+                              <YAxis dataKey="open" domain={[stocks[stock].low.low, stocks[stock].high.high]} axisLine={false} hide={true} />
                               {stocks[stock].stockDif >= 0 ? 
-                                 <Line type="monotone" dataKey="average" stroke={"#21ce99"} dot={false} strokeWidth='1' />
+                                 <Line type="monotone" dataKey="open" stroke={"#21ce99"} dot={false} strokeWidth='1' />
                                        :
-                                 <Line type="monotone" dataKey="average" stroke={"red"} dot={false} strokeWidth='1' />
+                                 <Line type="monotone" dataKey="open" stroke={"red"} dot={false} strokeWidth='1' />
 
                               }
                                  </LineChart>

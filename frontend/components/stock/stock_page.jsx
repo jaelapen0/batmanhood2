@@ -11,7 +11,7 @@ class StockPage extends React.Component {
         super(props)
         this.state ={
             label: "label",
-            key: "average",
+            key: "open",
             timeframe: "Today"
         }
         this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -31,10 +31,10 @@ class StockPage extends React.Component {
             .then(data => {
                 // const data1 = data.historical.reverse().filter(arr => (arr.open != null))
 
-                let data1 = data.filter(arr => (arr.average != null))
-                let dif = data1[data1.length - 1].average - data1[0].average;
+                let data1 = data.filter(arr => (arr.open != null))
+                let dif = data1[data1.length - 1].open - data1[0].open;
 
-                let percentChange = ((dif / data1[0].average) * 100).toFixed(2)
+                let percentChange = ((dif / data1[0].open) * 100).toFixed(2)
                 let low = data1.reduce(function (prev, current) {
                     return (prev.low < current.low) ? prev : current
                 })
@@ -69,7 +69,7 @@ class StockPage extends React.Component {
                     currentPrice, color, ticker,
                     setColor,
                     label: "label",
-                    key: "average",
+                    key: "open",
                     timeframe: "Today",
                     orderPrice: currentPrice
                 })
@@ -97,22 +97,22 @@ class StockPage extends React.Component {
             fetchHistoricStockData(ticker, e.currentTarget.id)
                 .then(data => {
                     ;
-                    let data2 = data.reverse().filter(arr => (arr.open != null))
+                    let data1 = data.reverse().filter(arr => (arr.open != null))
                     ;
-                    // data2[data2.length - 1].open = this.state.currentPrice;
-                    // const data2 = data.filter(arr => (arr.open != null))
-                    let dif = data2[data2.length - 1].open - data2[0].open;
+                    // data1[data1.length - 1].open = this.state.currentPrice;
+                    // const data1 = data.filter(arr => (arr.open != null))
+                    let dif = data1[data1.length - 1].open - data1[0].open;
 
-                    let percentChange = ((dif / data2[0].open) * 100).toFixed(2)
-                    let low = data2.reduce(function (prev, current) {
+                    let percentChange = ((dif / data1[0].open) * 100).toFixed(2)
+                    let low = data1.reduce(function (prev, current) {
                         return (prev.low < current.low) ? prev : current
                     })
                     // ;
-                    let high = data2.reduce(function (prev, current) {
+                    let high = data1.reduce(function (prev, current) {
                         return (prev.high < current.high) ? prev : current
                     })
 
-                    // const currentPrice = data2[data2.length - 1].open
+                    // const currentPrice = data1[data1.length - 1].open
                     let color = dif < 0 ? "red" : '#21ce99'
                     let setColor = color
 
@@ -126,7 +126,7 @@ class StockPage extends React.Component {
                     }
                     ;
                     this.setState({
-                        data: data2, low: low.open, high: high.open,
+                        data: data1, low: low.open, high: high.open,
                         // dif, percentChange,
                         // currentPrice, ticker,
                         setColor,
@@ -176,8 +176,9 @@ class StockPage extends React.Component {
 
     handleMouseOff() {
         let currentPrice = this.state.data[this.state.data.length - 1].open
-        let dif = (parseFloat(currentPrice - this.state.data[0].open)).toFixed(2)
+        let dif = (parseFloat(this.state.data[this.state.data.length-1].open - this.state.data[0].open)).toFixed(2)
         let color = dif < 0 ? "red" : '#21ce99'
+        let setColor = color;
         let percentChange = parseFloat(dif / this.state.data[0].open * 100).toFixed(2)
         if (dif > 0) dif = "+$" + Math.abs(dif).toFixed(2);
         if (dif < 0) dif = "-$" + Math.abs(dif).toFixed(2);

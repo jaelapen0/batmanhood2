@@ -64,12 +64,12 @@ class Portfolio extends React.Component {
                             const quantity = stocks[name].amountt
                             const req = Object.keys(stocks).length
                             let reqMet = 0;
-                            // const data1 = data.filter(arr => (arr.average != null))
+                            // const data1 = data.filter(arr => (arr.open != null))
                             stocks[name].firstPrice = 0;
                             stocks[name].lastPrice = 0;
                             stocks[name].stockDif = 0;
                             let data2 = []
-                            data2.data = data.data.filter(arr => (arr.average != null))
+                            data2.data = data.data.filter(arr => (arr.open != null))
                             stocks[name].data = data2; 
                             stocks[name].low = data.data.reduce(function (prev, current) {
                                 return (prev.low < current.low) ? prev : current
@@ -80,22 +80,22 @@ class Portfolio extends React.Component {
                             })
                             const data1 = data.data.forEach(minInfo => {
                                 // ;
-                                if (minInfo.average != null) {
+                                if (minInfo.open != null) {
                                     if (!stocksDetails[minInfo.label]) {
                                         stocksDetails[minInfo.label] = [];
 
-                                        let totalAmount = minInfo.average * quantity
+                                        let totalAmount = minInfo.open * quantity
                                         stocksDetails[minInfo.label].push(totalAmount);
                                     }
                                     else {
-                                        let totalAmount = minInfo.average * quantity
+                                        let totalAmount = minInfo.open * quantity
                                         stocksDetails[minInfo.label].push(totalAmount);
                                     }
                                     
-                                    if (stocks[name].firstPrice === 0) stocks[name].firstPrice = minInfo.average;
+                                    if (stocks[name].firstPrice === 0) stocks[name].firstPrice = minInfo.open;
                                     // ;
-                                    if (minInfo.average != 0) {
-                                        stocks[name].lastPrice = minInfo.average;
+                                    if (minInfo.open != 0) {
+                                        stocks[name].lastPrice = minInfo.open;
                                         stocks[name].stockDif = stocks[name].lastPrice - stocks[name].firstPrice;
                                     }
                                     // ;
@@ -123,20 +123,20 @@ class Portfolio extends React.Component {
                                         let added = stocksDetails[min].reduce((sum, x) => sum + x)
                                         if (added < dataMin) { dataMin = added }
                                         if (added > dataMax) { dataMax = added }
-                                        theLast.push({ time: min, average: added.toFixed(2) });
+                                        theLast.push({ time: min, open: added.toFixed(2) });
                                     }
                                 })
 
                                 if (theLast.length > 0) {
-                                    first += parseFloat(theLast[0].average)
-                                    last += parseFloat(theLast[theLast.length - 1].average)
+                                    first += parseFloat(theLast[0].open)
+                                    last += parseFloat(theLast[theLast.length - 1].open)
                                     if (first > last) {
                                         color = "red";
                                         dif = last - first
                                     } else { dif = last - first }
                                     // ;
 
-                                    let currentPrice = theLast[theLast.length - 1].average
+                                    let currentPrice = theLast[theLast.length - 1].open
                                     this.setState({
                                         stocksDetails: stocksDetails,
                                         req: req,
@@ -181,12 +181,12 @@ class Portfolio extends React.Component {
             let dataMin = 10000000000
             let dataMax = 0
             for ( let i = 0; i < theLast.length; i++){
-               theLast[i].average =  (parseFloat(theLast[i].average) + difference).toFixed(2)
-                if (parseFloat(theLast[i].average) < dataMin) { dataMin = parseFloat(theLast[i].average) }
-                if (parseFloat(theLast[i].average) > dataMax) { dataMax = parseFloat(theLast[i].average) }
+               theLast[i].open =  (parseFloat(theLast[i].open) + difference).toFixed(2)
+                if (parseFloat(theLast[i].open) < dataMin) { dataMin = parseFloat(theLast[i].open) }
+                if (parseFloat(theLast[i].open) > dataMax) { dataMax = parseFloat(theLast[i].open) }
             }
 
-            let currentPrice = theLast[0] ? theLast[theLast.length - 1].average : this.props.buyingPower
+            let currentPrice = theLast[0] ? theLast[theLast.length - 1].open : this.props.buyingPower
             this.setState({theLast, dataMin, dataMax, currentPrice})
         }
 
@@ -202,15 +202,15 @@ class Portfolio extends React.Component {
             //             // ;
             //             let reqMet = 0;
             //             const data1 = data.data.forEach(minInfo => {
-            //                 if (minInfo.average != null) {
+            //                 if (minInfo.open != null) {
             //                     if (!stocksDetails[minInfo.label]) {
             //                         stocksDetails[minInfo.label] = [];
 
-            //                         let totalAmount = minInfo.average * quantity
+            //                         let totalAmount = minInfo.open * quantity
             //                         stocksDetails[minInfo.label].push(totalAmount);
             //                     }
             //                     else {
-            //                         let totalAmount = minInfo.average * quantity
+            //                         let totalAmount = minInfo.open * quantity
             //                         stocksDetails[minInfo.label].push(totalAmount);
             //                     }
             //                 }
@@ -238,14 +238,14 @@ class Portfolio extends React.Component {
             //                         let added = stocksDetails[min].reduce((sum, x) => sum + x)
             //                         if (added < dataMin) { dataMin = added }
             //                         if (added > dataMax) { dataMax = added }
-            //                         theLast.push({ time: min, average: added.toFixed(2) });
+            //                         theLast.push({ time: min, open: added.toFixed(2) });
             //                     }
             //                 })
                             
             //                 if (theLast.length > 0){
-            //                     first += parseFloat(theLast[0].average)
+            //                     first += parseFloat(theLast[0].open)
                                 
-            //                     last += parseFloat(theLast[theLast.length - 1].average)
+            //                     last += parseFloat(theLast[theLast.length - 1].open)
             //                     if (first > last) {
             //                         color = "red";
             //                         dif = last - first
@@ -295,15 +295,15 @@ class Portfolio extends React.Component {
             if (currentPrice === null) {
                 return null;
             }
-            let dif = currentPrice - this.state.theLast[0].average
+            let dif = currentPrice - this.state.theLast[0].open
             const color = dif < 0 ? "red" : '#21ce99'
             this.setState({ currentPrice, dif, color})
         }
     }
 
     handleMouseOff() {
-        let currentPrice = this.state.theLast[this.state.theLast.length-1].average
-        let dif = currentPrice - this.state.theLast[0].average;
+        let currentPrice = this.state.theLast[this.state.theLast.length-1].open
+        let dif = currentPrice - this.state.theLast[0].open;
         const color = dif < 0 ? "red" : '#21ce99'
         this.setState({
             currentPrice,
@@ -357,7 +357,7 @@ class Portfolio extends React.Component {
                             <h3 className="portfolio-header">${theLast[0] ? `${numberWithCommas(currentPrice)}` : ""}</h3>
                         <span className="portfolio-header"
                             style={{color: color}}
-                            >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].average * 100).toFixed(2)): ""}%) </span> 
+                            >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].open * 100).toFixed(2)): ""}%) </span> 
                         < span className="portfolio-header">Today</span>
                         <br/>
                         <br />
@@ -365,14 +365,14 @@ class Portfolio extends React.Component {
                             <LineChart onMouseMove= {this.handleMouseMove} onMouseLeave= {this.handleMouseOff}
                                 className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
                                 <XAxis dataKey="time" hide={true}></XAxis>
-                                    <YAxis dataKey="average" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
+                                    <YAxis dataKey="open" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
                                 <Tooltip
                                 content={<CustomToolTip />}
                                 wrapperStyle={{ left: -35 }}
                                 allowEscapeViewBox={{ x: true, y: true }}
                                 position={{ y: -40 }} cursor={{ stroke: 'grey' }} isAnimationActive={false} 
                                 ></Tooltip>
-                                    <Line type="monotone" dataKey="average" stroke={color} dot={false} strokeWidth='2' animationDuration={1500} />
+                                    <Line type="monotone" dataKey="open" stroke={color} dot={false} strokeWidth='2' animationDuration={1500} />
                             </LineChart>
                         </div>
                         
@@ -395,12 +395,12 @@ class Portfolio extends React.Component {
                                                     className = "stocks-chart"
                                                      width={70} height={45} data={stocks[stock].data.data}>
                                                     <XAxis dataKey="label" hide={true}></XAxis>
-                                                    <YAxis dataKey="average" domain={[stocks[stock].low, stocks[stock].high]} axisLine={false} hide={true} />
+                                                    <YAxis dataKey="open" domain={[stocks[stock].low, stocks[stock].high]} axisLine={false} hide={true} />
                                                    
                                                     {stocks[stock].stockDif >= 0 ?
-                                                        <Line type="monotone" dataKey="average" stroke={"#21ce99"} dot={false} strokeWidth='1' />
+                                                        <Line type="monotone" dataKey="open" stroke={"#21ce99"} dot={false} strokeWidth='1' />
                                                         :
-                                                        <Line type="monotone" dataKey="average" stroke={"red"} dot={false} strokeWidth='1' />
+                                                        <Line type="monotone" dataKey="open" stroke={"red"} dot={false} strokeWidth='1' />
 
                                                     }
                                                     

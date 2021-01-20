@@ -29,7 +29,7 @@ export const fetchHistoricStockData = (ticker_symbol, days) => {
     let psty = pastDate.setDate(pastDate.getDate() - days);
     let datedPsty = new Date(psty);
     let formattedDate = datedPsty.toISOString().split("T")[0];
-    debugger;
+    ;
 
     // const token = "pk_9e9f3108dcec42ddbcd6bd227b1ddc6c"
     return $.ajax({

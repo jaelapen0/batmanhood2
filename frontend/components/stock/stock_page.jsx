@@ -55,7 +55,7 @@ class StockPage extends React.Component {
 
                     dif = `-$${Math.abs(dif).toFixed(2)}`
                 }
-                debugger;
+                ;
                 
                 for (let i = 0; i < document.getElementsByClassName("chartOption").length; i++) {
                     document.getElementsByClassName("chartOption")[i].style.color = ""
@@ -81,7 +81,7 @@ class StockPage extends React.Component {
 
     fetchHistoricStockInfo(e){
         let ticker = this.props.location.pathname.split("/")[2]
-        debugger;
+        ;
         let timeframe = "";
 
         for (let i = 0; i < document.getElementsByClassName("chartOption").length; i++) {
@@ -96,9 +96,9 @@ class StockPage extends React.Component {
         if (e.currentTarget){
             fetchHistoricStockData(ticker, e.currentTarget.id)
                 .then(data => {
-                    debugger;
+                    ;
                     let data2 = data.reverse().filter(arr => (arr.open != null))
-                    debugger;
+                    ;
                     // data2[data2.length - 1].open = this.state.currentPrice;
                     // const data2 = data.filter(arr => (arr.open != null))
                     let dif = data2[data2.length - 1].open - data2[0].open;
@@ -124,7 +124,7 @@ class StockPage extends React.Component {
 
                         dif = `-$${Math.abs(dif).toFixed(2)}`
                     }
-                    debugger;
+                    ;
                     this.setState({
                         data: data2, low: low.open, high: high.open,
                         // dif, percentChange,

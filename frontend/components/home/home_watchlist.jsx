@@ -95,7 +95,7 @@ class HomeWatchlist extends React.Component {
                                     <h4>{stock.toUpperCase()}</h4>
                                  </div>
                               <LineChart
-                                 className="stocks-chart"
+                                 className="stocks-chart2"
                                  width={70} height={45} data={nowReadyStocks[stock].data.data}>
                                  <XAxis dataKey="label" hide={true}></XAxis>
                                  <YAxis dataKey="open" domain={[nowReadyStocks[stock].low, nowReadyStocks[stock].high]} axisLine={false} hide={true} />                                 
@@ -112,13 +112,13 @@ class HomeWatchlist extends React.Component {
                                  {this.state.nowReadyStocks[stock].stockDif >= 0 && this.state.nowReadyStocks[stock].lastPrice ?
 
                                        <div className="watchlist-right">
-                                          <h5>${this.state.nowReadyStocks[stock].lastPrice.toFixed(2)}</h5>
-                                       <h5 className="watchlist-plus">+{(this.state.nowReadyStocks[stock].stockDif / this.state.nowReadyStocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                       <h5>${this.state.nowReadyStocks[stock].lastPrice ? this.state.nowReadyStocks[stock].lastPrice.toFixed(2) : ""}</h5>
+                                       <h5 className="watchlist-plus">+{this.state.nowReadyStocks[stock].stockDif / this.state.nowReadyStocks[stock].lastPrice * 100 != null ? (this.state.nowReadyStocks[stock].stockDif / this.state.nowReadyStocks[stock].lastPrice * 100).toFixed(2) : ""}%</h5>
                                        </div>
                                        :
                                        <div className="watchlist-right">
-                                          <h5>${this.state.nowReadyStocks[stock].lastPrice.toFixed(2)}</h5>
-                                       <h5 className="watchlist-minus">{(this.state.nowReadyStocks[stock].stockDif / this.state.nowReadyStocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                       <h5>${this.state.nowReadyStocks[stock].lastPrice ?this.state.nowReadyStocks[stock].lastPrice.toFixed(2): ""}</h5>
+                                       <h5 className="watchlist-minus">{this.state.nowReadyStocks[stock].stockDif / this.state.nowReadyStocks[stock].lastPrice * 100 != null ? (this.state.nowReadyStocks[stock].stockDif / this.state.nowReadyStocks[stock].lastPrice * 100).toFixed(2) : "" }% </h5>
                                        </div>
                                     }
                                  </div>
@@ -132,7 +132,7 @@ class HomeWatchlist extends React.Component {
                
             
             {Object.keys(stocks).map(stock => {
-               debugger;
+               ;
                return (
                   stocks[stock] && stocks[stock].lastPrice > 0 ?
                      <Link to={`/stocks/${stock}`} key={stock}>
@@ -143,7 +143,7 @@ class HomeWatchlist extends React.Component {
                            </div>
 
                            <LineChart key={`chart-${stock}`}
-                              className="stocks-chart"
+                              className="stocks-chart2"
                               width={70} height={45} data={stocks[stock].data.data}>
                               <XAxis dataKey="label" hide={true}></XAxis>
                               <YAxis dataKey="open" domain={[stocks[stock].low.low, stocks[stock].high.high]} axisLine={false} hide={true} />
@@ -159,13 +159,13 @@ class HomeWatchlist extends React.Component {
                               {stocks[stock].stockDif >= 0 ?
                                  
                                  <div className="watchlist-right"> 
-                                    <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
-                                    <h5 className="watchlist-plus">+{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                    <h5>${stocks[stock].lastPrice ? stocks[stock].lastPrice.toFixed(2) : ""}</h5>
+                                    <h5 className="watchlist-plus">+{stocks[stock].stockDif / stocks[stock].lastPrice * 100 != null ? (stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2) : ""}%</h5>
                                  </div>
                                  :
                                  <div className="watchlist-right"> 
-                                    <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
-                                    <h5 className="watchlist-minus">{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                    <h5>${stocks[stock].lastPrice ? stocks[stock].lastPrice.toFixed(2) :""}</h5>
+                                    <h5 className="watchlist-minus">{stocks[stock].stockDif / stocks[stock].lastPrice * 100 != null ? (stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2) : ""}%</h5>
                                  </div>
 
                               }

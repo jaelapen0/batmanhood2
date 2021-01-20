@@ -103,7 +103,7 @@ class StockPage extends React.Component {
                     let dif = data1[data1.length - 1].open - data1[0].open;
 
                     let percentChange = ((dif / data1[0].open) * 100).toFixed(2)
-                    debugger;
+                    ;
                     let low = data1.reduce(function (prev, current) {
                         return (prev.low < current.low) ? prev : current
                     })

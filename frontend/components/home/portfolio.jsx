@@ -28,8 +28,7 @@ class Portfolio extends React.Component {
 
         const stocksDetails = {};
         const stocks = {}
-        const {
-            buyingPower } = this.props;
+        const { buyingPower } = this.props;
             
         this.props.fetchOrderHistory()
             .then(orders => {
@@ -37,7 +36,6 @@ class Portfolio extends React.Component {
                 let allOrders = orders.orderHistory;
 
                 for (let i = 0; i < allOrders.length; i++) {
-                    // ;
                     if (stocks[allOrders[i].ticker_symbol]) {
                         if (allOrders[i].order_type === "buy") {
                             stocks[allOrders[i].ticker_symbol].amountt += allOrders[i].shares_quantity
@@ -51,7 +49,6 @@ class Portfolio extends React.Component {
 
                     }
                 }
-                // ;
             }
         )
         .then(() => {
@@ -93,18 +90,17 @@ class Portfolio extends React.Component {
                                     }
                                     
                                     if (stocks[name].firstPrice === 0) stocks[name].firstPrice = minInfo.open;
-                                    // ;
+                        
                                     if (minInfo.open != 0) {
                                         stocks[name].lastPrice = minInfo.open;
                                         stocks[name].stockDif = stocks[name].lastPrice - stocks[name].firstPrice;
                                     }
-                                    // ;
                                 }
                                 if (stocksDetails[minInfo.label] && stocksDetails[minInfo.label].length > 0) {
                                     reqMet += 1
                                 };
                             })
-                            // 
+                            
                             if (reqMet / Object.keys(stocksDetails).length > .4) {
                                 const theLast = [];
                                 let dataMin = 10000000000
@@ -116,7 +112,6 @@ class Portfolio extends React.Component {
                                 let trimmed = {}
                                 
                                 Object.keys(stocksDetails).forEach(min => {
-                                    // 
                                     if (stocksDetails[min].length === req) {
                                         
                                         stocksDetails[min].push(parseInt(buyingPower))
@@ -134,7 +129,6 @@ class Portfolio extends React.Component {
                                         color = "red";
                                         dif = last - first
                                     } else { dif = last - first }
-                                    // ;
 
                                     let currentPrice = theLast[theLast.length - 1].open
                                     this.setState({
@@ -150,22 +144,18 @@ class Portfolio extends React.Component {
                                         stocks,
                                         completed: true,
                                         currentPrice
-                                        // [name]: {firstPrice, lastPrice}
                                     
                                     }, this.render)
                                     
                                 }
                             }
                                 else {
-                                    // ;
                                     this.setState({
                                         stocksDetails: stocksDetails,
                                         req: req,
                                     })
                                 }
-
-                        })
-            
+                        }) 
             }
             else{delete stocks[name]}
         })
@@ -189,101 +179,6 @@ class Portfolio extends React.Component {
             let currentPrice = theLast[0] ? theLast[theLast.length - 1].open : this.props.buyingPower
             this.setState({theLast, dataMin, dataMax, currentPrice})
         }
-
-        // if (this.props.stocks && Object.keys(this.props.stocks).length > 0 && prevProps.stocks != this.props.stocks){
-            // const stocksDetails = {};
-            // const { stocks, buyingPower} = this.props;
-            // Object.keys(stocks).forEach(name => {
-            //     this.props.pullStockDetails(name)
-            //         .then(data => {
-            //             // ;
-            //             const quantity = stocks[name]
-            //             const req = Object.keys(stocks).length
-            //             // ;
-            //             let reqMet = 0;
-            //             const data1 = data.data.forEach(minInfo => {
-            //                 if (minInfo.open != null) {
-            //                     if (!stocksDetails[minInfo.label]) {
-            //                         stocksDetails[minInfo.label] = [];
-
-            //                         let totalAmount = minInfo.open * quantity
-            //                         stocksDetails[minInfo.label].push(totalAmount);
-            //                     }
-            //                     else {
-            //                         let totalAmount = minInfo.open * quantity
-            //                         stocksDetails[minInfo.label].push(totalAmount);
-            //                     }
-            //                 }
-            //                 if (stocksDetails[minInfo.label] && stocksDetails[minInfo.label].length > 0) {
-            //                     // ;
-            //                     reqMet += 1};
-            //             })
-            //             // ;
-
-            //             if (reqMet / Object.keys(stocksDetails).length > .4){
-            //                 const theLast = [];
-            //                 let dataMin = 10000000000
-            //                 let dataMax = 0
-            //                 let color = "#21ce99"
-            //                 let dif = 0;
-            //                 let last = 0;
-            //                 let first = 0;
-            //                 let trimmed = {}
-
-            //                 Object.keys(stocksDetails).forEach(min => {
-            //                     // ;
-            //                     if (stocksDetails[min].length === req) {
-            //                         // ;
-            //                         stocksDetails[min].push(parseInt(buyingPower))
-            //                         let added = stocksDetails[min].reduce((sum, x) => sum + x)
-            //                         if (added < dataMin) { dataMin = added }
-            //                         if (added > dataMax) { dataMax = added }
-            //                         theLast.push({ time: min, open: added.toFixed(2) });
-            //                     }
-            //                 })
-                            
-            //                 if (theLast.length > 0){
-            //                     first += parseFloat(theLast[0].open)
-                                
-            //                     last += parseFloat(theLast[theLast.length - 1].open)
-            //                     if (first > last) {
-            //                         color = "red";
-            //                         dif = last - first
-            //                     } else { dif = first - last }
-            //                     ;
-                                
-            //                     // setTimeout(function () {
-            //                     //     //
-            //                     // }, 550)
-            //                     this.setState({
-            //                         stocksDetails: stocksDetails,
-            //                         req: req,
-            //                         theLast,
-            //                         dataMin,
-            //                         dataMax,
-            //                         color,
-            //                         dif,
-            //                         last,
-            //                         first
-            //                         // trimmed: trimmed
-            //                     }, this.render)
-            //                     // setTimeout(function () {
-            //                     //     //
-            //                     // }, 100)
-            //                 }
-            //             }
-            //             else{
-            //                 this.setState({
-            //                 stocksDetails: stocksDetails,
-            //                 req: req,
-                           
-            //                 // trimmed: trimmed
-            //             })
-            //         }
-
-            //         })
-            // })
-        // }
 
     }
 
@@ -312,10 +207,8 @@ class Portfolio extends React.Component {
         })
     }
 
-
     render(){
-       
-        ;
+
         let stocks = this.state.stocks
 
           const { 
@@ -332,13 +225,11 @@ class Portfolio extends React.Component {
             if (active) {
                 if (label && label.includes(":") === false) {
                     label = label.split(" ").join(":00 ")
-                }
-                return (
-                    <div>
+                }   
+                return ( <div>
                         <p>{`${label}`}</p>
                     </div>
-                );
-
+                )
             }
 
             return null;
@@ -347,92 +238,84 @@ class Portfolio extends React.Component {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        // ;
         return (
             <div>
-                
-                    <div className="port-list"> 
-                         <div className="porheader">
-                            <h2 className="portfolio-header">Investing</h2>
-                            <h3 className="portfolio-header">${theLast[0] ? `${numberWithCommas(currentPrice)}` : ""}</h3>
-                        <span className="portfolio-header"
-                            style={{color: color}}
-                            >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].open * 100).toFixed(2)): ""}%) </span> 
-                        < span className="portfolio-header">Today</span>
-                        <br/>
-                        <br />
-                        <br />
-                            <LineChart onMouseMove= {this.handleMouseMove} onMouseLeave= {this.handleMouseOff}
-                                className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
-                                <XAxis dataKey="time" hide={true}></XAxis>
-                                    <YAxis dataKey="open" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
-                                <Tooltip
-                                content={<CustomToolTip />}
-                                wrapperStyle={{ left: -35 }}
-                                allowEscapeViewBox={{ x: true, y: true }}
-                                position={{ y: -40 }} cursor={{ stroke: 'grey' }} isAnimationActive={false} 
-                                ></Tooltip>
-                                    <Line type="monotone" dataKey="open" stroke={color} dot={false} strokeWidth='2' animationDuration={1500} />
-                            </LineChart>
-                        </div>
+                <div className="port-list"> 
+                    <div className="porheader">
+                    <h2 className="portfolio-header">Investing</h2>
+                    <h3 className="portfolio-header">${theLast[0] ? `${numberWithCommas(currentPrice)}` : ""}</h3>
+                    <span className="portfolio-header"
+                        style={{color: color}}
+                        >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].open * 100).toFixed(2)): ""}%) </span> 
+                    < span className="portfolio-header">Today</span>
+                    <br/>
+                    <br />
+                    <br />
+                    <LineChart onMouseMove= {this.handleMouseMove} onMouseLeave= {this.handleMouseOff}
+                        className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
+                        <XAxis dataKey="time" hide={true}></XAxis>
+                            <YAxis dataKey="open" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
+                        <Tooltip
+                        content={<CustomToolTip />}
+                        wrapperStyle={{ left: -35 }}
+                        allowEscapeViewBox={{ x: true, y: true }}
+                        position={{ y: -40 }} cursor={{ stroke: 'grey' }} isAnimationActive={false} 
+                        ></Tooltip>
+                            <Line type="monotone" dataKey="open" stroke={color} dot={false} strokeWidth='2' animationDuration={1500} />
+                    </LineChart>
+                </div>
+                    
+            
+                    <div className="stocklist-container">
+                        <h1>Stocks</h1>
                         
-                
-                        <div className="stocklist-container">
-                            <h1>Stocks</h1>
-                            
-                            {Object.keys(stocks).map(stock => {
-                                // 
-                                return(
-                                    stocks[stock] && stocks[stock].amountt > 0 ? 
-                                    <Link to={`/stocks/${stock}`} key={stock}>
-                                        <div className="list-stock-parent" >
-                                            <div className="list-stock" >
-                                                <h4>{stock.toUpperCase()}</h4>
-                                                <p>{stocks[stock].amountt} shares</p>
-                                            </div>
+                        {Object.keys(stocks).map(stock => {
+                            // 
+                            return(
+                                stocks[stock] && stocks[stock].amountt > 0 ? 
+                                <Link to={`/stocks/${stock}`} key={stock}>
+                                    <div className="list-stock-parent" >
+                                        <div className="list-stock" >
+                                            <h4>{stock.toUpperCase()}</h4>
+                                            <p>{stocks[stock].amountt} shares</p>
+                                        </div>
 
-                                                <LineChart 
-                                                    className = "stocks-chart"
-                                                     width={70} height={45} data={stocks[stock].data.data}>
-                                                    <XAxis dataKey="label" hide={true}></XAxis>
-                                                    <YAxis dataKey="open" domain={[stocks[stock].low, stocks[stock].high]} axisLine={false} hide={true} />
-                                                   
-                                                    {stocks[stock].stockDif >= 0 ?
-                                                        <Line type="monotone" dataKey="open" stroke={"#21ce99"} dot={false} strokeWidth='1' />
-                                                        :
-                                                        <Line type="monotone" dataKey="open" stroke={"red"} dot={false} strokeWidth='1' />
+                                        <LineChart 
+                                            className = "stocks-chart"
+                                                width={70} height={45} data={stocks[stock].data.data}>
+                                            <XAxis dataKey="label" hide={true}></XAxis>
+                                            <YAxis dataKey="open" domain={[stocks[stock].low, stocks[stock].high]} axisLine={false} hide={true} />
+                                            
+                                            {stocks[stock].stockDif >= 0 ?
+                                                <Line type="monotone" dataKey="open" stroke={"#21ce99"} dot={false} strokeWidth='1' />
+                                                :
+                                                <Line type="monotone" dataKey="open" stroke={"red"} dot={false} strokeWidth='1' />
+                                            }
+                                        </LineChart>
 
-                                                    }
-                                                    
-                                                </LineChart>
-
-                                            <div>
-                                                {stocks[stock].stockDif >= 0 ?
-                                                
-                                                        <div>
-                                                            <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
-                                                            <h5 className="stocklist-plus">+{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
-                                                        </div>
-                                                        : 
-                                                        <div>
-                                                            <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
-                                                            <h5 className="stocklist-minus">{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
-                                                        </div>
-
-                                                }
-                                            </div>
-                                        </div> 
-                                    </Link>
-                                    : ""
-                                )
-                                }   
-                            )}
-                        <HomeWatchlist 
-                        props={this.props}
-                        parentState = {this.state}
-                        />
-                        </div>
+                                        <div>
+                                            {stocks[stock].stockDif >= 0 ?
+                                            
+                                                    <div>
+                                                        <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
+                                                        <h5 className="stocklist-plus">+{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                                    </div>
+                                                    : 
+                                                    <div>
+                                                        <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
+                                                        <h5 className="stocklist-minus">{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                                    </div>
+                                            }
+                                        </div>
+                                    </div> 
+                                </Link>
+                                : ""
+                            )
+                            }   
+                        )}
+                    <HomeWatchlist props={this.props} parentState={this.state} />
                     </div>
+                </div>
             </div>
         )
     }

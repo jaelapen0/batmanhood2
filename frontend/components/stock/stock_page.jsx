@@ -96,14 +96,14 @@ class StockPage extends React.Component {
         if (e.currentTarget){
             fetchHistoricStockData(ticker, e.currentTarget.id)
                 .then(data => {
-                    ;
+                    
                     let data1 = data.reverse().filter(arr => (arr.open != null))
-                    ;
                     // data1[data1.length - 1].open = this.state.currentPrice;
                     // const data1 = data.filter(arr => (arr.open != null))
                     let dif = data1[data1.length - 1].open - data1[0].open;
 
                     let percentChange = ((dif / data1[0].open) * 100).toFixed(2)
+                    debugger;
                     let low = data1.reduce(function (prev, current) {
                         return (prev.low < current.low) ? prev : current
                     })
@@ -127,7 +127,7 @@ class StockPage extends React.Component {
                     ;
                     this.setState({
                         data: data1, low: low.open, high: high.open,
-                        // dif, percentChange,
+                        dif, percentChange,
                         // currentPrice, ticker,
                         setColor,
                         label: "date",

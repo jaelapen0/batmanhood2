@@ -47,7 +47,8 @@ class Greeting extends React.Component {
             
             (<div id="splashnav">
                     <div className="splash-with-search">
-                        <a id="logo" href="/">Batmanhood</a>
+                        {/* <a id="logo" href="/">Batmanhood</a> */}
+                        <a id="logo" href="/"><img className="batlogo" src={window.logo} /></a>
                         <SearchBar />
                     </div>
                     <nav className="header-group1">

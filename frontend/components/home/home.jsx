@@ -68,9 +68,9 @@ class Home extends React.Component{
 
        
         return(
-            <div>
+            <div className="home-container">
                 {this.state? (
-                <div className="home-container">
+                <div >
                     {this.state.buyingPower ?
                     <Portfolio props={this.props} buyingPower={this.state.buyingPower} 
                     /> 

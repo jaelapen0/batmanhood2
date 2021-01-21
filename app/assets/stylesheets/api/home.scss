@@ -1,13 +1,13 @@
 
 .home-container{
-    margin-left: 12%;
-    margin-top: 100px;
+    margin-left: 9%;
+    margin-top: 70px;
     margin-right: 50px;
 }
 
 .port-list{
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
 
 }
 
@@ -40,21 +40,37 @@
 }
 
 .stocklist-container{
-    margin-top: 30px;
+    // margin-top: 30px;
     padding-top: 10px;
-    display: block;
-    width: 250px;
-    box-shadow: 0 5px 4px 0 lightgrey;
-    position: fixed;
-    left: 970px;
+    // display: block;
+    width: 260px;
+    // box-shadow: 0 5px 4px 0 lightgrey;
+    // position: fixed;
+    // left: 970px;
     border-radius: 3px;
     box-shadow: 2px 5px 4px 2px lightgrey;
     border: 1px solid lightgray;
-    margin-right: 5%;
+    // margin-right: 5%;
     height: 400px;
     overflow: auto;
     padding-bottom: 15px;
+
+     margin-top: 0px;
+    margin-left: 8%;
+    // padding: 10px 20px 10px 20px;
+    // width: 220px;
+    padding-right: 10px;
+    box-shadow: 2px 5px 4px 2px lightgrey;
+    position: fixed;
+    top: 130px;
 }
+
+
+
+    // border: 1px solid lightgray;
+    // border-radius: 3px;
+
+    
 .stocklist-container > h1{
     border-bottom: 1px solid lightgray;
     padding: 5px 10px;
@@ -153,8 +169,8 @@
 .newsfeed-container {
     // margin-left: 150px;
     width: 700px;
-    margin: 100px 175px;
-    margin: 100px 12%;
+    // margin: 100px 175px;
+    // margin: 100px 12%;
 }
 .article-container{
     display: flex;
@@ -208,7 +224,7 @@
 
 .add-money-container{
     // margin: 0 175px;
-    margin: 0 12% -50px 12%;
+    // margin: 0 12% -50px 12%;
 }
 
 .amount{
@@ -217,4 +233,12 @@
 }
 .amount button{
     margin: 0 10px;
+}
+
+.batlogo{
+    width: 32px;
+    // margin-left: 5px;
+    position: relative;
+    top: 6px;
+    right: 10px;
 }

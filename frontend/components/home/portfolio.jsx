@@ -242,79 +242,82 @@ class Portfolio extends React.Component {
             <div>
                 <div className="port-list"> 
                     <div className="porheader">
-                    <h2 className="portfolio-header">Investing</h2>
-                    <h3 className="portfolio-header">${theLast[0] ? `${numberWithCommas(currentPrice)}` : ""}</h3>
-                    <span className="portfolio-header"
-                        style={{color: color}}
-                        >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].open * 100).toFixed(2)): ""}%) </span> 
-                    < span className="portfolio-header">Today</span>
-                    <br/>
-                    <br />
-                    <br />
-                    <LineChart onMouseMove= {this.handleMouseMove} onMouseLeave= {this.handleMouseOff}
-                        className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
-                        <XAxis dataKey="time" hide={true}></XAxis>
-                            <YAxis dataKey="open" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
-                        <Tooltip
-                        content={<CustomToolTip />}
-                        wrapperStyle={{ left: -35 }}
-                        allowEscapeViewBox={{ x: true, y: true }}
-                        position={{ y: -40 }} cursor={{ stroke: 'grey' }} isAnimationActive={false} 
-                        ></Tooltip>
-                            <Line type="monotone" dataKey="open" stroke={color} dot={false} strokeWidth='2' animationDuration={1500} />
-                    </LineChart>
-                </div>
-                    
-            
-                    <div className="stocklist-container">
-                        <h1>Stocks</h1>
-                        
-                        {Object.keys(stocks).map(stock => {
-                            // 
-                            return(
-                                stocks[stock] && stocks[stock].amountt > 0 ? 
-                                <Link to={`/stocks/${stock}`} key={stock}>
-                                    <div className="list-stock-parent" >
-                                        <div className="list-stock" >
-                                            <h4>{stock.toUpperCase()}</h4>
-                                            <p>{stocks[stock].amountt} shares</p>
-                                        </div>
-
-                                        <LineChart 
-                                            className = "stocks-chart"
-                                                width={70} height={45} data={stocks[stock].data.data}>
-                                            <XAxis dataKey="label" hide={true}></XAxis>
-                                            <YAxis dataKey="open" domain={[stocks[stock].low, stocks[stock].high]} axisLine={false} hide={true} />
-                                            
-                                            {stocks[stock].stockDif >= 0 ?
-                                                <Line type="monotone" dataKey="open" stroke={"#21ce99"} dot={false} strokeWidth='1' />
-                                                :
-                                                <Line type="monotone" dataKey="open" stroke={"red"} dot={false} strokeWidth='1' />
-                                            }
-                                        </LineChart>
-
-                                        <div>
-                                            {stocks[stock].stockDif >= 0 ?
-                                            
-                                                    <div>
-                                                        <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
-                                                        <h5 className="stocklist-plus">+{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
-                                                    </div>
-                                                    : 
-                                                    <div>
-                                                        <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
-                                                        <h5 className="stocklist-minus">{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
-                                                    </div>
-                                            }
-                                        </div>
-                                    </div> 
-                                </Link>
-                                : ""
-                            )
-                            }   
-                        )}
-                    <HomeWatchlist props={this.props} parentState={this.state} />
+                        <div>
+                            <h2 className="portfolio-header">Investing</h2>
+                            <h3 className="portfolio-header">${theLast[0] ? `${numberWithCommas(currentPrice)}` : ""}</h3>
+                            <span className="portfolio-header"
+                                style={{color: color}}
+                                >{dif > 0 ? "+$" : "-$"} {Math.abs(dif).toFixed(2)} {dif > 0 ? " " : " "} ({theLast[0] ? ((dif / theLast[0].open * 100).toFixed(2)): ""}%) </span> 
+                            < span className="portfolio-header">Today</span>
+                            <br/>
+                            <br />
+                            <br />
+                            <LineChart onMouseMove= {this.handleMouseMove} onMouseLeave= {this.handleMouseOff}
+                                className="linechart" width={700} height={200} data={theLast[0]? theLast : []}>
+                                <XAxis dataKey="time" hide={true}></XAxis>
+                                    <YAxis dataKey="open" domain={[dataMin, dataMax]} axisLine={false} hide={true}/>
+                                <Tooltip
+                                content={<CustomToolTip />}
+                                wrapperStyle={{ left: -35 }}
+                                allowEscapeViewBox={{ x: true, y: true }}
+                                position={{ y: -40 }} cursor={{ stroke: 'grey' }} isAnimationActive={false} 
+                                ></Tooltip>
+                                    <Line type="monotone" dataKey="open" stroke={color} dot={false} strokeWidth='2' animationDuration={1500} />
+                            </LineChart>
+                        </div>
                     </div>
+                    <div>
+                        <div className="stocklist-container">
+                            <h1>Stocks</h1>
+                            
+                            {Object.keys(stocks).map(stock => {
+                                // 
+                                return(
+                                    stocks[stock] && stocks[stock].amountt > 0 ? 
+                                    <Link to={`/stocks/${stock}`} key={stock}>
+                                        <div className="list-stock-parent" >
+                                            <div className="list-stock" >
+                                                <h4>{stock.toUpperCase()}</h4>
+                                                <p>{stocks[stock].amountt} shares</p>
+                                            </div>
+
+                                            <LineChart 
+                                                className = "stocks-chart"
+                                                    width={70} height={45} data={stocks[stock].data.data}>
+                                                <XAxis dataKey="label" hide={true}></XAxis>
+                                                <YAxis dataKey="open" domain={[stocks[stock].low, stocks[stock].high]} axisLine={false} hide={true} />
+                                                
+                                                {stocks[stock].stockDif >= 0 ?
+                                                    <Line type="monotone" dataKey="open" stroke={"#21ce99"} dot={false} strokeWidth='1' />
+                                                    :
+                                                    <Line type="monotone" dataKey="open" stroke={"red"} dot={false} strokeWidth='1' />
+                                                }
+                                            </LineChart>
+
+                                            <div>
+                                                {stocks[stock].stockDif >= 0 ?
+                                                
+                                                        <div>
+                                                            <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
+                                                            <h5 className="stocklist-plus">+{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                                        </div>
+                                                        : 
+                                                        <div>
+                                                            <h5>${stocks[stock].lastPrice.toFixed(2)}</h5>
+                                                            <h5 className="stocklist-minus">{(stocks[stock].stockDif / stocks[stock].lastPrice * 100).toFixed(2)}%</h5>
+                                                        </div>
+                                                }
+                                            </div>
+                                        </div> 
+                                    </Link>
+                                    : ""
+                                )
+                                }   
+                            )}
+                        <HomeWatchlist props={this.props} parentState={this.state} />
+                        </div>
+                    </div>
+                
                 </div>
             </div>
         )

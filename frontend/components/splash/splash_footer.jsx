@@ -6,7 +6,7 @@ const SplashFooter = () => {
     return (
         <div id="splash-footer">
             <div id="footer-name">
-                by Jae Song November 2020
+                by Jae Song 2021
 
             </div>
             <div id="foot-paragraph">

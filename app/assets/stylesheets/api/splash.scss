@@ -113,12 +113,18 @@ button:hover{
 }
 
 .splash-with-search{
-    display: flex;
+    // display: flex;
+    margin-left: 8%;;
+    position: relative;
+    right: 60px;
+    bottom: 7px;
 }
 
 .searchbar-container{
-    margin-left: 40px;
+    margin-left: 75px;
     margin-top: 14px;
+    position: relative;
+    bottom: 30px;
     
    
     
@@ -137,10 +143,15 @@ button:hover{
 .search-result{
     padding: 5px 5px 5px 15px;
     z-index: 1;
+    font-weight: bolder;
+    font-size: 10px;
+    // background-color: lightgray;
+    // border-top: 1px solid lightgray;
+    // border-bottom: .2px solid lightgray;
 
 }
 .search-result:hover{
-    background-color: lightgray;    
+    background-color: #23d9a2;    
 }
 .header-group{
     // display: flex;

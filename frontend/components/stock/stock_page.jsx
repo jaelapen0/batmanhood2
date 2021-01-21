@@ -96,8 +96,14 @@ class StockPage extends React.Component {
         if (e.currentTarget){
             fetchHistoricStockData(ticker, e.currentTarget.id)
                 .then(data => {
-                    
-                    let data1 = data.reverse().filter(arr => (arr.open != null))
+                    ;
+                    let data1 = [];
+                    if (data.historical ){
+                        data1 = data.historical.reverse().filter(arr => (arr.open != null))
+                    } 
+                    else{
+                        data1 = data.reverse().filter(arr => (arr.open != null))
+                    }
                     // data1[data1.length - 1].open = this.state.currentPrice;
                     // const data1 = data.filter(arr => (arr.open != null))
                     let dif = data1[data1.length - 1].open - data1[0].open;
@@ -263,8 +269,8 @@ class StockPage extends React.Component {
                             <div style={{ color: "#21ce99"}} onClick={this.fetchStockInfo} id="1" className="chartOption">1D</div>
                             <div onClick={this.fetchHistoricStockInfo} id="7" className="chartOption">1W</div>
                             <div onClick={this.fetchHistoricStockInfo} id="30" className="chartOption">1M</div>
-                            {/* <div onClick={this.fetchHistoricStockInfo} id="365" className="chartOption">1Y</div> */}
-                            {/* <div onClick={this.fetchHistoricStockInfo} id="1461" className="chartOption">5Y</div> */}
+                            <div onClick={this.fetchHistoricStockInfo} id="365" className="chartOption">1Y</div>
+                            <div onClick={this.fetchHistoricStockInfo} id="1461" className="chartOption">5Y</div>
                         </div>
                         <br/>
                         <CompanyProfile ticker={ticker} />

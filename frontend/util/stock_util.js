@@ -27,13 +27,24 @@ export const fetchHistoricStockData = (ticker_symbol, days) => {
     let psty = pastDate.setDate(pastDate.getDate() - days);
     let datedPsty = new Date(psty);
     let formattedDate = datedPsty.toISOString().split("T")[0];
-    ;
 
-    // const token = "pk_9e9f3108dcec42ddbcd6bd227b1ddc6c"
+    if (days < 15){
+        return $.ajax({
+            method: 'GET',
+            url: `https://financialmodelingprep.com/api/v3/historical-chart/15min/${ticker_symbol}?from=${formattedDate}&serietype=line&apikey=566d181c1a1f7b076ecd3598648ea847`
+        })
+    }
+
+    if (days > 100) {
+        ;
+        return $.ajax({
+            method: 'GET',
+            url: `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker_symbol}?from=${formattedDate}&apikey=566d181c1a1f7b076ecd3598648ea847`
+        })
+    }
     return $.ajax({
         method: 'GET',
-        // url: `https://cloud.iexapis.com/stable/stock/${ticker_symbol.toUpperCase()}/intraday-prices?token=${token}&chartIEXOnly=True`
-        url: `https://financialmodelingprep.com/api/v3/historical-chart/15min/${ticker_symbol}?from=${formattedDate}&serietype=line&apikey=566d181c1a1f7b076ecd3598648ea847`
+        url: `https://financialmodelingprep.com/api/v3/historical-chart/4hour/${ticker_symbol}?from=${formattedDate}&serietype=line&apikey=566d181c1a1f7b076ecd3598648ea847`
     })
 }
 

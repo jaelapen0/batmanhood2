@@ -129,7 +129,7 @@ class StockPage extends React.Component {
                         data: data1, low: low.open, high: high.open,
                         dif, percentChange,
                         // currentPrice, ticker,
-                        setColor,
+                        setColor, color,
                         label: "date",
                         key: "open",
                         timeframe
@@ -218,10 +218,10 @@ class StockPage extends React.Component {
         
         return (
 
-            <div className="stockshow-container">
+            <div >
 
                 {this.state.currentPrice ?
-                    (<div>
+                    (<div className="stockshow-container">
 
                         <h3 className="show-header">{ticker.toUpperCase()}</h3>
                         <h2>${this.state.currentPrice.toFixed(2)}</h2>

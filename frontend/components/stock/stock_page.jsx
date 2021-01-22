@@ -44,6 +44,7 @@ class StockPage extends React.Component {
                 })
 
                 let currentPrice = data1[data1.length - 1].open
+                let originalPrice = currentPrice;
                 let color = dif < 0 ? "red" : '#21ce99'
                 let setColor = color
 
@@ -71,7 +72,8 @@ class StockPage extends React.Component {
                     label: "label",
                     key: "open",
                     timeframe: "Today",
-                    orderPrice: currentPrice
+                    orderPrice: currentPrice,
+                    originalPrice
                 })
 
             })
@@ -189,7 +191,7 @@ class StockPage extends React.Component {
         if (dif > 0) dif = "+$" + Math.abs(dif).toFixed(2);
         if (dif < 0) dif = "-$" + Math.abs(dif).toFixed(2);
         this.setState({
-            currentPrice,
+            currentPrice: this.state.originalPrice,
             dif,
             percentChange,
             color,

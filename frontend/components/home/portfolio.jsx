@@ -208,7 +208,6 @@ class Portfolio extends React.Component {
     }
 
     render(){
-
         let stocks = this.state.stocks
 
           const { 

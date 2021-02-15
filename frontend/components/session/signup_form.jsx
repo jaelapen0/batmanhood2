@@ -35,7 +35,7 @@ class SignupForm extends React.Component {
                 <h2>Make Your Money Move</h2>
                 <SignupSide />
 
-                <h4>Robinhood lets you invest in companies you love, commission-free.</h4>
+                <h4>Batmanhood lets you invest in companies you love, commission-free.</h4>
                 <p id="login_errors">{(this.state.errors && this.props.errors.length > 0 && (!this.props.errors[0].includes("Invalid"))) ? this.props.errors.map(error=>(
                         error + ". "
                     )) : null}</p>

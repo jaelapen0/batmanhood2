@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from "../components/searchbar/search_bar_container"
+import ClickOutHandler from 'react-onclickout';
 
 class Greeting extends React.Component {
     constructor(props){
@@ -11,33 +12,33 @@ class Greeting extends React.Component {
             buyingPower: 0
         }
         this.handleDropDown = this.handleDropDown.bind(this);
+        this.closeDropDown = this.closeDropDown.bind(this);
     }
 
     handleDropDown(){
-        this.state.droppedOpen === false ?
         (this.setState({droppedOpen: true}),
         document.getElementById("accountid").className="myaccount2"
 
-        ) :
-        (this.setState({droppedOpen: false}),
-        document.getElementById("accountid").className = "myaccount"
-        
+        ) 
+    }
+    closeDropDown(){
+        (this.setState({ droppedOpen: false }),
+            document.getElementById("accountid").className = "myaccount"
+
         );
     }
 
     componentDidMount(){
-        // 
+
         if (this.props.currentUser){
         this.props.fetchBuyingPower(this.props.currentUser.id)
         .then(buyingPower=>{
-            // ;
             this.setState({ buyingPower: buyingPower.buying_power.buying_power})
         })
         }
     }
     componentDidUpdate(prevProps, prevState){
-        // ;
-        
+  
     }
 
     render(){
@@ -69,33 +70,35 @@ class Greeting extends React.Component {
                      />
                         </a> 
                         
-                        <div id="accountid" className="myaccount" onClick={this.handleDropDown}
-                         to="/">My Account
-                         {this.state.droppedOpen === true ?
-                            <div className="myaccountdropdown"> 
-                                <h5>
-                                    <span className="username">
-                                            {`${this.props.currentUser.first_name} `}  {` ${this.props.currentUser.last_name}`}
+                        <ClickOutHandler onClickOut={this.closeDropDown} >
+                            <div id="accountid" className="myaccount" onClick={this.handleDropDown}
+                            to="/">My Account
+                            {this.state.droppedOpen === true ?
+                                <div className="myaccountdropdown"> 
+                                    <h5>
+                                        <span className="username">
+                                                {`${this.props.currentUser.first_name} `}  {` ${this.props.currentUser.last_name}`}
+                                            </span>
+                                        <span className="username">
+                                            
                                         </span>
-                                    <span className="username">
-                                        
-                                    </span>
+                                        <br/>
+                                        <br/>
+                                        <span className="balance">
+                                                Cash Balance:
+                                                <br /> ${parseFloat(parseFloat(this.props.currentUser.buying_power).toFixed(2)).toLocaleString()}
+                                        </span>
+                                    </h5>
+                                
                                     <br/>
-                                    <br/>
-                                    <span className="balance">
-                                            Cash Balance:
-                                            <br /> ${parseFloat(parseFloat(this.props.currentUser.buying_power).toFixed(2)).toLocaleString()}
-                                    </span>
-                                </h5>
-                              
-                                <br/>
-                               <span> <Link id="logout" to="/" className="header-button1" onClick={this.props.logout}>Log Out</Link>
-                                    </span>
+                                <span> <Link id="logout" to="/" className="header-button1" onClick={this.props.logout}>Log Out</Link>
+                                        </span>
+                                </div>
+                            : ""
+                                
+                                }
                             </div>
-                         : ""
-                             
-                             }
-                         </div>
+                         </ClickOutHandler>
 
                         {/* <p>My Account</p> */}
                         {/* <a href="#/signup">My Account</a> */}
@@ -119,41 +122,5 @@ class Greeting extends React.Component {
         )
     }
 }
-
-// const Greeting = ({ currentUser, logout }) => {
-//     const sessionLinks = () => (
-//         <div id="splashnav">
-//             <a id="logo" href="/">Batmanhood</a>
-           
-//             <nav className="header-group">
-//             {/* <a id="logo" href="/">Batmanhood</a> */}
-//                 <Link to="/login">Log In</Link>
-//                 <Link className="header-button" to="/signup">Sign Up</Link>
-//             </nav>
-//         </div>
-//     );
-//     const personalGreeting = () => (
-       
-
-//         <div id="splashnav">
-//             <div className="splash-with-search">
-//                 <a id="logo" href="/">Batmanhood</a>
-//                 <SearchBar/>
-//             </div>
-//             <nav className="header-group">
-//                 <Link onMouseOver={
-//                     (<div>
-//                         hi
-//                     </div>)
-//                 } to="/">My Account</Link>
-//                 {/* <p>My Account</p> */}
-//                 {/* <a href="#/signup">My Account</a> */}
-//                 <Link to="/" className="header-button" onClick={logout}>Log Out</Link>
-//             </nav>
-//         </div>
-//     );
-//     return currentUser ? personalGreeting() : sessionLinks();
-// };
-
 
 export default Greeting;

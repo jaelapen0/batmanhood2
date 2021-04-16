@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root);
-    window.getWatchlists = getWatchlists;
-    window.getWatchlist = getWatchlist;
-    window.createWatchlist = createWatchlist;
-    window.deleteWatchlist = deleteWatchlist;
-    window.fetchHistoricStockData = fetchHistoricStockData;
+    // window.getWatchlists = getWatchlists;
+    // window.getWatchlist = getWatchlist;
+    // window.createWatchlist = createWatchlist;
+    // window.deleteWatchlist = deleteWatchlist;
+    // window.fetchHistoricStockData = fetchHistoricStockData;
 });

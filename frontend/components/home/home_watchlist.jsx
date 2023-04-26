@@ -45,7 +45,7 @@ class HomeWatchlist extends React.Component {
          }
          
          this.setState({stocks: readyStocks, notReadyStocks})
-
+ 
          for (let i = 0; i < notReadyStocks.length; i++) {
             let ticker = notReadyStocks[i]
             let state= this.state;
@@ -54,12 +54,13 @@ class HomeWatchlist extends React.Component {
             .then((details, notReadyStocks) =>{
               
                let nowReadyStocks = state.nowReadyStocks 
-               
                nowReadyStocks[ticker] = {};
-               nowReadyStocks[ticker]["firstPrice"] = details.data[0].open; 
-               nowReadyStocks[ticker]["lastPrice"] = details.data[details.data.length-1].open; 
-               nowReadyStocks[ticker]["stockDif"] = details.data[details.data.length - 1].open - details.data[0].open;
-
+               // nowReadyStocks[ticker]["firstPrice"] = details.data[0]?.open; 
+               debugger
+               // nowReadyStocks[ticker]["lastPrice"] = details.data[details.data.length-1]//.open; 
+               debugger
+               // nowReadyStocks[ticker]["stockDif"] = details.data[details.data.length - 1]?.open - details.data[0]?.open;
+               debugger
                let data2 = []
                data2.data = details.data.filter(arr => (arr.open != null))
                nowReadyStocks[ticker].data = data2;
@@ -97,7 +98,7 @@ class HomeWatchlist extends React.Component {
                               <LineChart
                                  className="stocks-chart2"
                                  width={70} height={45} data={nowReadyStocks[stock].data.data}>
-                                 <XAxis dataKey="label" hide={true}></XAxis>
+                                 {/* <XAxis dataKey="label" hide={true}></XAxis> */}
                                  <YAxis dataKey="open" domain={[nowReadyStocks[stock].low, nowReadyStocks[stock].high]} axisLine={false} hide={true} />                                 
                                  
                                  {nowReadyStocks[stock].stockDif >= 0.0 ?

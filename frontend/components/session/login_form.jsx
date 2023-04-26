@@ -42,20 +42,24 @@ class SignupForm extends React.Component {
                     <p id="login_errors" color="red">{(this.state.errors && this.props.errors.length > 0 && (!this.props.errors[0].includes("blank") && !this.props.errors[0].includes("too short") && !this.props.errors[0].includes("Email"))) ? this.props.errors : null}</p>
                 <form onSubmit={this.handleSubmit} >
                     <h3 className="login-header">Welcome to Batmanhood</h3>
-                    <label className="login-label">Email
-                        <br/>
-                        <input
-                            type="text"
-                            autoFocus
-                            className="login-input"
-                            placeholder="Email"
-                            value={this.state.email}
-                            onChange={this.update('email')}
-                            style={{ borderColor: this.state.form_errors.includes('email') ? 'red' : 'gray' }}
-                        />
-                    </label>
+
+                    <div>
+                        <label className="login-label">Email
+                            <br/>
+                            <input
+                                type="text"
+                                autoFocus
+                                className="login-input"
+                                placeholder="Email"
+                                value={this.state.email}
+                                onChange={this.update('email')}
+                                style={{ borderColor: this.state.form_errors.includes('email') ? 'red' : 'gray' }}
+                            />
+                        </label>
+
+                    </div>
                     <br />
-                   
+                    <div>
                         <label className="login-label">Password
                         <br/>
                         <input
@@ -66,7 +70,8 @@ class SignupForm extends React.Component {
                             onChange={this.update('password')}
                             style={{ borderColor: this.state.form_errors.includes('password') ? 'red' : 'gray' }}
                         />
-                    </label>
+                        </label>
+                    </div>
                     <br />
                     <input id="form-button" type="submit" value={this.props.formType} />
                 </form>

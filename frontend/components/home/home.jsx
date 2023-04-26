@@ -1,99 +1,59 @@
-import React from "react"
-// import Portfolio from "../portfolio/portfolio_container"
-// import Watchlist from "../watchlist/watch_list_container"
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import NewsFeed from "./news_feed_container"
-import Portfolio from "./portfolio_container"
+import NewsFeed from "./news_feed_container";
+import Portfolio from "./portfolio_container";
 
-class Home extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            stocks: {},
-            stocksDetails: [],
-            req: 0,
-            theLast: [],
-            dataMin: 10000000000,
-            dataMax: 0,
-            color: "#21ce99",
-            dif: 0,
-            last: 0,
-            first: 0,
-            trimmed: {},
-            buyingPower: 0,
-        }
-        this.addMoney = this.addMoney.bind(this);
-        
-    }    
-    componentDidMount(){
-      
-        this.props.fetchBuyingPower(this.props.currentUser.id)
-        .then(buyingPower => {
-      
-            this.setState({ buyingPower: buyingPower.buying_power.buying_power})
-        })
-               
-    }
+const Home = ({ fetchBuyingPower, setBuyingPower, currentUser }) => {
+  const [state, setState] = useState({
+    buyingPower: 0,
+  });
 
-    componentDidUpdate(){
+  const { buyingPower } = state;
 
-    }
+  useEffect(() => {
+    fetchBuyingPower(currentUser.id).then((buyingPower) => {
+      setState((prevState) => ({ ...prevState, buyingPower: buyingPower.buying_power.buying_power }));
+    });
+  }, [currentUser.id, fetchBuyingPower]);
 
-    addMoney(e){
-        // ;
-        let amount = parseFloat(e.currentTarget.id);
-        let oldTotal = parseFloat(this.state.buyingPower);
-        let newTotal = amount + oldTotal;
-        let id = this.props.currentUser.id;
-    
+  const addMoney = (e) => {
+    let amount = parseFloat(e.currentTarget.id);
+    let oldTotal = parseFloat(buyingPower);
+    let newTotal = amount + oldTotal;
+    let id = currentUser.id;
 
-        this.props.setBuyingPower(this.props.currentUser.id, newTotal)
-        .then(this.props.fetchBuyingPower(id)
-            .then(buyingPower => {
-                this.setState({ buyingPower: buyingPower.buying_power.buying_power })
-            }))
-    }
+    setBuyingPower(currentUser.id, newTotal).then(() => {
+      fetchBuyingPower(id).then((buyingPower) => {
+        setState((prevState) => ({ ...prevState, buyingPower: buyingPower.buying_power.buying_power }));
+      });
+    });
+  };
 
-    render(){
-        const { stocksDetails,
-            req,
-            theLast,
-            dataMin,
-            dataMax,
-            color,
-            dif,
-            last,
-            first
-        } = this.state;
+  return (
+    <div className="home-container">
+      {buyingPower ? (
+        <div>
+          <Portfolio props={[fetchBuyingPower, setBuyingPower, currentUser]} buyingPower={buyingPower} />
+                  {/* props={fetchBuyingPower, setBuyingPower, currentUser} */}
+        </div>
+      ) : (
+        ""
+      )}
 
-       
-        return(
-            <div className="home-container">
-                {this.state? (
-                <div >
-                    {this.state.buyingPower ?
-                    <Portfolio props={this.props} buyingPower={this.state.buyingPower} 
-                    /> 
-                    : ""}
-                    
-                    {/* <Watchlist props={this.props}/> */}
-                    
-                </div>) : "" }
-                <div className="add-money-container">
-                    <h3>Add Money</h3>
-                    <h5>Cash Balance: ${parseFloat(parseFloat(this.state.buyingPower).toFixed(2)).toLocaleString()}</h5>
-                    <div className="amount">
-                        <button id="100" onClick={this.addMoney} className="header-button">$100</button>
-                        <button id="500" onClick={this.addMoney} className="header-button">$500</button>
-                        <button id="1000" onClick={this.addMoney} className="header-button">$1000</button>
-                        <button id="10000" onClick={this.addMoney} className="header-button">$10,000</button>
-                        <button id="100000" onClick={this.addMoney} className="header-button">$100,000</button>
-                    </div>
-                </div>
-                    <NewsFeed/>
-            </div>
-        )
-    }
-}
+      <div className="add-money-container">
+        <h3>Add Money</h3>
+        <h5>Cash Balance: ${parseFloat(parseFloat(buyingPower).toFixed(2)).toLocaleString()}</h5>
+        <div className="amount">
+          <button id="100" onClick={addMoney} className="header-button">$100</button>
+          <button id="500" onClick={addMoney} className="header-button">$500</button>
+          <button id="1000" onClick={addMoney} className="header-button">$1000</button>
+          <button id="10000" onClick={addMoney} className="header-button">$10,000</button>
+          <button id="100000" onClick={addMoney} className="header-button">$100,000</button>
+        </div>
+      </div>
+      <NewsFeed />
+    </div>
+  );
+};
 
 export default Home;

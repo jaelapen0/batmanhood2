@@ -1,82 +1,48 @@
-import React from "react"
+import React, { useEffect, useState } from "react";
 
+const StockWatchlist = ({ ticker_symbol, fetchWatchList, createWatchlist, deleteWatchlist, color }) => {
+   const [result, setResult] = useState(null);
 
-class StockWatchlist extends React.Component {
-   constructor(props) {
-      super(props)
-      this.state = {
+   useEffect(() => {
+      fetchWatchList(ticker_symbol).then((res) => {
+         setResult(res);
+      });
+   }, [ticker_symbol]);
+
+   const handleWatchList = (e) => {
+      if (e.target.innerText.includes("Add")) {
+         createWatchlist({ ticker_symbol }).then((res) => {
+            const watchlist = { watchlist: [res] };
+            setResult(watchlist);
+         });
+      } else {
+         deleteWatchlist({ id: ticker_symbol }).then((res) => {
+            setResult({ watchlist: [] });
+         });
       }
+   };
 
-      this.handleWatchList = this.handleWatchList.bind(this);
-   }
-
-   componentDidMount(){
-      ;
-      this.props.fetchWatchList(this.props.ticker_symbol)
-      .then(result =>{
-         ;
-         this.setState({result})
-      })
-   }
-
-   componentDidUpdate(prevProps, prevState){
-      ;
-      if (this.props.ticker_symbol != prevProps.ticker_symbol){
-         this.props.fetchWatchList(this.props.ticker_symbol)
-            .then(result => {
-               
-               this.setState({ result })
-            })
-      }
-   }
-
-   handleWatchList(e){
-      ;
-      if (e.target.innerText.includes("Add")){
-         this.props.createWatchlist({ ticker_symbol: this.props.ticker_symbol })
-            .then(result =>{
-               ;
-               let watchlist = {}
-               watchlist.watchlist = [result]
-               this.setState({
-                  result: watchlist})
-               })
-         }
-      else{
-         this.props.deleteWatchlist({id:this.props.ticker_symbol})
-            .then(result => {
-               this.setState({
-                  result: {watchlist: []}
-               })
-            })
-      }
-   }
-   render(){
-      // ;
-      return(
-         <div 
-            style={{borderTop: "1px solid lightgray"}}
-         // className="watchlist-container"
-         >
-            {this.state.result && this.state.result.watchlist.length  > 0 ? 
-               <button className="order-button" 
-               onClick={this.handleWatchList} 
-               style={{backgroundColor: this.props.color}}
-               >
-                  Remove from List
-               </button>
-               :
-               <button className="order-button"
-               onClick={this.handleWatchList} 
-                  style={{ backgroundColor: this.props.color }}
-               >
-                  
-                  Add to List
-               </button>
-            }
-         </div>
-      )
-   }
-}
+   return (
+      <div style={{ borderTop: "1px solid lightgray" }}>
+         {result && result.watchlist.length > 0 ? (
+            <button
+               className="order-button"
+               onClick={handleWatchList}
+               style={{ backgroundColor: color }}
+            >
+               Remove from List
+            </button>
+         ) : (
+            <button
+               className="order-button"
+               onClick={handleWatchList}
+               style={{ backgroundColor: color }}
+            >
+               Add to List
+            </button>
+         )}
+      </div>
+   );
+};
 
 export default StockWatchlist;

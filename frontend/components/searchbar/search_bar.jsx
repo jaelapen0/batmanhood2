@@ -1,106 +1,76 @@
-import React from "react"
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from 'react-router-dom';
 import ClickOutHandler from 'react-onclickout';
-class SearchBar extends React.Component{
 
-    constructor(props){
-        super(props)
+const SearchBar = ({ fetchSearchResults }) => {
+  const [results, setResults] = useState([]);
+  const [input, setInput] = useState("");
+  const [visibleResults, setVisibleResults] = useState(false);
 
-        this.state = {
-            results: [],
-            // [results.results]: []
-            input: "",
-            visibleResults: false
-        }
-        // this.clickAway = this.clickAway.bind(this)
-        this.makeSearchRequest = this.makeSearchRequest.bind(this);
-        this.toggleOn = this.toggleOn.bind(this);
-        this.toggleOff = this.toggleOff.bind(this);
-        this.completeSearch = this.completeSearch.bind(this);
-        this.handleSelect = this.handleSelect.bind(this);
+  useEffect(() => {
+    if (input.length > 0) {
+      setVisibleResults(true);
+      fetchSearchResults(input)
+        .then(results => {
+          setResults(results);
+        });
+    } else {
+      setVisibleResults(false);
     }
-    
-    componentDidUpdate(prevProps, prevState){
-        // ;
-    //     // if (this.state.results.l)
-    }
+  }, [fetchSearchResults, input]);
 
-    toggleResults(){
+  const toggleOn = () => {
+    setVisibleResults(true);
+  };
 
-    }
-    update(field){
-    //    ;
-        return e => {
-        
-            this.setState({ [field]: e.currentTarget.value, }, this.makeSearchRequest)
-            // if (this.state.input.length === 0) { this.setState({ visibleResults: false }) }
-        }
+  const toggleOff = useCallback(() => {
+    setVisibleResults(false);
+    setResults([]);
+  }, []);
 
-       
-    }
+  const completeSearch = () => {
+    setVisibleResults(false);
+    setInput("");
+    setResults([]);
+  };
 
-    makeSearchRequest(){
-        if (this.state.input.length > 0) {
-            this.setState({ visibleResults: true })
-        
-            this.props.fetchSearchResults(this.state.input)
-                .then(results => {
-                    
-                    this.setState({ results }, this.render)
-                })
-        }
-        else { this.setState({ visibleResults: false })}
-    }
-    toggleOn(e){
-        this.setState({visibleResults: true})
-    }
+  const handleSelect = () => {
+    // Handle select
+  };
 
-    toggleOff(e) {
-            this.setState({ visibleResults: false, results: []})
-    }
+  return (
+    <div className="searchbar-container" onFocus={toggleOn}>
+      <ClickOutHandler onClickOut={toggleOff}>
+        <input
+          className="searchbar-input"
+          placeholder="Search.."
+          type="text"
+          onChange={e => setInput(e.target.value)}
+          value={input}
+        />
+        <ul className="search-ul">
+          {visibleResults &&
+            results.results &&
+            Object.keys(results.results).length > 0 &&
+            Object.values(results.results).map(result => (
+              <div
+                id={result.ticker_symbol}
+                className="search-result"
+                onClick={handleSelect}
+              >
+                <Link
+                  className="searchresult-link"
+                  onClick={completeSearch}
+                  to={`/stocks/${result.ticker_symbol}`}
+                >
+                  {result.tags}
+                </Link>
+              </div>
+            ))}
+        </ul>
+      </ClickOutHandler>
+    </div>
+  );
+};
 
-    completeSearch(e) {
-        this.setState({ visibleResults: false, input: "", results: [] })
-    }
-
-    handleSelect(e){
-        ;
-    }
-    render(){
-        let results = [];
-        if (this.state.results.results && Object.keys(this.state.results.results).length){
-            results = this.state.results.results}
-        return(
-            <div className="searchbar-container" onFocus={this.toggleOn} >
-                <ClickOutHandler onClickOut={this.toggleOff}> 
-                <input className="searchbar-input" 
-                    //    onClickAway={this.clickAway()}
-                       placeholder="Search.." type="text"
-                       onChange={this.update("input")}
-                       value={this.state.input}
-                />
-                    <ul className="search-ul">
-                    {this.state.results.results && this.state.visibleResults === true && Object.keys(this.state.results.results).length > 0? 
-                    
-                    (   
-                        
-                        Object.values(results).map(result => {
-                        //  
-                          return ( <div id={result.ticker_symbol} className="search-result" onClick={this.handleSelect}> 
-                              <Link className="searchresult-link" onClick={this.completeSearch}
-                                    to={`/stocks/${result.ticker_symbol}`}> 
-                                    {result.tags}
-                                </Link>
-                            </div>)
-                        })
-                    )
-                    : ""
-                        }</ul>
-                </ClickOutHandler>
-            </div>
-        )
-    }
-
-}
-
-export default SearchBar
+export default SearchBar;

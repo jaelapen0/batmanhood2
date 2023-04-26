@@ -1,11 +1,11 @@
 import React from "react"
 import { fetchDailyStockData, fetchCompanyNews, fetchHistoricStockData } from "../../util/stock_util"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-// import _ from 'lodash'
 import CompanyProfile from "./company_profile_container"
 import StockNews from "./stock_news_container"
 import { Link } from 'react-router-dom';
 import OrderForm from "./order_form_container"
+
 class StockPage extends React.Component {
     constructor(props) {
         super(props)
@@ -19,8 +19,6 @@ class StockPage extends React.Component {
         this.fetchStockInfo = this.fetchStockInfo.bind(this);
         this.fetchHistoricStockInfo = this.fetchHistoricStockInfo.bind(this);
     }
-
-  
     fetchStockInfo(e){
 
         if (e){
@@ -29,8 +27,6 @@ class StockPage extends React.Component {
         let ticker = this.props.location.pathname.split("/")[2]
         fetchDailyStockData(ticker.toUpperCase())
             .then(data => {
-                // const data1 = data.historical.reverse().filter(arr => (arr.open != null))
-
                 let data1 = data.filter(arr => (arr.open != null))
                 let dif = data1[data1.length - 1].open - data1[0].open;
 
@@ -75,21 +71,16 @@ class StockPage extends React.Component {
                     orderPrice: currentPrice,
                     originalPrice
                 })
-
             })
-
-
     }
 
     fetchHistoricStockInfo(e){
         let ticker = this.props.location.pathname.split("/")[2]
         ;
         let timeframe = "";
-
         for (let i = 0; i < document.getElementsByClassName("chartOption").length; i++) {
             document.getElementsByClassName("chartOption")[i].style.color = ""
-        }
-        
+        }       
         e.currentTarget.style.color = "#21ce99";
         if (e.currentTarget.id === "7") { timeframe = "Past Week"}
         if (e.currentTarget.id ==="30") {  timeframe = "Past Month" }
@@ -106,8 +97,6 @@ class StockPage extends React.Component {
                     else{
                         data1 = data.reverse().filter(arr => (arr.open != null))
                     }
-                    // data1[data1.length - 1].open = this.state.currentPrice;
-                    // const data1 = data.filter(arr => (arr.open != null))
                     let dif = data1[data1.length - 1].open - data1[0].open;
 
                     let percentChange = ((dif / data1[0].open) * 100).toFixed(2)
@@ -123,13 +112,10 @@ class StockPage extends React.Component {
                     // const currentPrice = data1[data1.length - 1].open
                     let color = dif < 0 ? "red" : '#21ce99'
                     let setColor = color
-
-
                     if (dif > 0) {
                         dif = `+$${dif.toFixed(2)}`
                     }
                     else {
-
                         dif = `-$${Math.abs(dif).toFixed(2)}`
                     }
                     ;
@@ -142,7 +128,6 @@ class StockPage extends React.Component {
                         key: "open",
                         timeframe
                     })
-
                 })
             }
 

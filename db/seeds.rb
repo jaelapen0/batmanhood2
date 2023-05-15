@@ -6711,3 +6711,6 @@ stock6687= Stock.create(ticker_symbol: "ZTR", stock_name: "Virtus Global Divd &o
 stock6688= Stock.create(ticker_symbol: "ZTS", stock_name: "Zoetis Cl A")
 stock6689= Stock.create(ticker_symbol: "ZUO", stock_name: "Zuora")
 stock6690= Stock.create(ticker_symbol: "ZYME", stock_name: "Zymeworks")
+
+stocks = Stock.all
+stocks.each {|stock| stock.tags = "#{stock.stock_name} #{stock.ticker_symbol}"; stock.save! }

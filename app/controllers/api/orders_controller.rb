@@ -7,7 +7,7 @@ class Api::OrdersController < ApplicationController
         # order_params["shares_quantity"] = order_params["shares_quantity"].to_i
          @order = Order.new(order_params)
         # ;
-        #  
+         debugger
         if @order.save!
             render json: @order
         else
@@ -33,6 +33,7 @@ class Api::OrdersController < ApplicationController
     private
 
     def order_params
+        debugger
         params.require(:order)
         .permit(
             :user_id,
@@ -40,7 +41,10 @@ class Api::OrdersController < ApplicationController
             :order_type,
             :shares_quantity,
             :is_completed,
-            :price_per_share
+            :price_per_share,
+            # :buying_power, 
+            # :errors, 
+            # :sharesOwned
         )
     end
 end

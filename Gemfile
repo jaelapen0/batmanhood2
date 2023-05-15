@@ -3,15 +3,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'bcrypt'
 gem 'jbuilder'
-
+gem 'listen'
 ruby "3.1.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem 'sassc-rails'
+gem "rails", "~> 6.1"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
-
+gem 'better_errors'
+gem 'coffee-rails'#, '~> 4.1.0'
  gem 'faker'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -26,13 +28,13 @@ gem "puma", "~> 5.0"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
-
+gem "bcrypt"#, "~> 3.1.7"
+gem 'jquery-rails'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+# gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

@@ -5,7 +5,6 @@ class Api::PortfolioController < ApplicationController
 
         @orders = current_user.orders
         @info = [@orders, @portfolio]
-        debugger
         render json: @info
     end
 end

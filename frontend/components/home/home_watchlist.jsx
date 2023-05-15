@@ -56,11 +56,10 @@ class HomeWatchlist extends React.Component {
                let nowReadyStocks = state.nowReadyStocks 
                nowReadyStocks[ticker] = {};
                // nowReadyStocks[ticker]["firstPrice"] = details.data[0]?.open; 
-               debugger
+
                // nowReadyStocks[ticker]["lastPrice"] = details.data[details.data.length-1]//.open; 
-               debugger
+
                // nowReadyStocks[ticker]["stockDif"] = details.data[details.data.length - 1]?.open - details.data[0]?.open;
-               debugger
                let data2 = []
                data2.data = details.data.filter(arr => (arr.open != null))
                nowReadyStocks[ticker].data = data2;

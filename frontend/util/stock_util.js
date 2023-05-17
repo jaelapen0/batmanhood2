@@ -14,12 +14,6 @@ export const fetchStock = ticker_symbol => {
 }
 
 export const fetchDailyStockData = ticker_symbol => {
-
-    localStorage.daily_stock_token || $.ajax({
-        method: `GET`,
-        url: `api/token/daily_stock_token`
-    })
-    debugger
     return $.ajax({ 
         method: 'GET', 
         url: `https://cloud.iexapis.com/stable/stock/${ticker_symbol.toUpperCase()}/intraday-prices?token=${localStorage.daily}&chartIEXOnly=True`})
@@ -40,7 +34,6 @@ export const fetchHistoricStockData = (ticker_symbol, days) => {
     }
 
     if (days > 100) {
-        ;
         return $.ajax({
             method: 'GET',
             url: `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker_symbol}?from=${formattedDate}&apikey=${localStorage.historic}`

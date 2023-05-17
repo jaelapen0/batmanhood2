@@ -11,10 +11,8 @@ const Home = ({ fetchBuyingPower, setBuyingPower, currentUser }) => {
   const { buyingPower } = state;
   if (!localStorage.daily) {
     getStockTokens().then((res) => {
-      debugger
       localStorage.daily = res[0].token
       localStorage.historic = res[1].token
-      debugger
     });
   }
 

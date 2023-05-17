@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create, :index]
     resources :portfolio, only: [:index]
     resources :watchlists, only: [:create, :index, :show, :destroy]
+    resources :tokens, only: [:show]
   end
   root to: "static_pages#root"
 end

@@ -1,6 +1,7 @@
 class Api::TokensController < ApplicationController
 
-  def show
-  
+  def index
+    @tokens = Token.where('name ILIKE ?', "%stock%")
+    render json: @tokens
   end
 end

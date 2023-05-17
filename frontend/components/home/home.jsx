@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import NewsFeed from "./news_feed_container";
 import Portfolio from "./portfolio_container";
-
+import { getStockTokens } from "../../util/account_util";
 const Home = ({ fetchBuyingPower, setBuyingPower, currentUser }) => {
   const [state, setState] = useState({
     buyingPower: 0,
   });
 
   const { buyingPower } = state;
+  if (!localStorage.daily) {
+    getStockTokens().then((res) => {
+      debugger
+      localStorage.daily = res[0].token
+      localStorage.historic = res[1].token
+      debugger
+    });
+  }
 
   useEffect(() => {
     fetchBuyingPower(currentUser.id).then((buyingPower) => {

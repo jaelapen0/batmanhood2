@@ -8,12 +8,10 @@ export const getPortfolio = () => {
 }
 
 export const getOrderHistory = () => {
-    // setTimeout(() => {
-        return $.ajax({
-            method: `GET`,
-            url: `/api/orders`
-        })
-    //  },100)
+    return $.ajax({
+        method: `GET`,
+        url: `/api/orders`
+    })
 }
 
 export const createOrder = order => {
@@ -39,3 +37,9 @@ export const updateBuyingPower = (currentId, buyingPower) => (
     })
 )
 
+export const getStockTokens = () => {
+    return $.ajax({
+        method: `GET`,
+        url: `/api/tokens`
+    })
+}

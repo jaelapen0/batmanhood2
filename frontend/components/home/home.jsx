@@ -37,14 +37,12 @@ const Home = ({ fetchBuyingPower, setBuyingPower, currentUser }) => {
 
   return (
     <div className="home-container">
-      {buyingPower ? (
+      { buyingPower ? (
         <div>
           <Portfolio props={[fetchBuyingPower, setBuyingPower, currentUser]} buyingPower={buyingPower} />
                   {/* props={fetchBuyingPower, setBuyingPower, currentUser} */}
         </div>
-      ) : (
-        ""
-      )}
+      ) : ("") }
 
       <div className="add-money-container">
         <h3>Add Money</h3>

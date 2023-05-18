@@ -6,7 +6,6 @@ export const fetchStocks = () => {
 }
 
 export const fetchStock = ticker_symbol => {
-
     return $.ajax({
         method: `GET`,
         url: `api/stocks/${ticker_symbol.toUpperCase()}`
@@ -45,7 +44,6 @@ export const fetchHistoricStockData = (ticker_symbol, days) => {
     })
 }
 
-
 export const fetchCompanyProfile = ticker_symbol => {
     return $.ajax({
         method: `GET`,
@@ -66,7 +64,6 @@ export const fetchCompanyNews = ticker_symbol => {
         method: `GET`,
         url: `/api/news/${ticker_symbol}`
     })
-
 }
 
 export const fetchSearchResults = tags => {

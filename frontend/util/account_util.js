@@ -29,13 +29,13 @@ export const getBuyingPower = currentId => {
      })
 }
 
-export const updateBuyingPower = (currentId, buyingPower) => (
-    $.ajax({
+export const updateBuyingPower = (currentId, buyingPower, amount) => {
+    return $.ajax({
         method: `PATCH`,
         url: `/api/users/${currentId}`,
-        data: { [currentId.buyingPower]: buyingPower }
+        data: { [currentId.buyingPower]: buyingPower, amount }
     })
-)
+}
 
 export const getStockTokens = () => {
     return $.ajax({

@@ -12,7 +12,6 @@ function NewsFeed() {
         news.articles.forEach(article => {
           if (article.image) newsList.push(article);
         });
-        // debugger
         setArticles(newsList);
       });
   }, []);

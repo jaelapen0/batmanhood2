@@ -12,4 +12,10 @@ class UserMailer < ApplicationMailer
     @order = params[:order]
     mail(to: @user.email, subject: 'Order Confirmation')
   end
+
+  def updated_balance
+    @user = params[:user]
+    @amount = params[:amount]
+    mail(to: @user.email, subject: 'Updated Account Balance')
+  end
 end

@@ -15,7 +15,7 @@ const mdtp = dispatch => {
         logout: () => dispatch(logout()),
         login: (user) => dispatch(login(user)),
         fetchBuyingPower: currentId => dispatch(fetchBuyingPower(currentId)),
-        setBuyingPower: (currentId, buying_power) => dispatch(setBuyingPower(currentId, buying_power)),
+        setBuyingPower: (currentId, buying_power, amount) => dispatch(setBuyingPower(currentId, buying_power, amount)),
         fetchOrderHistory: () => dispatch(fetchOrderHistory()),
     }
 }

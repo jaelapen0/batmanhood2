@@ -57,7 +57,7 @@ export const fetchBuyingPower = currentId => dispatch => {
     .then(buying_power => dispatch(receiveBuyingPower(buying_power)))
 }
 
-export const setBuyingPower = (currentId, buying_power) => dispatch => {
-    return AccountUtils.updateBuyingPower(currentId, buying_power)
+export const setBuyingPower = (currentId, buying_power, amount) => dispatch => {
+    return AccountUtils.updateBuyingPower(currentId, buying_power, amount)
         .then(buying_power => dispatch(receiveBuyingPower(buying_power)))
 }

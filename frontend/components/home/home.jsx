@@ -28,7 +28,7 @@ const Home = ({ fetchBuyingPower, setBuyingPower, currentUser }) => {
     let newTotal = amount + oldTotal;
     let id = currentUser.id;
 
-    setBuyingPower(currentUser.id, newTotal).then(() => {
+    setBuyingPower(currentUser.id, newTotal, amount).then(() => {
       fetchBuyingPower(id).then((buyingPower) => {
         setState((prevState) => ({ ...prevState, buyingPower: buyingPower.buying_power.buying_power }));
       });

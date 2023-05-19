@@ -26,6 +26,7 @@ class Api::UsersController < ApplicationController
         end
 
         if @user.save
+            UserMailer.with(user: @user, amount: params['amount']).updated_balance.deliver_now
             render "api/users/buying_power"
         else
             render json: @user.errors.full_messages, status: 422

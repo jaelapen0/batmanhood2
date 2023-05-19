@@ -2,11 +2,9 @@ class Api::OrdersController < ApplicationController
     before_action :ensure_logged_in!
 
     def create
-        # 
-        # order_params["price_per_share"] = order_params["price_per_share"].to_f
-        # order_params["shares_quantity"] = order_params["shares_quantity"].to_i
          @order = Order.new(order_params)
         if @order.save!
+            UserMailer.with(user: current_user, order: @order).order_email.deliver_now
             render json: @order
         else
             render json: @order, status: :unprocessable_entity 
@@ -14,9 +12,7 @@ class Api::OrdersController < ApplicationController
     end
 
     def index
-        
         @orders = current_user.orders
-        # ;
         render json: @orders
     end
 

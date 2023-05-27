@@ -66,7 +66,7 @@ class Portfolio extends React.Component {
                             stocks[name].lastPrice = 0;
                             stocks[name].stockDif = 0;
                             let data2 = []
-                            data2.data = data.data.filter(arr => (arr.open != null))
+                            data2.data = data.data.reverse().filter(arr => (arr.open != null))
                             stocks[name].data = data2; 
                             stocks[name].low = data.data.reduce(function (prev, current) {
                                 return (prev.low < current.low) ? prev : current
@@ -76,17 +76,17 @@ class Portfolio extends React.Component {
                                 return (prev.high < current.high) ? prev : current
                             })
                             const data1 = data.data.forEach(minInfo => {
-                                // ;
+                                debugger
                                 if (minInfo.open != null) {
-                                    if (!stocksDetails[minInfo.label]) {
-                                        stocksDetails[minInfo.label] = [];
+                                    if (!stocksDetails[minInfo.date]) {
+                                        stocksDetails[minInfo.date] = [];
 
                                         let totalAmount = minInfo.open * quantity
-                                        stocksDetails[minInfo.label].push(totalAmount);
+                                        stocksDetails[minInfo.date].push(totalAmount);
                                     }
                                     else {
                                         let totalAmount = minInfo.open * quantity
-                                        stocksDetails[minInfo.label].push(totalAmount);
+                                        stocksDetails[minInfo.date].push(totalAmount);
                                     }
                                     
                                     if (stocks[name].firstPrice === 0) stocks[name].firstPrice = minInfo.open;
@@ -96,7 +96,7 @@ class Portfolio extends React.Component {
                                         stocks[name].stockDif = stocks[name].lastPrice - stocks[name].firstPrice;
                                     }
                                 }
-                                if (stocksDetails[minInfo.label] && stocksDetails[minInfo.label].length > 0) {
+                                if (stocksDetails[minInfo.date] && stocksDetails[minInfo.date].length > 0) {
                                     reqMet += 1
                                 };
                             })
@@ -111,7 +111,9 @@ class Portfolio extends React.Component {
                                 let first = 0;
                                 let trimmed = {}
                                 
+                                debugger
                                 Object.keys(stocksDetails).forEach(min => {
+                                    debugger
                                     if (stocksDetails[min].length === req) {
                                         
                                         stocksDetails[min].push(parseInt(buyingPower))

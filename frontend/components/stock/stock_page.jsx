@@ -27,7 +27,8 @@ class StockPage extends React.Component {
         let ticker = this.props.location.pathname.split("/")[2]
         fetchDailyStockData(ticker.toUpperCase())
             .then(data => {
-                let data1 = data.filter(arr => (arr.open != null))
+                debugger
+                let data1 = data.reverse().filter(arr => (arr.open != null))
                 let dif = data1[data1.length - 1].open - data1[0].open;
 
                 let percentChange = ((dif / data1[0].open) * 100).toFixed(2)

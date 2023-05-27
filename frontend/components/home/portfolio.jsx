@@ -76,7 +76,6 @@ class Portfolio extends React.Component {
                                 return (prev.high < current.high) ? prev : current
                             })
                             const data1 = data.data.forEach(minInfo => {
-                                debugger
                                 if (minInfo.open != null) {
                                     if (!stocksDetails[minInfo.date]) {
                                         stocksDetails[minInfo.date] = [];
@@ -111,9 +110,7 @@ class Portfolio extends React.Component {
                                 let first = 0;
                                 let trimmed = {}
                                 
-                                debugger
                                 Object.keys(stocksDetails).forEach(min => {
-                                    debugger
                                     if (stocksDetails[min].length === req) {
                                         
                                         stocksDetails[min].push(parseInt(buyingPower))

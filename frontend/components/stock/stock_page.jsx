@@ -27,7 +27,7 @@ class StockPage extends React.Component {
         let ticker = this.props.location.pathname.split("/")[2]
         fetchDailyStockData(ticker.toUpperCase())
             .then(data => {
-                debugger
+
                 let data1 = data.reverse().filter(arr => (arr.open != null))
                 let dif = data1[data1.length - 1].open - data1[0].open;
 
